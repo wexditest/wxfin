@@ -1,0 +1,55 @@
+
+{% extends "home/base.html" %}
+{% load static %}
+{% block content %}
+			<div class="container">
+				<div class="panel-header bg-primary-gradient">
+					<div class="page-inner py-5">
+						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+							<div>
+								<h2 class="text-white pb-2 fw-bold">Enroll</h2>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="page-inner mt--5">
+
+					<div class="row row-card-no-pd">
+						<div class="col-md-12">
+
+
+<div style="width: 100%; display: table;">
+    <div style="display: table-row">
+{% if msg %}
+<font color=green>!{{msg}}</font>
+{% endif %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+  </form>
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+
+
+
+
+{% endblock %}
+

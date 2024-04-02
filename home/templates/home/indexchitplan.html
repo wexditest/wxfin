@@ -1,0 +1,75 @@
+<div class="card">
+								<div class="card-header">
+									<div class="card-head-row card-tools-still-right">
+										<h4 class="card-title">Your Chit Plan </h4>
+
+									</div>
+
+								</div>
+
+								<div class="card-body">
+									<div class="row">
+										<div class="col-md-10">
+											<div class="table-responsive table-hover table-sales">
+												<table id="table_id"  class="table">
+													<thead>
+													    <tr>
+													        <th>Chit#</th>
+													         <th>Chit Total Amount</th>
+													          <th>Chit Taken</th>
+													           <th>Chit Not Taken</th>
+													            <th>Total Months</th>
+
+													    </tr>
+													    </thead>
+													    <tbody>
+													    {% for i in chit_det_obj %}
+
+														<tr>
+
+															<td>
+															<font color=blue>{{i.customer_chit_details.chit_name}}</font>
+															</td>
+
+
+
+<td>
+															{{i.customer_chit_details.chit_total_amt}}
+															</td>
+
+<td>
+															{{i.customer_chit_details.chit_taken_amt}}
+															</td>
+
+  <td>
+															{{i.customer_chit_details.chit_nottaken_amt}}
+															</td>
+
+
+
+<td>
+															{{i.customer_chit_details.chit_total_month_count}}
+															</td>
+
+
+
+														</tr>
+
+														{% endfor %}
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="mapcontainer">
+
+
+
+
+<!-- /Edit Job modal -->
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>

@@ -1,0 +1,61 @@
+{% extends "home/base.html" %}
+{% load static %}
+{% block content %}
+	<div class="container">
+				<div class="panel-header bg-primary-gradient">
+					<div class="page-inner py-5">
+						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+							<div>
+								<h2 class="text-white pb-2 fw-bold">KYC</h2>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="page-inner mt--5">
+
+					<div class="row row-card-no-pd">
+						<div class="col-md-12">
+  <h2>KYC</h2><br>
+  Address Proof
+
+  user_name
+  proof_file
+  proof_choice
+
+  Bank Details
+
+  bank_name
+  bank_account_no
+  bank_branch
+  bank_ifsc
+  bank_proof_choice
+  bank_proof_file
+
+  UPI
+  upi_id
+
+  {% for i in kyc_obj %}
+  {{i}}
+
+  {% endfor %}
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+
+{% endblock %}

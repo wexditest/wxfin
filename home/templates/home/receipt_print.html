@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <title>My Title</title>
+        <style type="text/css">
+            @page {
+                size: {{ pagesize }};
+                margin: 1cm;
+                @frame footer {
+                    -pdf-frame-content: footerContent;
+                    bottom: 0cm;
+                    margin-left: 9cm;
+                    margin-right: 9cm;
+                    height: 1cm;
+                }
+            }
+        </style>
+
+    </head>
+    <body><style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+</style>
+</head>
+<body>
+
+
+<style>
+      /* Header styles */
+      header {
+        background-color: #333;
+        padding: 20px;
+        color: #fff;
+      }
+
+      /* Logo styles */
+      .logo {
+        max-width: 100px;
+      }
+    </style>
+
+ <header>
+ {% load static %}
+ <center><h3>Wexdi Finance</h3></center>
+
+
+<hr>
+    </header>
+
+
+
+
+
+
+
+
+<table id="customers">
+    <tr><td colspan=2><center><h5>Payment Receipt</h5></center></td></tr>
+       <tr>
+       <th> Chit# </th><td>{{mylist.chit_details}}</td></tr><tr>
+       <th>Chit(Month/Year)</th><td>{{mylist.chit_month}}/{{mylist.chit_year}}</td></tr><tr>
+       <th>Amount Paid</th><td>{{mylist.amount_paid}}</td></tr><tr>
+       <th>Payment Date</th><td>{{mylist.payment_date}}</td></tr><tr>
+       <th>Payment Status </th><td>{{mylist.payment_status}}</td></tr><tr>
+
+       <th>Payment Transaction ID#</th><td>{{mylist.trans_id}}</td>
+
+
+
+
+  </tr>
+
+
+
+
+    </table>
+
+
+<br><br><br>
+<hr>
+       <center>
+<footer>
+  <p>Wexdi Team<br>
+  <a href="mailto:hege@example.com">info.support@wexdi.com</a></p>
+</footer>
+</center>
+
+
+
+        <div id="footerContent">
+            {%block page_foot%}
+                Page <pdf:pagenumber>
+            {%endblock%}
+        </div>
+    </body>
+</html>

@@ -1,0 +1,130 @@
+<script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+    </script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<div class="card">
+								<div class="card-header">
+									<div class="card-head-row card-tools-still-right">
+										<h4 class="card-title">Latest & Running Chit List </h4>
+
+									</div>
+
+								</div>
+
+								<div class="card-body">
+									<div class="row">
+										<div class="col-md-14">
+											<div class="table-responsive table-hover table-sales">
+
+
+												<table id="table_id"  class="table">
+													<thead>
+													    <tr>
+													        <th>Chit#</th>
+													         <th>Chit Total Amount</th>
+
+													            <th>Total Months</th><th>Status</th>
+													            <th>Actions</th>
+
+													    </tr>
+													    </thead>
+													    <tbody>
+													    {% for i in chit_det_obj_all %}
+
+														<tr>
+
+															<td>
+															<a href="">{{i.chit_name}}</a>
+															</td>
+
+
+
+<td>
+															{{i.chit_total_amt}}
+															</td>
+
+
+
+
+
+<td>
+															{{i.chit_total_month_count}}
+															</td>
+
+  <td>{% for k,v in chit_count_dict.items %}
+
+
+      {% if k == i.id %}
+
+
+          {% if v <= 5 %}
+          <font color=green>Slots Available</font>
+          {% elif v < cdo.chit_month %}
+          <font color=orange>Slots Fast filling</font>
+          {% elif cdo.chit_month == cdo.chit_month %}
+          <font color=red>Slots Full / Started</font>
+          {% else %}
+          <font color=blue>Not Started</font>
+          {% endif %}
+{% endif %}
+      {% endfor %}
+      </td><td>
+
+{% for k,v in chit_count_dict.items %}
+
+           {% if k == i.id %}
+
+
+          {% if v <= 5 %}
+        <button class="likebutton"> <i class="fa fa-check" aria-hidden="true" title="Participate In Chit"></i></button>
+        <a href="/get_chit_plan/{{i.id}}/" target="_blank"><button>  <i class="fa fa-eye" aria-hidden="true" title="View Chit Plan"></i></button></a>
+
+          {% elif v < cdo.chit_month %}
+<button class="likebutton"> <i class="fa fa-check" aria-hidden="true" title="Participate In Chit"></i></button>
+<a href="/get_chit_plan/{{i.id}}/" target="_blank"><button> <i class="fa fa-eye" aria-hidden="true" title="View Chit Plan"></i></button></a>
+         {% elif cdo.chit_month == cdo.chit_month %}
+<a href="/get_chit_plan/{{i.id}}/" target="_blank"><button>  <i class="fa fa-eye" aria-hidden="true" title="View Chit Plan"></i></button></a>
+
+          {% else %}
+
+          {% endif %}
+{% endif %}
+      {% endfor %}
+
+
+
+<script type="text/javascript">
+    $('.likebutton').click(function(){
+
+    $.ajax(
+    {
+        type:"GET",
+        url: '{% url "enroll_chit_plan" %}',
+        data:{
+                 chit_id: {{i.id}}
+        },
+        success: function( data )
+        {
+swal("Your request to enroll in a new chit plan is successfully registered");
+
+
+        }
+     })
+});
+</script>
+          </td>
+
+														</tr>
+
+														{% endfor %}
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>

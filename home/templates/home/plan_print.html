@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <title>Chit Plan</title>
+        <style type="text/css">
+            @page {
+                size: {{ pagesize }};
+                margin: 1cm;
+                @frame footer {
+                    -pdf-frame-content: footerContent;
+                    bottom: 0cm;
+                    margin-left: 9cm;
+                    margin-right: 9cm;
+                    height: 1cm;
+                }
+            }
+        </style>
+
+    </head>
+    <body><style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 4px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+</style>
+</head>
+<body>
+
+
+
+
+
+ <center><h3>Wexdi Finance Chit Plan Details</h3></center>
+
+
+
+<table id="customers">
+<tr><td><b>Chit#</b></td><td>{{chit_det_obj.chit_name}}</td>
+<td><b>Chit Total Amount</b></td><td>Rs.{{chit_det_obj.chit_total_amt}}.00/-</td></tr>
+<tr><td><b>Chit Winners Pay</b></td><td>Rs.{{chit_det_obj.chit_taken_amt}}.00/-</td>
+<td><b>Normal Chit Amount</b></td><td>Rs.{{chit_det_obj.chit_nottaken_amt}}.00/-</td></tr>
+
+
+
+
+<tr><td colspan=2><center><FONT COLOR=BLUE><b>MONTHS</b></FONT></center></td>
+<td colspan=2><center><font color=red><b>CHIT AMOUNT</b></font></center></td></tr>
+{% for i in mylist %}
+<tr><th colspan=2><center>{{forloop.counter}}</center></td><td colspan=2><center>Rs.{{i.get_chit_amount}}.00/-</center></td></tr>
+{% endfor %}
+    </table>
+
+
+
+</center>
+
+
+
+        <div id="footerContent">
+            {%block page_foot%}
+                Page <pdf:pagenumber>
+
+
+            {%endblock%}
+        </div>
+    </body>
+</html>

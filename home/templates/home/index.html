@@ -1,0 +1,12 @@
+{% extends "home/base.html" %}
+
+{% block content %}
+{% if request.user.is_superuser %}
+
+{% include 'home/admin_dashboard.html' %}
+
+{% else %}
+{% include 'home/user_dashboard.html' %}
+
+{% endif %}
+{% endblock %}

@@ -1,0 +1,99 @@
+
+{% extends "home/base.html" %}
+{% load static %}
+{% block content %}
+			<div class="container">
+				<div class="panel-header bg-primary-gradient">
+					<div class="page-inner py-5">
+						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+							<div>
+								<h2 class="text-white pb-2 fw-bold">Payment History</h2>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="page-inner mt--5">
+
+					<div class="row row-card-no-pd">
+						<div class="col-md-12">
+
+
+<div style="width: 100%; display: table;">
+    <div style="display: table-row">
+        <style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+</style>
+
+
+	<table id="table_id"  class="table">
+       <tr>
+       <th> Chit# </th>
+       <th>Chit(Month/Year)</th>
+       <th>Payment Status</th>
+       <th>Amount</th>
+       <th>Payment Date</th>
+       <th>Actions</th>
+  </tr>
+  {% for cc in cust_obj %}
+  <tr>
+    <td>{{cc.chit_details}}</td>
+
+  <td>{{cc.chit_month}}/{{cc.chit_year}}</td>
+  <td>{{cc.payment_status}}</td>
+
+
+  <td>{{cc.amount_paid}}</td>
+  <td>{{cc.payment_date}}</td>
+  <td><a href="receipt_print/{{cc.id}}/" target="_blank"><button><i class="fa fa-paperclip" aria-hidden="true" >Receipt</i></button></a>
+  <a href='/media/{{cc.payment_file}}' target="_blank"><button><i class="fa fa-picture-o" aria-hidden="true">ScreenShot</i></button></a>
+</a></td>
+    </tr>
+    {% endfor %}
+    </table>
+
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+
+
+
+
+{% endblock %}
+
