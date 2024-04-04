@@ -28,6 +28,8 @@ STATUS1 = (
     )
 ADMIN_PEOPLE = (
         ('DEEPAK', 'DEEPAK'),
+        ('GEETHIKA', 'GEETHIKA'),
+        ('SANGEETHA', 'SANGEETHA'),
 )
 
 class Bug(models.Model):

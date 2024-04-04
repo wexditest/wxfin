@@ -24,18 +24,18 @@ BANK_PROOF_CHOICES =(
 
 class KYC(models.Model):
   user_name = models.ForeignKey(User,on_delete=models.CASCADE,blank=True, null=True)
-  proof_file = models.FileField(upload_to="proof/" , default='proof/myfile.pdf')
+  proof_file = models.FileField(upload_to="proof/" , default='proof/myfile.pdf',blank=True, null=True)
   proof_choice = models.CharField(max_length=9, choices=PROOF_CHOICES, default="aadhar")
-  bank_name = models.CharField(max_length=255)
-  bank_account_no = models.CharField(max_length=255)
-  bank_branch = models.CharField(max_length=255)
-  bank_ifsc = models.CharField(max_length=255)
-  upi_id = models.CharField(max_length=255)
-  bank_proof_choice = models.CharField(max_length=9, choices=BANK_PROOF_CHOICES, default="aadhar")
-  bank_proof_file = models.FileField(upload_to="proof/" , default='proof/myfile.pdf')
+#   bank_name = models.CharField(max_length=255,blank=True, null=True)
+#   bank_account_no = models.CharField(max_length=255,blank=True, null=True)
+#   bank_branch = models.CharField(max_length=255,blank=True, null=True)
+#   bank_ifsc = models.CharField(max_length=255,blank=True, null=True)
+#   upi_id = models.CharField(max_length=255,blank=True, null=True)
+#   bank_proof_choice = models.CharField(max_length=9, choices=BANK_PROOF_CHOICES, default="aadhar")
+#   bank_proof_file = models.FileField(upload_to="proof/" , default='proof/myfile.pdf',blank=True, null=True)
 
-  def __str__(self):
-    return self.user_name
+#   def __str__(self):
+#     return self.user_name
 
 
 

@@ -25,7 +25,7 @@
 													        <th>Chit#</th>
 													         <th>Chit Total Amount</th>
 
-													            <th>Total Months</th><th>Status</th>
+													            <th>Total Months</th>
 													            <th>Actions</th>
 
 													    </tr>
@@ -53,24 +53,7 @@
 															{{i.chit_total_month_count}}
 															</td>
 
-  <td>{% for k,v in chit_count_dict.items %}
-
-
-      {% if k == i.id %}
-
-
-          {% if v <= 5 %}
-          <font color=green>Slots Available</font>
-          {% elif v < cdo.chit_month %}
-          <font color=orange>Slots Fast filling</font>
-          {% elif cdo.chit_month == cdo.chit_month %}
-          <font color=red>Slots Full / Started</font>
-          {% else %}
-          <font color=blue>Not Started</font>
-          {% endif %}
-{% endif %}
-      {% endfor %}
-      </td><td>
+  <td>
 
 {% for k,v in chit_count_dict.items %}
 

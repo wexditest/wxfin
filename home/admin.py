@@ -4,10 +4,11 @@ from django.contrib import admin
 
 from .models import *
 
+class KYCAdmin(admin.ModelAdmin):
+  list_display = ("user_name",)
 
-
-class ProfileAdmin(admin.ModelAdmin):
-  pass
 
 # Register your models here.
-admin.site.register(Profile, ProfileAdmin)
+admin.site.register(KYC, KYCAdmin)
+
+

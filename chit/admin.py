@@ -18,7 +18,7 @@ duplicate_event.short_description = "Duplicate selected record"
 
 class MonthWiseChitDetailsAdmin(admin.ModelAdmin):
   actions = [duplicate_event]
-  list_display = ("chit_details", "chit_month","chit_year","get_chit_amount")
+  list_display = ("chit_details", "chit_month","chit_year","get_chit_amount","winner_of_chit")
   list_filter = ("chit_details",)
 
 class CustomerChitPlanAdmin(admin.ModelAdmin):
@@ -28,6 +28,7 @@ class CustomerChitPlanAdmin(admin.ModelAdmin):
 
 class CustomerChitPaymentDetailsAdmin(admin.ModelAdmin):
   list_display = ("chit_details","customer_details","chit_month","chit_year","payment_status")
+  list_filter=("chit_details","customer_details","chit_month","chit_year")
 
 class EnrollChitAdmin(admin.ModelAdmin):
   list_display = ("chit_details", "customer_details",'enroll_status','admin_per_status')

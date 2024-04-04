@@ -193,7 +193,7 @@ def home(request):
     chit_count_dict = {}
     for cdo in chit_det_obj_all:
         get_count = CustomerChitPlan.objects.filter(customer_chit_details=cdo)
-        chit_count_dict[cdo.id] = len(get_count)
+        chit_count_dict[cdo.id] = str(len(get_count))
 
 
     context = {'chit_det_obj_all':chit_det_obj_all,'swing_obj_all':swing_obj_all,"div_obj_all":div_obj_all,'chit_count_dict':chit_count_dict,}
