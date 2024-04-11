@@ -11,4 +11,11 @@ class KYCAdmin(admin.ModelAdmin):
 # Register your models here.
 admin.site.register(KYC, KYCAdmin)
 
+admin.site.register(HomeBanner)
+admin.site.register(Slider)
+admin.site.register(ChitActivities)
+admin.site.register(StockLastestNews)
+
+
+
 

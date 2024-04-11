@@ -23,6 +23,9 @@
 									<li>
                                         {% if request.user.is_superuser %}
  <a class="dropdown-item" href="/admin">Admin </a>
+  <a class="dropdown-item" href="/admin/bug/bug/">Bugs </a>
+
+
 {% endif %}
                                         <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
 										<a class="dropdown-item" href="{% url 'logout' %}">Logout</a>

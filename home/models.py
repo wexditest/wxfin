@@ -7,7 +7,20 @@ from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
+import datetime
+from datetime import datetime
 
+
+
+class ChitActivities(models.Model):
+  act_date = models.DateField(default=datetime.now)
+  act_name = models.CharField(max_length=255,blank=True, null=True)
+
+class StockLastestNews(models.Model):
+  news_date = models.DateField(default=datetime.now)
+  stock_name = models.CharField(max_length=255)
+  event_details = models.CharField(max_length=255)
+  trend = models.CharField(max_length=255)
 
 
 PROOF_CHOICES =(
@@ -37,6 +50,12 @@ class KYC(models.Model):
 #   def __str__(self):
 #     return self.user_name
 
+class Slider(models.Model):
+    slide = models.ImageField(default='avatar.jpg', upload_to='slide/' )
+
+
+class HomeBanner(models.Model):
+    banner = models.ImageField(default='avatar.jpg', upload_to='home_banner/' )
 
 
 

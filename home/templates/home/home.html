@@ -1,5 +1,6 @@
 {% extends "home/base.html" %}
 {% block content %}
+{% load static %}
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
@@ -18,9 +19,9 @@
 <div class="panel-header bg-primary-gradient">
     <div class="page-inner py-5">
         <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
-            <div>
-                <h2 class="text-white pb-2 fw-bold">Home</h2>
-            </div>
+                <h4 class="page-title text-white">Home</h4>
+
+
             <div class="ml-md-auto py-2 py-md-0">
                 <a class="btn btn-secondary btn-round" href="whatsapp://send?text=chit-enquire!&phone=+916302957399" id='button'>Enquiry</a>
             </div>
@@ -29,6 +30,36 @@
 </div>
 <div class="page-inner mt--5">
         <div class="row row-card-no-pd">
+            <div class="col-md-12">
+							<div class="card">
+
+								<div class="card-body">
+									<div id="owl-demo2" class="owl-carousel owl-theme owl-img-responsive">
+										{% for so in slid_obj %}
+									    	<div class="item"><img class="img-fluid" src="{{so.slide.url}}"></div>
+
+									    {% endfor %}
+									</div>
+								</div>
+							</div>
+						</div>
+             <div class="col-md-12">
+
+                 <div class="card-header">
+									<h4 class="card-title">Latest News!</h4>
+								</div>
+							<div class="card">
+
+								<div class="card-body">
+									<div id="owl-demo" class="owl-carousel owl-theme owl-img-responsive">
+									    {% for ho in hb_obj %}
+									    	<div class="item"><img class="img-fluid" src="{{ho.banner.url}}"></div>
+
+									    {% endfor %}
+										</div>
+								</div>
+							</div>
+						</div>
               <div class="col-md-15">
                    <div class="card">
                        <div class="card-header">
@@ -54,6 +85,9 @@
                                                     <th>Normal Amount</th>
                                                     <th>Months</th>
                                                     <th>Status</th>
+                                                    {% if request.user.is_superuser %}
+                                                    <th>Members</th>
+                                                    {% endif %}
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -78,6 +112,7 @@
                                                     {% for k,v in chit_count_dict.items %}
                                                         {% if k == i.id %}
 
+
                                                             {% if v == i.chit_total_month_count %}
                                                                 <font color=red>Slots Full </font>
                                                             {% else %}
@@ -87,6 +122,17 @@
                                                         {% endif %}
                                                     {% endfor %}
                                                     </td>
+                                                    {% if request.user.is_superuser %}
+
+                                                     <td>
+                                                    {% for k,v in chit_count_dict.items %}
+                                                     {% if k == i.id %}
+                                                        {{v}}
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                    </td>
+                                                    {%endif %}
+
                                                 </tr>
                                                 {% endfor %}
                                             </tbody>
@@ -138,34 +184,17 @@
         <div class="col-md-6">
             <div class="card full-height">
                 <div class="card-header">
-                    <div class="card-title">Blog Activity</div>
+                    <div class="card-title">Chit Funds Activity</div>
                 </div>
                 <div class="card-body">
                     <ol class="activity-feed">
+                        {% for cao in chit_act_obj %}
                         <li class="feed-item feed-item-secondary">
-                            <time class="date" datetime="9-25">Sep 25</time>
-                            <span class="text">Responded to need <a href="#">"Volunteer opportunity"</a></span>
+                            <time class="date" datetime="9-25">{{cao.act_date}}</time>
+                            <span class="text">{{cao.act_name}}</span>
                         </li>
-                        <li class="feed-item feed-item-success">
-                            <time class="date" datetime="9-24">Sep 24</time>
-                            <span class="text">Added an interest <a href="#">"Volunteer Activities"</a></span>
-                        </li>
-                        <li class="feed-item feed-item-info">
-                            <time class="date" datetime="9-23">Sep 23</time>
-                            <span class="text">Joined the group <a href="single-group.php">"Boardsmanship Forum"</a></span>
-                        </li>
-                        <li class="feed-item feed-item-warning">
-                            <time class="date" datetime="9-21">Sep 21</time>
-                            <span class="text">Responded to need <a href="#">"In-Kind Opportunity"</a></span>
-                        </li>
-                        <li class="feed-item feed-item-danger">
-                            <time class="date" datetime="9-18">Sep 18</time>
-                            <span class="text">Created need <a href="#">"Volunteer Opportunity"</a></span>
-                        </li>
-                        <li class="feed-item">
-                            <time class="date" datetime="9-17">Sep 17</time>
-                            <span class="text">Attending the event <a href="single-event.php">"Some New Event"</a></span>
-                        </li>
+                        {% endfor %}
+
                     </ol>
                 </div>
             </div>
@@ -174,24 +203,13 @@
             <div class="card full-height">
                 <div class="card-header">
                     <div class="card-head-row">
-                        <div class="card-title">Latest News</div>
-                        <div class="card-tools">
-                            <ul class="nav nav-pills nav-secondary nav-pills-no-bd nav-sm" id="pills-tab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link" id="pills-today" data-toggle="pill" href="#pills-today" role="tab" aria-selected="true">Today</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="pills-week" data-toggle="pill" href="#pills-week" role="tab" aria-selected="false">Week</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="pills-month" data-toggle="pill" href="#pills-month" role="tab" aria-selected="false">Month</a>
-                                </li>
-                            </ul>
-                        </div>
+                        <div class="card-title">Stock Market News</div>
+
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="d-flex">
+
                         <div class="avatar avatar-online">
                             <span class="avatar-title rounded-circle border border-white bg-info">J</span>
                         </div>
@@ -260,4 +278,58 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+	<script>
+		$(document).ready(function() {
+			$('#owl-demo').owlCarousel({
+				loop:true,
+				margin:10,
+				nav:true,
+				responsive:{
+					0:{
+						items:1
+					},
+					600:{
+						items:3
+					},
+					1000:{
+						items:4
+					}
+				}
+			})
+
+			$("#owl-demo2").owlCarousel({
+
+				nav:true, // Show next and prev buttons
+				autoplaySpeed:300,
+				navSpeed:400,
+				items:1
+
+			});
+
+			$('#owl-demo3').owlCarousel({
+				center: true,
+				items:2,
+				loop:true,
+				margin:10,
+				responsive:{
+					600:{
+						items:4
+					}
+				}
+			});
+
+			$('#owl-demo4').owlCarousel({
+				margin:10,
+				loop:false,
+				autoWidth:true,
+				items: 4
+			})
+		});
+	</script>
+
 {% endblock %}
