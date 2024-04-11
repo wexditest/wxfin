@@ -1,3 +1,5 @@
+DATABASE_NAME = "db.sqlite3"
+
 STATIC_ROOT = '/home/wexdifinance/finance/static'
 STATIC_URL = '/static/'
 
