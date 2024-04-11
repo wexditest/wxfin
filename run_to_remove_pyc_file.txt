@@ -1,0 +1,5 @@
+find . -name "*.pyc" -exec git rm -f "{}" \;
+
+Note:
+----
+Open the command prompt the run the above code to remove the pyc file

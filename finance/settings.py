@@ -118,8 +118,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
-
-STATIC_URL = "static/"
+from . import local_settings
+STATIC_URL = local_settings.STATIC_URL
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -128,7 +128,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # default static files settings for PythonAnywhere.
 # see https://help.pythonanywhere.com/pages/DjangoStaticFiles for more info
-MEDIA_ROOT = '/home/wexdifinance/finance/media'
-MEDIA_URL = '/media/'
-STATIC_ROOT = '/home/wexdifinance/finance/static'
-STATIC_URL = '/static/'
+MEDIA_ROOT = local_settings.MEDIA_ROOT
+MEDIA_URL = local_settings.MEDIA_URL
+STATIC_ROOT = local_settings.STATIC_ROOT
+STATIC_URL = local_settings.STATIC_URL
