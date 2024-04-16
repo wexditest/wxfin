@@ -21,6 +21,8 @@ class StockLastestNews(models.Model):
   stock_name = models.CharField(max_length=255)
   event_details = models.CharField(max_length=255)
   trend = models.CharField(max_length=255)
+  stock_pic = models.ImageField(default='avatar.jpg', upload_to='stock_pic/' )
+
 
 
 PROOF_CHOICES =(
@@ -56,6 +58,7 @@ class Slider(models.Model):
 
 class HomeBanner(models.Model):
     banner = models.ImageField(default='avatar.jpg', upload_to='home_banner/' )
+    banner_date = models.DateField(default=datetime.now)
 
 
 

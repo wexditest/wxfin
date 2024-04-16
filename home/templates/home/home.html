@@ -30,6 +30,7 @@
 </div>
 <div class="page-inner mt--5">
         <div class="row row-card-no-pd">
+            {% comment %}
             <div class="col-md-12">
 							<div class="card">
 
@@ -43,24 +44,25 @@
 								</div>
 							</div>
 						</div>
+						{% endcomment %}
              <div class="col-md-12">
 
-                 <div class="card-header">
-									<h4 class="card-title">Latest News!</h4>
-								</div>
-							<div class="card">
+                <div class="card-header">
+					<h4 class="card-title">Latest News!</h4>
+				</div>
+				<div class="card">
 
-								<div class="card-body">
-									<div id="owl-demo" class="owl-carousel owl-theme owl-img-responsive">
-									    {% for ho in hb_obj %}
-									    	<div class="item"><img class="img-fluid" src="{{ho.banner.url}}"></div>
+					<div class="card-body">
+						<div id="owl-demo" class="owl-carousel owl-theme owl-img-responsive">
+						    {% for ho in hb_obj reversed  %}
+						    	<div class="item"><img class="img-fluid" src="{{ho.banner.url}}"></div>
 
-									    {% endfor %}
-										</div>
-								</div>
-							</div>
+						    {% endfor %}
 						</div>
-              <div class="col-md-15">
+					</div>
+				</div>
+			</div>
+            <div class="col-md-15">
                    <div class="card">
                        <div class="card-header">
                             <div class="card-head-row card-tools-still-right">
@@ -148,7 +150,7 @@
 
 
 
-
+{% comment %}
     <div class="row mt--2">
         <div class="col-md-6">
             <div class="card full-height">
@@ -179,7 +181,7 @@
             </div>
         </div>
     </div>
-
+{%endcomment %}
     <div class="row">
         <div class="col-md-6">
             <div class="card full-height">
@@ -208,71 +210,23 @@
                     </div>
                 </div>
                 <div class="card-body">
+                    {% for ss in stock_news_obj %}
                     <div class="d-flex">
 
                         <div class="avatar avatar-online">
-                            <span class="avatar-title rounded-circle border border-white bg-info">J</span>
+                            <span class="avatar-title rounded-circle border border-white bg-info"><img src="{{ss.stock_pic.url}}" style="width:60px"></span>
                         </div>
                         <div class="flex-1 ml-3 pt-1">
-                            <h6 class="text-uppercase fw-bold mb-1">Joko Subianto <span class="text-warning pl-3">pending</span></h6>
-                            <span class="text-muted">I am facing some trouble with my viewport. When i start my</span>
+                            <h6 class="text-uppercase fw-bold mb-1">{{ss.stock_name}} <span class="text-warning pl-3">{{ss.trend}}</span></h6>
+                            <span class="text-muted">{{ss.event_details}}</span>
                         </div>
                         <div class="float-right pt-1">
-                            <small class="text-muted">8:40 PM</small>
+                            <small class="text-muted">{{ss.news_date}}</small>
                         </div>
                     </div>
                     <div class="separator-dashed"></div>
-                    <div class="d-flex">
-                        <div class="avatar avatar-offline">
-                            <span class="avatar-title rounded-circle border border-white bg-secondary">P</span>
-                        </div>
-                        <div class="flex-1 ml-3 pt-1">
-                            <h6 class="text-uppercase fw-bold mb-1">Prabowo Widodo <span class="text-success pl-3">open</span></h6>
-                            <span class="text-muted">I have some query regarding the license issue.</span>
-                        </div>
-                        <div class="float-right pt-1">
-                            <small class="text-muted">1 Day Ago</small>
-                        </div>
-                    </div>
-                    <div class="separator-dashed"></div>
-                    <div class="d-flex">
-                        <div class="avatar avatar-away">
-                            <span class="avatar-title rounded-circle border border-white bg-danger">L</span>
-                        </div>
-                        <div class="flex-1 ml-3 pt-1">
-                            <h6 class="text-uppercase fw-bold mb-1">Lee Chong Wei <span class="text-muted pl-3">closed</span></h6>
-                            <span class="text-muted">Is there any update plan for RTL version near future?</span>
-                        </div>
-                        <div class="float-right pt-1">
-                            <small class="text-muted">2 Days Ago</small>
-                        </div>
-                    </div>
-                    <div class="separator-dashed"></div>
-                    <div class="d-flex">
-                        <div class="avatar avatar-offline">
-                            <span class="avatar-title rounded-circle border border-white bg-secondary">P</span>
-                        </div>
-                        <div class="flex-1 ml-3 pt-1">
-                            <h6 class="text-uppercase fw-bold mb-1">Peter Parker <span class="text-success pl-3">open</span></h6>
-                            <span class="text-muted">I have some query regarding the license issue.</span>
-                        </div>
-                        <div class="float-right pt-1">
-                            <small class="text-muted">2 Day Ago</small>
-                        </div>
-                    </div>
-                    <div class="separator-dashed"></div>
-                    <div class="d-flex">
-                        <div class="avatar avatar-away">
-                            <span class="avatar-title rounded-circle border border-white bg-danger">L</span>
-                        </div>
-                        <div class="flex-1 ml-3 pt-1">
-                            <h6 class="text-uppercase fw-bold mb-1">Logan Paul <span class="text-muted pl-3">closed</span></h6>
-                            <span class="text-muted">Is there any update plan for RTL version near future?</span>
-                        </div>
-                        <div class="float-right pt-1">
-                            <small class="text-muted">2 Days Ago</small>
-                        </div>
-                    </div>
+                    {% endfor %}
+
                 </div>
             </div>
         </div>
