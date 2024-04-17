@@ -23,7 +23,12 @@
 
 
             <div class="ml-md-auto py-2 py-md-0">
-                <a class="btn btn-secondary btn-round" href="whatsapp://send?text=chit-enquire!&phone=+916302957399" id='button'>Enquiry</a>
+
+                                              <a class="btn btn-secondary btn-round" href="https://www.wexdifinserv.com/dashboard" >Dashboard</a>
+
+                                <a class="btn btn-secondary btn-round" href="https://www.wexdifinserv.com/trading_community" target="_blank" >Trading Community</a>
+
+                <a class="btn btn-secondary btn-round" href="whatsapp://send?text=chit-enquire!&phone=+916302957399" id='button'>Chit Enquiry</a>
             </div>
         </div>
     </div>
@@ -150,38 +155,7 @@
 
 
 
-{% comment %}
-    <div class="row mt--2">
-        <div class="col-md-6">
-            <div class="card full-height">
-                <div class="card-body">
-                    <div class="card-title">Swing Trading Stocks</div>
-                    <div class="card-category">Daily information about stocks for swing trading</div>
-                    <div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
-                        {% for so in swing_obj_all %}
-                        <img src="media/{{so.upload}}" style="width:40px"><br>
-                        {{so.stock_name}}
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card full-height">
-                <div class="card-body">
-                    <div class="card-title">Upcoming Dividened Stocks</div>
-                    <div class="card-category">Recommended High Yeild stocks for dividened trading</div>
-                    <div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
-                        {% for so in div_obj_all %}
-                        <img src="media/{{so.upload_pic}}" style="width:80px"><br>
-                        {{so.stock_name}}<br>(Ex-Date: {{so.ex_date}})
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-{%endcomment %}
+
     <div class="row">
         <div class="col-md-6">
             <div class="card full-height">

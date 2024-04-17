@@ -27,7 +27,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 # ...
 
-
 @login_required(login_url="my-login")
 def profile(request):
     return render(request,'home/profile.html', {})
@@ -200,8 +199,29 @@ def home(request):
         chit_count_dict[cdo.id] = str(len(get_count))
 
 
-    context = {'chit_act_obj':chit_act_obj,'stock_news_obj':stock_news_obj,'slid_obj':slid_obj,'chit_det_obj_all':chit_det_obj_all,'swing_obj_all':swing_obj_all,"div_obj_all":div_obj_all,'chit_count_dict':chit_count_dict,'hb_obj':hb_obj}
+    context = {'chit_act_obj':chit_act_obj,'stock_news_obj':stock_news_obj,'slid_obj':slid_obj,'chit_det_obj_all':chit_det_obj_all,'chit_count_dict':chit_count_dict,'hb_obj':hb_obj}
     return render(request, 'home/home.html',context)
+
+
+def trading_community(request):
+    context = {}
+    chit_det_obj_all = ChitDetails.objects.filter(chit_isactive=True)
+    swing_obj_all = SwingTrade.objects.all()
+    div_obj_all = DividendTrade.objects.all()
+    hb_obj = HomeBanner.objects.all()
+    slid_obj = Slider.objects.all()
+    chit_act_obj = ChitActivities.objects.all()
+    stock_news_obj = StockLastestNews.objects.all()
+    chit_count_dict = {}
+    for cdo in chit_det_obj_all:
+        get_count = CustomerChitPlan.objects.filter(customer_chit_details=cdo)
+        chit_count_dict[cdo.id] = str(len(get_count))
+
+
+    context = {'swing_obj_all':swing_obj_all,"div_obj_all":div_obj_all,'chit_act_obj':chit_act_obj,'stock_news_obj':stock_news_obj,'slid_obj':slid_obj,'chit_det_obj_all':chit_det_obj_all,'chit_count_dict':chit_count_dict,'hb_obj':hb_obj}
+
+    return render(request,'home/trading_community.html',context)
+
 
 
 @login_required(login_url="my-login")

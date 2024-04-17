@@ -15,8 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from .views import *
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('',include('home.urls')),
+    path('',include('home.urls'), name="home"),
+    path("accounts/", include("allauth.urls")), # new
+    #path("home/",include('home.urls')), # new
+    path('social-auth/', include('social_django.urls', namespace='social')),
 ]

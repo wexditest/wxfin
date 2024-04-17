@@ -6,10 +6,23 @@ from django.contrib.auth.models import User
 import datetime
 from datetime import datetime
 # Create your models here.
+TRADE_CHOICES =(
+("SWING", "SWING"),
+("INTRADAY", "INTRADAY"),
+
+)
+
+TREND=(
+    ('BULLISH','BULLISH'),
+    )
 
 class SwingTrade(models.Model):
   stock_name = models.CharField(max_length=255)
   upload = models.ImageField(upload_to ='share/')
+  report_date = models.DateField(default=datetime.now)
+  trade_choice = models.CharField(max_length=9, choices=TRADE_CHOICES, default="SWING")
+  trend_choice = models.CharField(max_length=9, choices=TREND, default="BULLISH")
+
 
   def __str__(self):
     return self.stock_name

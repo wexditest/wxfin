@@ -9,6 +9,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('',views.home,name=""),
+    path('trading_community',views.trading_community,name="trading_community"),
 
     path('my-login',views.my_login,name="my-login"),
     path('dashboard',views.dashboard,name="dashboard"),
