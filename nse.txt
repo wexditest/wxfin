@@ -1,0 +1,10 @@
+api LINK
+
+https://www.nseindia.com/api/quote-equity?symbol=TATASTEEL
+
+
+read
+https://nsetools.readthedocs.io/en/latest/usage.html
+
+>> pip install nsetools
+
