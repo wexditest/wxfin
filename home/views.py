@@ -27,46 +27,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 # ...
 
-@login_required(login_url="my-login")
-def profile(request):
-    return render(request,'home/profile.html', {})
-
-
-class MyProfile(LoginRequiredMixin,View):
-    def get(self, request):
-        profile_form = ProfileUpdateForm(instance=request.user)
-
-        context = {
-            'profile_form': profile_form,
-            'user': request.user
-        }
-
-        return render(request, 'home/profile.html', context)
-
-    def post(self,request):
-
-        profile_form = ProfileUpdateForm(
-            request.POST,
-            request.FILES,
-            instance=request.user
-        )
-
-        if profile_form.is_valid():
-
-            profile_form.save()
-
-            messages.success(request,'Your profile has been updated successfully')
-
-            return redirect('profile')
-        else:
-            context = {
-                'profile_form': profile_form
-            }
-            messages.error(request,'Error updating you profile')
-
-            return render(request, 'home/profile.html', context)
-
-
 
 
 
@@ -202,6 +162,7 @@ def home(request):
     context = {'chit_act_obj':chit_act_obj,'stock_news_obj':stock_news_obj,'slid_obj':slid_obj,'chit_det_obj_all':chit_det_obj_all,'chit_count_dict':chit_count_dict,'hb_obj':hb_obj}
     return render(request, 'home/home.html',context)
 
+@login_required(login_url="my-login")
 
 def trading_community(request):
     context = {}
@@ -269,3 +230,48 @@ def my_login(request):
 
     context = {'loginform': form}
     return render(request, 'home/my-login.html',context=context)
+
+
+
+
+
+
+@login_required(login_url="my-login")
+def profile(request):
+    return render(request,'home/profile.html', {})
+
+
+class MyProfile(LoginRequiredMixin,View):
+    def get(self, request):
+        profile_form = ProfileUpdateForm(instance=request.user)
+
+        context = {
+            'profile_form': profile_form,
+            'user': request.user
+        }
+
+        return render(request, 'home/profile.html', context)
+
+    def post(self,request):
+
+        profile_form = ProfileUpdateForm(
+            request.POST,
+            request.FILES,
+            instance=request.user
+        )
+
+        if profile_form.is_valid():
+
+            profile_form.save()
+
+            messages.success(request,'Your profile has been updated successfully')
+
+            return redirect('profile')
+        else:
+            context = {
+                'profile_form': profile_form
+            }
+            messages.error(request,'Error updating you profile')
+
+            return render(request, 'home/profile.html', context)
+
