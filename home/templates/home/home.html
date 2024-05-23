@@ -19,14 +19,14 @@
 <div class="panel-header bg-primary-gradient">
     <div class="page-inner py-5">
         <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
-                <h4 class="page-title text-white">Home</h4>
+                <h4 class="page-title text-white">Chits - Home Page </h4>
 
 
             <div class="ml-md-auto py-2 py-md-0">
 
                                               <a class="btn btn-secondary btn-round" href="https://www.wexdifinserv.com/dashboard" >Dashboard</a>
 
-                                <a class="btn btn-secondary btn-round" href="https://www.wexdifinserv.com/trading_community" target="_blank" >Trading Community</a>
+                                <a class="btn btn-secondary btn-round" href="https://www.wexdifinserv.com/trading_community"  >Trading Community</a>
 
                 <a class="btn btn-secondary btn-round" href="whatsapp://send?text=chit-enquire!&phone=+916302957399" id='button'>Chit Enquiry</a>
             </div>
@@ -157,14 +157,14 @@
 
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="card full-height">
                 <div class="card-header">
                     <div class="card-title">Chit Funds Activity</div>
                 </div>
                 <div class="card-body">
                     <ol class="activity-feed">
-                        {% for cao in chit_act_obj %}
+                        {% for cao in chit_act_obj reversed %}
                         <li class="feed-item feed-item-secondary">
                             <time class="date" datetime="9-25">{{cao.act_date}}</time>
                             <span class="text">{{cao.act_name}}</span>
@@ -175,35 +175,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="card full-height">
-                <div class="card-header">
-                    <div class="card-head-row">
-                        <div class="card-title">Stock Market News</div>
 
-                    </div>
-                </div>
-                <div class="card-body">
-                    {% for ss in stock_news_obj %}
-                    <div class="d-flex">
-
-                        <div class="avatar avatar-online">
-                            <span class="avatar-title rounded-circle border border-white bg-info"><img src="{{ss.stock_pic.url}}" style="width:60px"></span>
-                        </div>
-                        <div class="flex-1 ml-3 pt-1">
-                            <h6 class="text-uppercase fw-bold mb-1">{{ss.stock_name}} <span class="text-warning pl-3">{{ss.trend}}</span></h6>
-                            <span class="text-muted">{{ss.event_details}}</span>
-                        </div>
-                        <div class="float-right pt-1">
-                            <small class="text-muted">{{ss.news_date}}</small>
-                        </div>
-                    </div>
-                    <div class="separator-dashed"></div>
-                    {% endfor %}
-
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 

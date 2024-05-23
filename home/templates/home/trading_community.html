@@ -1,179 +1,409 @@
-{% load static %}
-
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
-<head>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<title>Trading Community:: Wexdifinserv</title>
-	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-	<link rel="icon" href="{% static 'company/favicon.png' %}" type="image/x-icon"/>
-		<!-- CSS Files -->
-	<link rel="stylesheet" href="{% static '/assets/css/bootstrap.min.css' %}">
-	<link rel="stylesheet" href="{% static '/assets/css/atlantis2.css' %}">
+    <head>
 
-</head>
-<body>
+         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Wexdi::Finance</title>
+        <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+        <link rel="icon" href="{% static 'company/favicon.png' %}" type="image/x-icon"/>
+        <!-- Fonts and icons -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="{% static 'assets/js/plugin/webfont/webfont.min.js'%}"></script>
+        <script>
+            WebFont.load({
+            	google: {"families":["Lato:300,400,700,900"]},
+            	custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['{% static "assets/css/fonts.min.css"%}']},
+            	active: function() {
+            		sessionStorage.fonts = true;
+            	}
+            });
+        </script>
+        <!-- CSS Files -->
+        <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/atlantis.css' %}">
+        <!-- CSS Just for demo purpose, don't include it in your project -->
+        <link rel="stylesheet" href="{% static 'assets/css/demo.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="main-header">
+                <!-- Logo Header-->
+                <div class="logo-header" data-background-color="grey">
+
+                    <a href="https://www.wexdifinserv.com/" class="logo">
+                    <img src="{% static 'admin/img/wexdi_finance.JPG' %}" alt="navbar brand" style="width:100px" class="navbar-brand">
+                    </a>
+                    <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon">
+                    <i  class="fa fa-angle-double-left"></i>
+                    </span>
+                    </button>
+                    <button class="topbar-toggler more"><i s class="fa fa-solid fa-arrow-left"></i>
+                    </button>
+                    <div class="nav-toggle">
+                        <button class="btn btn-toggle toggle-sidebar">
+                        <i class="fa fa-solid fa-arrow-left"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- End Logo Header -->
+                <!-- Navbar Header -->
+                {% include 'home/nav.html' %}
+                <!-- End Navbar -->
+            </div>
+            <!-- Sidebar -->
+            {% include 'home/sidebar.html' %}
+            <!-- End Sidebar -->
+            <div class="main-panel">
 
 
-	<!--   Core JS Files   -->
+
 	<script src="{% static '/assets/js/core/jquery.3.2.1.min.js' %}"></script>
-	<script src="{% static '/assets/js/core/popper.min.js' %}"></script>
-	<script src="{% static '/assets/js/core/bootstrap.min.js' %}"></script>
-
-	<!-- jQuery UI -->
-	<script src="{% static '/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js' %}"></script>
-	<script src="{% static '/assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js' %}"></script>
-
-	<!-- jQuery Scrollbar -->
-	<script src="{% static '/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js' %}"></script>
-
-	<!-- Moment JS -->
-	<script src="{% static '/assets/js/plugin/moment/moment.min.js' %}"></script>
-
-	<!-- Chart JS -->
-	<script src="{% static '/assets/js/plugin/chart.js/chart.min.js' %}"></script>
-
-	<!-- jQuery Sparkline -->
-	<script src="{% static '/assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js' %}"></script>
-
-	<!-- Chart Circle -->
-	<script src="{% static '/assets/js/plugin/chart-circle/circles.min.js' %}"></script>
-
-	<!-- Datatables -->
-	<script src="{% static '/assets/js/plugin/datatables/datatables.min.js' %}"></script>
-
-	<!-- Bootstrap Notify -->
-	<script src="{% static '/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js' %}"></script>
-
-	<!-- Bootstrap Toggle -->
-	<script src="{% static '/assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js' %}"></script>
-
-	<!-- jQuery Vector Maps -->
-	<script src="{% static '/assets/js/plugin/jqvmap/jquery.vmap.min.js' %}"></script>
-	<script src="{% static '/assets/js/plugin/jqvmap/maps/jquery.vmap.world.js' %}"></script>
-
-	<!-- Google Maps Plugin -->
-	<script src="{% static '/assets/js/plugin/gmaps/gmaps.js' %}"></script>
-
-	<!-- Dropzone -->
-	<script src="{% static '/assets/js/plugin/dropzone/dropzone.min.js' %}"></script>
-
-	<!-- Fullcalendar -->
-	<script src="{% static '/assets/js/plugin/fullcalendar/fullcalendar.min.js' %}"></script>
-
-	<!-- DateTimePicker -->
-	<script src="{% static '/assets/js/plugin/datepicker/bootstrap-datetimepicker.min.js' %}"></script>
-
-	<!-- Bootstrap Tagsinput -->
-	<script src="{% static '/assets/js/plugin/bootstrap-tagsinput/bootstrap-tagsinput.min.js' %}"></script>
-
-	<!-- Bootstrap Wizard -->
-	<script src="{% static '/assets/js/plugin/bootstrap-wizard/bootstrapwizard.js' %}"></script>
-
-	<!-- jQuery Validation -->
-	<script src="{% static '/assets/js/plugin/jquery.validate/jquery.validate.min.js' %}"></script>
-
-	<!-- Summernote -->
-	<script src="{% static '/assets/js/plugin/summernote/summernote-bs4.min.js' %}"></script>
-
-	<!-- Select2 -->
-	<script src="{% static '/assets/js/plugin/select2/select2.full.min.js' %}"></script>
-
-	<!-- Sweet Alert -->
-	<script src="{% static '/assets/js/plugin/sweetalert/sweetalert.min.js' %}"></script>
-
-	<!-- Atlantis JS -->
-	<script src="{% static '/assets/js/atlantis2.min.js' %}"></script>
 
 
-	<!-- Owl Carousel -->
-	<script src="{% static '/assets/js/plugin/owl-carousel/owl.carousel.min.js' %}"></script>
+<div class="container">
+<div class="panel-header bg-primary-gradient">
+    <div class="page-inner py-5">
+        <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+                <h4 class="page-title text-white">Trading Community</h4>
 
 
-    	<div class="wrapper horizontal-layout-3">
-    	    <div class="main-panel">
-    	        <div class="row">
-            <div class="col-md-12">
+            <div class="ml-md-auto py-2 py-md-0">
+
+                                              <a class="btn btn-secondary btn-round" href="https://www.wexdifinserv.com/dashboard" >Dashboard</a>
+                                        {% if  sub_flag == 'STANDARD' or  sub_flag == 'ADVANCE' %}
+                                              <a class="btn btn-secondary btn-round" href="https://www.wexdifinserv.com/golden_cross_over_signal" >Golden Crossover Signal</a>
+                                              <a class="btn btn-secondary btn-round" href="https://www.wexdifinserv.com/get_csv_data_for_stocks" >
+                                                 Stocks CSV</a>
+                                                 {% endif %}
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+	<div class="page-inner mt--5"><br><br>
+<div class="col-md-12">
+							<div class="card">
+								<div class="card-header">
+									<h4 class="card-title">Recommended Stock Summary</h4>
+								</div>
+								<div class="card-body">
+									<div id="owl-demo2" class="owl-carousel owl-theme owl-img-responsive">
+									    {% for oso in one_slide_obj %}
+										<div class="item"><img class="img-fluid" src="{{oso.summary_pic.url}}"></div>
+										{% endfor %}
+
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+{% comment %}
+
+<div class="row row-card-no-pd">
+
+    <div class="col-md-12">
+
+        <div class="card-header">
+					<h4 class="card-title">Communtiy News</h4>
+		</div>
+		<div class="card">
+
+            {% include 'home/posting.html' %}
+
+        </div>
+    </div>
+</div>
+{% endcomment %}
+
+
+<div class="row row-card-no-pd">
+
+    <div class="col-md-12">
+
+        <div class="card-header">
+					<h4 class="card-title">Subscription Details</h4>
+		</div>
+		<div class="card">
+		    <div class="row justify-content-center align-items-center">
+						<div class="col-md-3 pl-md-0">
+							<div class="card card-pricing">
+								<div class="card-header">
+									<h4 class="card-title">Basic</h4>
+									<div class="card-price">
+										<span class="price">Free</span>
+										<span class="text"></span>
+									</div>
+								</div>
+								<div class="card-body">
+									<ul class="specification-list">
+										<li>
+											<span class="name-specification">Swing Stock Tips</span>
+											<span class="status-specification">Yes</span>
+										</li>
+										<li>
+											<span class="name-specification">Dividend Stock Tips</span>
+											<span class="status-specification">Yes</span>
+										</li>
+										<li>
+											<span class="name-specification">Stock Market StudyCases</span>
+											<span class="status-specification">No</span>
+										</li>
+										<li>
+											<span class="name-specification">Trading Statagies</span>
+											<span class="status-specification">No</span>
+										</li>
+										<li>
+											<span class="name-specification">Support</span>
+											<span class="status-specification">No</span>
+										</li>
+									</ul>
+								</div>
+								<div class="card-footer">
+								                        {% if  sub_flag != 'FREE' %}
+								                        <a class="btn btn-primary btn-round"
+								                        href="whatsapp://send?text=basic-subscription!&phone=+916302957399" class='button_paid'>
+								                            Get Started</a>
+								                        {% else %}
+								                       <font color=pink>Account Type</font>: {{ sub_flag }}
+								                        {% endif %}
+
+
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3 pl-md-0 pr-md-0">
+							<div class="card card-pricing card-pricing-focus card-secondary">
+								<div class="card-header">
+									<h4 class="card-title">Standard  <font size=1 color=yellow>(recommended)</font></h4>
+									<div class="card-price">
+										<span class="price">$2</span>
+										<span class="text">/mo</span>
+									</div>
+								</div>
+								<div class="card-body">
+									<ul class="specification-list">
+										<li>
+											<span class="name-specification">Swing Stock Tips</span>
+											<span class="status-specification">Yes</span>
+										</li>
+										<li>
+											<span class="name-specification">Dividend Stock Tips</span>
+											<span class="status-specification">Yes</span>
+										</li>
+										<li>
+											<span class="name-specification">Stock Market StudyCases</span>
+											<span class="status-specification">Yes</span>
+										</li>
+										<li>
+											<span class="name-specification">Trading Statagies</span>
+											<span class="status-specification">Yes</span>
+										</li>
+										<li>
+											<span class="name-specification">Support</span>
+											<span class="status-specification">No</span>
+										</li>
+									</ul>
+								</div>
+								<div class="card-footer">
+								     {% if  sub_flag != 'STANDARD' %}
+								                   <a class="btn btn-primary btn-round"
+								                        href="whatsapp://send?text=standard-subscription!&phone=+916302957399" class='button_paid'>
+								                            Get Started</a>
+								                        {% else %}
+								                        <font color=pink>Account Type</font>: {{ sub_flag }}
+								                        {% endif %}
+
+
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3 pr-md-0">
+							<div class="card card-pricing">
+								<div class="card-header">
+									<h4 class="card-title">Advance</h4>
+									<div class="card-price">
+										<span class="price">$25</span>
+										<span class="text">/yr</span>
+									</div>
+								</div>
+								<div class="card-body">
+									<ul class="specification-list">
+									<li>
+											<span class="name-specification">Swing Stock Tips</span>
+											<span class="status-specification">Yes</span>
+										</li>
+										<li>
+											<span class="name-specification">Dividend Stock Tips</span>
+											<span class="status-specification">Yes</span>
+										</li>
+										<li>
+											<span class="name-specification">Stock Market StudyCases</span>
+											<span class="status-specification">Yes</span>
+										</li>
+										<li>
+											<span class="name-specification">Trading Statagies</span>
+											<span class="status-specification">Yes</span>
+										</li>
+										<li>
+											<span class="name-specification">Support</span>
+											<span class="status-specification">Yes</span>
+										</li>
+									</ul>
+								</div>
+								<div class="card-footer">
+								     {% if  sub_flag != 'ADVANCE' %}
+								                   <a class="btn btn-primary btn-round"
+								                        href="whatsapp://send?text=advance-subscription!&phone=+916302957399" class='button_paid'>
+								                            Get Started</a>
+								                        {% else %}
+								                       <font color=pink>Account Type</font>:{{ sub_flag }}
+								                        {% endif %}
+ 							</div>
+							</div>
+						</div>
+					</div>
+
+		</div>
+	</div>
+
+</div>
+
+
+
+        <div class="row row-card-no-pd">
+
+             <div class="col-md-12">
 
                 <div class="card-header">
-					<h4 class="card-title">Free Tip Stocks</h4>
+					<h4 class="card-title">Swing Stocks Tips</h4>
 				</div>
 				<div class="card">
 
 					<div class="card-body">
-					    <script>
-                    		$(document).ready(function() {
-                    			$('#owl-demo').owlCarousel({
-                    				loop:true,
-                    				margin:10,
-                    				nav:true,
-                    				responsive:{
-                    					0:{
-                    						items:1
-                    					},
-                    					600:{
-                    						items:3
-                    					},
-                    					1000:{
-                    						items:4
-                    					}
-                    				}
-                    			})
+						<div id="owl-demo1" class="owl-carousel owl-theme owl-img-responsive">
+						    {% for so in swing_obj_all reversed %}
+						    	<div class="item">
+						    	    <center><p><font color=blue>{{so.stock_name}}</font>
+
+<font color =green<i class="fa fa-arrow-up" aria-hidden="true"></i>
+						    	    </font><br>
+						    	    <font color=blue>Buy</font>:Rs. {{so.stock_buy_price}}/-<br>
+						    	    						    	    <font color=red>Sell</font>:Rs. {{so.stock_sell_price}}/-<br>
 
 
-                    		});
-	                    </script>
-						<div id="owl-demo" class="owl-carousel owl-theme owl-img-responsive">
+						    	   </p>
+						    	    <img class="img_trade" src="media/{{so.upload}}" >
+<b>
+<p><font color=blue>Stock Name</font>:<br>{{so.stock_title}}<br>
 
-						     {% for so in swing_obj_all reversed %}
-						     {% comment %}<center><p>{{so.report_date}}<br><FONT COLOR=BLUE size=2><b>{{so.trade_choice}} TRADING</b></FONT></p><hr>
-						    	<h5 class="fw-bold">{{so.stock_name}}</h5>
-									<p>{{so.trend_choice}}</p>
-									{%endcomment%}
-						    	<div class="item"><img src="media/{{so.upload}}" style="width:100px;height:100px;"></div>
-
+<font color=blue>Timeline</font>:<br><b>From:{{so.report_date}} -  To: {{so.hold_upto_date}}</b>
+</p>
+		</b>				    	</center>    </div>
 
 						    {% endfor %}
 						</div>
 					</div>
 				</div>
-            </div>
-	    </div>
-    	        <div class="bg-primary2 pt-4 pb-5">
-				    <div class="container text-white py-2">
-					    <div class="d-flex align-items-center">
-						    <div class="mr-3">
-							    <h1 class="mb-3">Trading Community </h1>
-							    <h5 class="op-7 mb-3">Swing Trading, Intraday Trading and etc.</h5>
-							</div>
-							<div class="ml-auto">
-							    <center>
-                                    <a href="whatsapp://send?text=chit-enquire!&phone=+916302957399" id='button_subscription'>
-                                        <button class="btn btn-secondary btn-round">
-                                            Click here for Paid Subscription
-                                        </button>
-                                    </a>
-                                    <script>
-                                        $(document).ready(function(){
-                                            $("#button_subscription").click(function(){
-                                                swal({
-                                                    title: "Contact Details",
-                                                    text: "Call:+91-6302957399",
-                                                    icon: "success",
-                                                    button: "Ping us on whatsapp.....",
-                                                    });
-                                            });
-                                        });
-                                    </script>
-                                </center>
-							</div>
+			</div>
 
+        </div>
+
+
+ <div class="row row-card-no-pd">
+
+             <div class="col-md-12">
+
+                <div class="card-header">
+					<h4 class="card-title">Dividend Stocks Tips</h4>
+				</div>
+				<div class="card">
+
+					<div class="card-body">
+						<div id="owl-demo" class="owl-carousel owl-theme owl-img-responsive">
+						    {% for so in div_obj_all reversed %}
+						    	<div class="item">
+						    	    <center>
+						    	        <p><a href="stock_summary/{{so.stock_name}}">{{so.stock_name}}</a><br>
+						    	        <FONT COLOR=BLUE size=2><b>Ex-Date:{{so.ex_date}}</b></FONT><br>
+						    	        <FONT COLOR=green size=2><b>Record-Date:{{so.record_date}}</b></FONT>
+						    	        </p>
+						    	    <b>Dividend/Share</b> : Rs. <font color=red>{{so.dividend_share}}</font>/-<br></center>
+
+						    	    <img class="img_trade" src="media/{{so.upload_pic}}" ><br>
+
+						    	    <b><font color=blue>{{so.dividend_yield}}</font></b><br>
+						    	    <b>For example:-<i> {{so.yield_msg}}</i></b>
+
+						    	    </div>
+
+						    {% endfor %}
 						</div>
 					</div>
 				</div>
-    	    </div>
+			</div>
 
-    	</div>
+        </div>
+        <div class="row">
+        <!-- Blog Entries Column -->
+        <div class="col-md-8 mt-3 left">
+            {% for post in post_list %}
+            <div class="card shadow mb-4">
+                <div class="card-body">
+                    <h2 class="card-title">{{ post.title }}</h2>
+                    <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on}} </p>
+                    <p class="card-text">{{post.content|safe|slice:":200" }}...</p>
+                    <a href="{% url 'post_detail' post.slug  %}" class="btn btn-dark">Read More &rarr;</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="card full-height">
+                <div class="card-header">
+                    <div class="card-head-row">
+                        <div class="card-title">Stock Market News</div>
+
+                    </div>
+                </div>
+                <div class="card-body">
+                    {% for ss in stock_news_obj %}
+                    <div class="d-flex">
+
+                        <div class="avatar avatar-online">
+                            <span class="avatar-title rounded-circle border border-white bg-info"><img src="{{ss.stock_pic.url}}" style="width:60px"></span>
+                        </div>
+                        <div class="flex-1 ml-3 pt-1">
+                            <h6 class="text-uppercase fw-bold mb-1">{{ss.stock_name}} <span class="text-warning pl-3">{{ss.trend}}</span></h6>
+                            <span class="text-muted">{{ss.event_details}}</span>
+                        </div>
+                        <div class="float-right pt-1">
+                            <small class="text-muted">{{ss.news_date}}</small>
+                        </div>
+                    </div>
+                    <div class="separator-dashed"></div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -182,6 +412,250 @@
 
 
 
-		{% include 'home/footer.html' %}
-</body>
+
+<script>
+
+    $(document).ready(function(){
+
+
+        $(".button_paid").click(function(){
+            swal({
+                title: "Contact Details",
+                text: "Call:+91-6302957399",
+                icon: "success",
+                button: "Ping us on whatsapp.....",
+                });
+        });
+    });
+</script>
+
+	<script>
+		$(document).ready(function() {
+			$('#owl-demo').owlCarousel({
+				loop:true,
+				margin:10,
+				nav:true,
+				responsive:{
+					0:{
+						items:1
+					},
+					600:{
+						items:3
+					},
+					1000:{
+						items:4
+					}
+				}
+			})
+				$('#owl-demo1').owlCarousel({
+				loop:true,
+				margin:10,
+				nav:true,
+				responsive:{
+					0:{
+						items:1
+					},
+					600:{
+						items:3
+					},
+					1000:{
+						items:4
+					}
+				}
+			})
+
+			$("#owl-demo2").owlCarousel({
+
+				nav:true, // Show next and prev buttons
+				autoplaySpeed:300,
+				navSpeed:400,
+				items:1
+
+			});
+
+			$('#owl-demo3').owlCarousel({
+				center: true,
+				items:2,
+				loop:true,
+				margin:10,
+				responsive:{
+					600:{
+						items:4
+					}
+				}
+			});
+
+			$('#owl-demo4').owlCarousel({
+				margin:10,
+				loop:false,
+				autoWidth:true,
+				items: 4
+			})
+		});
+	</script>
+<style>
+    .img_trade {
+border: 1px solid #ddd;
+border-radius: 4px;
+padding: 5px;
+
+width:250px;
+height:200px;
+}
+
+</style>
+
+
+
+ {% include 'home/footer.html' %}
+            </div>
+        </div>
+        <!--   Core JS Files   -->
+        <script src="{% static 'assets/js/core/jquery.3.2.1.min.js' %}"></script>
+        <script src="{% static 'assets/js/core/popper.min.js' %}"></script>
+        <script src="{% static 'assets/js/core/bootstrap.min.js' %}"></script>
+        <!-- jQuery UI -->
+        <script src="{% static 'assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js' %}"></script>
+        <script src="{% static 'assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js' %}"></script>
+        <!-- jQuery Scrollbar -->
+        <script src="{% static 'assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js' %}"></script>
+        <!-- Moment JS -->
+        <script src="{% static 'assets/js/plugin/moment/moment.min.js' %}"></script>
+        <!-- Chart JS -->
+        <script src="{% static 'assets/js/plugin/chart.js/chart.min.js' %}"></script>
+        <!-- jQuery Sparkline -->
+        <script src="{% static 'assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js' %}"></script>
+        <!-- Chart Circle -->
+        <script src="{% static 'assets/js/plugin/chart-circle/circles.min.js' %}"></script>
+        <!-- Datatables -->
+        <script src="{% static 'assets/js/plugin/datatables/datatables.min.js' %}"></script>
+        <!-- Bootstrap Notify -->
+        <script src="{% static 'assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js' %}"></script>
+        <!-- Bootstrap Toggle -->
+        <script src="{% static 'assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js' %}"></script>
+        <!-- jQuery Vector Maps -->
+        <script src="{% static 'assets/js/plugin/jqvmap/jquery.vmap.min.js' %}"></script>
+        <script src="{% static 'assets/js/plugin/jqvmap/maps/jquery.vmap.world.js' %}"></script>
+        <!-- Google Maps Plugin -->
+        <script src="{% static 'assets/js/plugin/gmaps/gmaps.js' %}"></script>
+        <!-- Dropzone -->
+        <script src="{% static 'assets/js/plugin/dropzone/dropzone.min.js' %}"></script>
+        <!-- Fullcalendar -->
+        <script src="{% static 'assets/js/plugin/fullcalendar/fullcalendar.min.js' %}"></script>
+        <!-- DateTimePicker -->
+        <script src="{% static 'assets/js/plugin/datepicker/bootstrap-datetimepicker.min.js' %}"></script>
+        <!-- Bootstrap Tagsinput -->
+        <script src="{% static 'assets/js/plugin/bootstrap-tagsinput/bootstrap-tagsinput.min.js' %}"></script>
+        <!-- Bootstrap Wizard -->
+        <script src="{% static 'assets/js/plugin/bootstrap-wizard/bootstrapwizard.js' %}"></script>
+        <!-- jQuery Validation -->
+        <script src="{% static 'assets/js/plugin/jquery.validate/jquery.validate.min.js' %}"></script>
+        <!-- Summernote -->
+        <script src="{% static 'assets/js/plugin/summernote/summernote-bs4.min.js' %}"></script>
+        <!-- Select2 -->
+        <script src="{% static 'assets/js/plugin/select2/select2.full.min.js' %}"></script>
+        <!-- Sweet Alert -->
+        <script src="{% static 'assets/js/plugin/sweetalert/sweetalert.min.js' %}"></script>
+        <!-- Owl Carousel -->
+        <script src="{% static 'assets/js/plugin/owl-carousel/owl.carousel.min.js' %}"></script>
+        <!-- Magnific Popup -->
+        <script src="{% static 'assets/js/plugin/jquery.magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+        <!-- Atlantis JS -->
+        <script src="{% static 'assets/js/atlantis.min.js' %}"></script>
+        <!-- Atlantis DEMO methods, don't include it in your project! -->
+        <script>
+            Circles.create({
+            	id:'circles-1',
+            	radius:45,
+            	value:60,
+            	maxValue:100,
+            	width:7,
+            	text: 5,
+            	colors:['#f1f1f1', '#FF9E27'],
+            	duration:400,
+            	wrpClass:'circles-wrp',
+            	textClass:'circles-text',
+            	styleWrapper:true,
+            	styleText:true
+            })
+
+            Circles.create({
+            	id:'circles-2',
+            	radius:45,
+            	value:70,
+            	maxValue:100,
+            	width:7,
+            	text: 36,
+            	colors:['#f1f1f1', '#2BB930'],
+            	duration:400,
+            	wrpClass:'circles-wrp',
+            	textClass:'circles-text',
+            	styleWrapper:true,
+            	styleText:true
+            })
+
+            Circles.create({
+            	id:'circles-3',
+            	radius:45,
+            	value:40,
+            	maxValue:100,
+            	width:7,
+            	text: 12,
+            	colors:['#f1f1f1', '#F25961'],
+            	duration:400,
+            	wrpClass:'circles-wrp',
+            	textClass:'circles-text',
+            	styleWrapper:true,
+            	styleText:true
+            })
+
+            // var totalIncomeChart = document.getElementById('totalIncomeChart').getContext('2d');
+
+            // var mytotalIncomeChart = new Chart(totalIncomeChart, {
+            // 	type: 'bar',
+            // 	data: {
+            // 		labels: ["S", "M", "T", "W", "T", "F", "S", "S", "M", "T"],
+            // 		datasets : [{
+            // 			label: "Total Income",
+            // 			backgroundColor: '#ff9e27',
+            // 			borderColor: 'rgb(23, 125, 255)',
+            // 			data: [6, 4, 9, 5, 4, 6, 4, 3, 8, 10],
+            // 		}],
+            // 	},
+            // 	options: {
+            // 		responsive: true,
+            // 		maintainAspectRatio: false,
+            // 		legend: {
+            // 			display: false,
+            // 		},
+            // 		scales: {
+            // 			yAxes: [{
+            // 				ticks: {
+            // 					display: false //this will remove only the label
+            // 				},
+            // 				gridLines : {
+            // 					drawBorder: false,
+            // 					display : false
+            // 				}
+            // 			}],
+            // 			xAxes : [ {
+            // 				gridLines : {
+            // 					drawBorder: false,
+            // 					display : false
+            // 				}
+            // 			}]
+            // 		},
+            // 	}
+            // });
+
+            // $('#lineChart').sparkline([105,103,123,100,95,105,115], {
+            // 	type: 'line',
+            // 	height: '70',
+            // 	width: '100%',
+            // 	lineWidth: '2',
+            // 	lineColor: '#ffa534',
+            // 	fillColor: 'rgba(255, 165, 52, .14)'
+            // });
+        </script>
+    </body>
 </html>

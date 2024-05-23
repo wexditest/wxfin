@@ -2,6 +2,7 @@ from django.contrib import admin
 
 from .models import *
 
+from django import forms
 
 # Register admin Pages.
 
@@ -16,10 +17,33 @@ def duplicate_event(MonthWiseChitDetailsAdmin, request, queryset):
 duplicate_event.short_description = "Duplicate selected record"
 
 
+class CustomBarModelForm(forms.ModelForm):
+    class Meta:
+        model = MonthWiseChitDetails
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super(CustomBarModelForm, self).__init__(*args, **kwargs)
+        ccp_obj = CustomerChitPlan.objects.filter(customer_chit_details__id=self.instance.chit_details.id)
+        list_user_id = []
+        for i in ccp_obj:
+            list_user_id.append(i.customer_name.id)
+        self.fields['winner_of_chit'].queryset = User.objects.filter(id__in=list_user_id)# or something else
+
+# Use it in your modelAdmin
+
+
+
+
 class MonthWiseChitDetailsAdmin(admin.ModelAdmin):
+  form = CustomBarModelForm
+
   actions = [duplicate_event]
-  list_display = ("chit_details", "chit_month","chit_year","get_chit_amount","winner_of_chit")
+  list_display = ("id","chit_details", "chit_month","chit_year","get_chit_amount","winner_of_chit")
   list_filter = ("chit_details",)
+
+
+
 
 class CustomerChitPlanAdmin(admin.ModelAdmin):
   list_display = ("customer_chit_details", "customer_name")

@@ -12,12 +12,17 @@ class ChitDetails(models.Model):
   chit_isactive = models.BooleanField('Chit Status', default=False)
   chit_total_month_count = models.CharField(max_length=255,blank=True)
   chit_start_from = models.CharField(max_length=255,blank=True)
+  chit_duedate_month = models.CharField(max_length=255,blank=True)
+  chit_disbursedate_month = models.CharField(max_length=255,blank=True)
+  chit_enrolldate_month = models.CharField(max_length=255,blank=True)
+
 
   def __str__(self):
     return self.chit_name
 
 
 MONTH_CHOICES =(
+("","--"),
 ("January", "January"),
 ("Feburary", "Feburary"),
 ("March", "March"),
@@ -35,7 +40,7 @@ MONTH_CHOICES =(
 
 class MonthWiseChitDetails(models.Model):
   chit_details = models.ForeignKey(ChitDetails,on_delete=models.CASCADE)
-  chit_month = models.CharField(max_length=9, choices=MONTH_CHOICES, default="January", blank=True)
+  chit_month = models.CharField(max_length=9, choices=MONTH_CHOICES, default="", blank=True)
   chit_year = models.CharField(max_length=255,blank=True)
   get_chit_amount = models.CharField(max_length=255)
   winner_of_chit = models.ForeignKey(User,on_delete=models.CASCADE,blank=True, null=True)

@@ -37,8 +37,6 @@
   padding-top: 15px;
   padding-bottom: 15px;
   text-align: left;
-  background-color: #04AA6D;
-  color: white;
 }
 </style>
 </head>
@@ -48,38 +46,81 @@
 
 
 
- <center><h3>Wexdi Finance Chit Plan Details</h3></center>
+ <center><h1>Wexdi Finance Services Pvt Ltd.</h1><h3>Chit Plan Details</h3><h5>Report Date: {% now "l, F j, Y g:i A" %}</h5></center>
 
+<hr>
+<font color=blue>
+Starting From:</font>
+{% if chit_det_obj.chit_start_from %}
+{{chit_det_obj.chit_start_from}}
 
+{% else %}
+Not Yet Decided
+{% endif %}<br>
 
 <table id="customers">
 <tr><td><b>Chit#</b></td><td>{{chit_det_obj.chit_name}}</td>
 <td><b>Chit Total Amount</b></td><td>Rs.{{chit_det_obj.chit_total_amt}}.00/-</td></tr>
-<tr><td><b>Chit Winners Pay</b></td><td>Rs.{{chit_det_obj.chit_taken_amt}}.00/-</td>
-<td><b>Normal Chit Amount</b></td><td>Rs.{{chit_det_obj.chit_nottaken_amt}}.00/-</td></tr>
+<tr><td><b>Chit Winners Amount</b></td><td>Rs.{{chit_det_obj.chit_taken_amt}}.00/-</td>
+<td><b>Chit Normal Amount</b></td><td>Rs.{{chit_det_obj.chit_nottaken_amt}}.00/-</td></tr>
 
 
 
 
-<tr><td colspan=2><center><FONT COLOR=BLUE><b>MONTHS</b></FONT></center></td>
+<tr>
+    <td><center><FONT COLOR=BLUE><b>S.No</b></FONT></center></td>
+        <td><center><FONT COLOR=Green><b>Chit Month/Year</b></FONT></center></td>
+
+
+
 <td colspan=2><center><font color=red><b>CHIT AMOUNT</b></font></center></td></tr>
 {% for i in mylist %}
-<tr><th colspan=2><center>{{forloop.counter}}</center></td><td colspan=2><center>Rs.{{i.get_chit_amount}}.00/-</center></td></tr>
+<tr>
+
+    <th><center>{{forloop.counter}}</center></td>
+    <th><center>{% if i.chit_month %}
+    {{i.chit_month}}/{{i.chit_year}}{% else %}
+    Not Yet Decided{% endif %}</center></td>
+
+
+<td colspan=2><center>Rs.{{i.get_chit_amount}}.00/-</center></td></tr>
 {% endfor %}
     </table>
 
 
 
 </center>
+<br><br>
+ <b> Rules for chit</b>
+           <ul>
+               <li>Everyone should pay their chit amount before the {% if chit_det_obj.chit_duedate_month %}
+               {{chit_det_obj.chit_duedate_month}}
+               {%else%}
+               yet not decide any date{%endif %}. of every month
 
+
+               </li>
+               <li>
+                   For those who got/won the chit for that month, the amount will be credited by the after
+                   {% if chit_det_obj.chit_disbursedate_month %} {{chit_det_obj.chit_disbursedate_month}}{%else%}
+               yet not decide any date{%endif %}
+
+
+                    of the month
+
+               </li>
+               <li>
+                   Those who want to participate in the chit-wanted list should be enrolled between
+                    {% if chit_det_obj.chit_enrolldate_month %} {{chit_det_obj.chit_enrolldate_month}}{%else%}
+               yet not decide any date{%endif %}
+                   of every month
+
+               </li>
+           </ul>
 
 
         <div id="footerContent">
-            {%block page_foot%}
-                Page <pdf:pagenumber>
 
-
-            {%endblock%}
         </div>
     </body>
 </html>

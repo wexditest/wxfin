@@ -10,6 +10,10 @@ from django.conf import settings
 urlpatterns = [
     path('',views.home,name=""),
     path('trading_community',views.trading_community,name="trading_community"),
+    path('golden_cross_over_signal',views.GoldenCrossverSignal,name="GoldenCrossverSignal"),
+    path('get_csv_data_for_stocks',views.get_csv_data_for_stocks,name="get_csv_data_for_stocks"),
+    path('upcoming_dividends',views.upcoming_dividends,name="upcoming_dividends"),
+    path('stock_summary/<slug>', views.stock_summary, name='stock_summary'),
 
     path('my-login',views.my_login,name="my-login"),
     path('dashboard',views.dashboard,name="dashboard"),
@@ -23,6 +27,9 @@ urlpatterns = [
     path('change_password/', views.change_password, name='change_password'),
     path('kyc/', views.kyc, name='kyc'),
     path('enroll_chit_page/', views.enroll_chit_page, name='enroll_chit_page'),
+
+
+
 
 
 
