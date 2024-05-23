@@ -51,6 +51,9 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.github", # new
     "allauth.socialaccount.providers.twitter", # new
     "social_django",
+    "blog",
+    "ckeditor",
+
 ]
 
 
@@ -162,16 +165,45 @@ MEDIA_URL = local_settings.MEDIA_URL
 
 STATIC_ROOT = local_settings.STATIC_ROOT
 STATIC_URL = local_settings.STATIC_URL
-STATICFILES_DIRS = [BASE_DIR / "static"]
+# STATICFILES_DIRS = [BASE_DIR / "static"]
 
-STORAGES = {
-    "default": {
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
-    },
-    "staticfiles": {
-        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
-    },
-}
+# STORAGES = {
+#     "default": {
+#         "BACKEND": "django.core.files.storage.FileSystemStorage",
+#     },
+#     "staticfiles": {
+#         "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+#     },
+# }
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = local_settings.SOCIAL_AUTH_GOOGLE_OAUTH2_KEY
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = local_settings.SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET
+
+
+
+'''
+copy this code in local_setting.py
+===========================
+
+from . import no_to_commit
+from pathlib import Path
+
+DATABASE_NAME = "db.sqlite3"
+
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ''
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''
+
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+DATABASE_NAME = "db.sqlite3"
+STATIC_URL = "static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = BASE_DIR / "staticfiles"
+MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_URL = '/media/'
+
+'''
