@@ -1,0 +1,697 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Trading Community:: Wexdifinserv</title>
+	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+	<link rel="icon" href="{% static 'company/favicon.png' %}" type="image/x-icon"/>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js' %}"></script>
+	<!-- Fonts and icons -->
+	<script src="{% static '/assets/js/plugin/webfont/webfont.min.js' %}"></script>
+	<script>
+		WebFont.load({
+			google: {"families":["Lato:300,400,700,900"]},
+			custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['{% static "/assets/css/fonts.min.css" %}']},
+			active: function() {
+				sessionStorage.fonts = true;
+			}
+		});
+	</script>
+
+	<!-- CSS Files -->
+	<link rel="stylesheet" href="{% static '/assets/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static '/assets/css/atlantis2.css' %}">
+
+	<!-- CSS Just for demo purpose, don't include it in your project -->
+	<link rel="stylesheet" href="{% static '/assets/css/demo.css' %}">
+</head>
+<body>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $("#button").click(function(){
+            swal({
+                title: "Contact Details",
+                text: "Call:+91-6302957399",
+                icon: "success",
+                button: "Ping us on whatsapp.....",
+                });
+        });
+    });
+</script>
+<script>
+		$(document).ready(function() {
+			$('#owl-demo').owlCarousel({
+				loop:true,
+				margin:10,
+				nav:true,
+				responsive:{
+					0:{
+						items:1
+					},
+					600:{
+						items:3
+					},
+					1000:{
+						items:4
+					}
+				}
+			})
+
+			$("#owl-demo2").owlCarousel({
+
+				nav:true, // Show next and prev buttons
+				autoplaySpeed:300,
+				navSpeed:400,
+				items:1
+
+			});
+
+			$('#owl-demo3').owlCarousel({
+				center: true,
+				items:2,
+				loop:true,
+				margin:10,
+				responsive:{
+					600:{
+						items:4
+					}
+				}
+			});
+
+			$('#owl-demo4').owlCarousel({
+				margin:10,
+				loop:false,
+				autoWidth:true,
+				items: 4
+			})
+		});
+	</script>
+
+	<div class="wrapper horizontal-layout-3">
+
+
+
+		<div class="main-panel">
+
+			<div class="bg-primary2 pt-4 pb-5">
+				<div class="container text-white py-2">
+					<div class="d-flex align-items-center">
+						<div class="mr-3">
+							<h1 class="mb-3">Trading Community </h1>
+							<h5 class="op-7 mb-3">Swing Trading, Intraday Trading and etc.</h5>
+						</div>
+						<div class="ml-auto">
+
+
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="container mt--5">
+				<div class="page-inner mt--3">
+<center>
+<a href="whatsapp://send?text=chit-enquire!&phone=+916302957399" id='button'>
+  <button class="btn btn-secondary btn-round">Click here for Paid Subscription</button></a>
+</center><br><br>
+
+
+<div class="row">
+    <div class="col-md-12">
+
+                <div class="card-header">
+					<h4 class="card-title">Free Tip Stocks</h4>
+				</div>
+				<div class="card">
+
+					<div class="card-body">
+						<div id="owl-demo" class="owl-carousel owl-theme owl-img-responsive">
+						     {% for so in swing_obj_all reversed %}
+						     {% comment %}<center><p>{{so.report_date}}<br><FONT COLOR=BLUE size=2><b>{{so.trade_choice}} TRADING</b></FONT></p><hr>
+						    	<h5 class="fw-bold">{{so.stock_name}}</h5>
+									<p>{{so.trend_choice}}</p>
+									{%endcomment%}
+						    	<div class="item"><img src="media/{{so.upload}}"></div>
+
+
+						    {% endfor %}
+						</div>
+					</div>
+				</div>
+
+	</div>
+
+
+
+
+						<div class="col-md-12">
+						    <h4 class="card-title">Trading Community Posts</h4>
+							<div class="d-flex justify-content-between">
+								<div class="d-md-inline-block">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text bg-white">
+												<i class="fa fa-search search-icon"></i>
+											</span>
+										</div>
+										<input type="text" class="form-control" aria-label="Text input with dropdown button">
+										<div class="input-group-append">
+											<button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter</button>
+											<div class="dropdown-menu">
+												<a class="dropdown-item" href="#">Action</a>
+												<a class="dropdown-item" href="#">Another action</a>
+												<a class="dropdown-item" href="#">Something else here</a>
+												<div role="separator" class="dropdown-divider"></div>
+												<a class="dropdown-item" href="#">Separated link</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<script>
+$(document).ready(function(){
+	$('#MybtnModal').click(function(){
+		$('#Mymodal').modal('show')
+	});
+});
+</script>
+								<button data-target="#MySecondmodal" data-toggle="modal" type="button" class="btn btn-success d-none d-sm-inline-block">New Post</button>
+
+
+
+							</div>
+
+							<section class="card mt-4">
+								<div class="list-group list-group-messages list-group-flush">
+
+									<div class="list-group-item unread">
+										<div class="list-group-item-figure">
+											<span class="rating rating-sm mr-3">
+												<input type="checkbox" id="star2" value="1" checked>
+												<label for="star2">
+													<span class="fa fa-star"></span>
+												</label>
+											</span>
+											<a href="conversations.html" class="user-avatar">
+												<div class="avatar avatar-offline">
+													<img src="https://via.placeholder.com/50" alt="..." class="avatar-img rounded-circle">
+												</div>
+											</a>
+										</div>
+										<div class="list-group-item-body pl-3 pl-md-4">
+											<div class="row">
+												<div class="col-12 col-lg-10">
+													<h4 class="list-group-item-title">
+														<a href="conversations.html">Chad</a>
+													</h4>
+													<p class="list-group-item-text text-truncate"> Ok, Thanks ! </p>
+												</div>
+												<div class="col-12 col-lg-2 text-lg-right">
+													<p class="list-group-item-text"> 20 minutes ago </p>
+												</div>
+											</div>
+										</div>
+										<div class="list-group-item-figure">
+											<div class="dropdown">
+												<button class="btn-dropdown" data-toggle="dropdown">
+													<i class="icon-options-vertical"></i>
+												</button>
+												<div class="dropdown-arrow"></div>
+												<div class="dropdown-menu dropdown-menu-right">
+													<a href="#" class="dropdown-item">Mark as read</a>
+													<a href="#" class="dropdown-item">Mark as unread</a>
+													<a href="#" class="dropdown-item">Toggle star</a>
+													<a href="#" class="dropdown-item">Trash</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="list-group-item read">
+										<div class="list-group-item-figure">
+											<span class="rating rating-sm mr-3">
+												<input type="checkbox" id="star3" value="1">
+												<label for="star3">
+													<span class="fa fa-star"></span>
+												</label>
+											</span>
+											<a href="conversations.html" class="user-avatar">
+												<div class="avatar avatar-away">
+													<img src="https://via.placeholder.com/50" alt="..." class="avatar-img rounded-circle">
+												</div>
+											</a>
+										</div>
+										<div class="list-group-item-body pl-3 pl-md-4">
+											<div class="row">
+												<div class="col-12 col-lg-10">
+													<h4 class="list-group-item-title">
+														<a href="conversations.html">Talha</a>
+													</h4>
+													<p class="list-group-item-text text-truncate"> Follow up this reminder asap, quam error praesentium asperiores a quidem. </p>
+												</div>
+												<div class="col-12 col-lg-2 text-lg-right">
+													<p class="list-group-item-text"> 2 days ago </p>
+												</div>
+											</div>
+										</div>
+										<div class="list-group-item-figure">
+											<div class="dropdown">
+												<button class="btn-dropdown" data-toggle="dropdown">
+													<i class="icon-options-vertical"></i>
+												</button>
+												<div class="dropdown-arrow"></div>
+												<div class="dropdown-menu dropdown-menu-right">
+													<a href="#" class="dropdown-item">Mark as read</a>
+													<a href="#" class="dropdown-item">Mark as unread</a>
+													<a href="#" class="dropdown-item">Toggle star</a>
+													<a href="#" class="dropdown-item">Trash</a>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</section>
+							<div class="mt-1 mb-2">
+								<p class="text-muted"> Showing 1 to 10 of 1,000 entries </p>
+								<ul class="pagination justify-content-center mb-5 mb-sm-0">
+									<li class="page-item disabled">
+										<a class="page-link" href="#" tabindex="-1">
+											<i class="fa fa-angle-left"></i>
+										</a>
+									</li>
+									<li class="page-item">
+										<a class="page-link" href="#">1</a>
+									</li>
+									<li class="page-item disabled">
+										<a class="page-link" href="#" tabindex="-1">...</a>
+									</li>
+									<li class="page-item">
+										<a class="page-link" href="#">13</a>
+									</li>
+									<li class="page-item active">
+										<a class="page-link" href="#">14</a>
+									</li>
+									<li class="page-item">
+										<a class="page-link" href="#">15</a>
+									</li>
+									<li class="page-item disabled">
+										<a class="page-link" href="#" tabindex="-1">...</a>
+									</li>
+									<li class="page-item">
+										<a class="page-link" href="#">24</a>
+									</li>
+									<li class="page-item">
+										<a class="page-link" href="#">
+											<i class="fa fa-angle-right"></i>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card card-space">
+								<div class="card-header">
+									<h4 class="card-title">Trading FAQ</h4>
+								</div>
+								<div class="card-body">
+									<div class="row">
+										<div class="col-12 col-md-3">
+											<div class="nav flex-column nav-pills nav-secondary nav-pills-no-bd nav-pills-icons" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+												<a class="nav-link active show" id="v-pills-home-tab-icons" data-toggle="pill" href="#v-pills-home-icons" role="tab" aria-controls="v-pills-home-icons" aria-selected="true">
+													<i class="flaticon-round"></i>
+													About
+												</a>
+												<!--<a class="nav-link" id="v-pills-profile-tab-icons" data-toggle="pill" href="#v-pills-profile-icons" role="tab" aria-controls="v-pills-profile-icons" aria-selected="false">-->
+												<!--	<i class="flaticon-user-4"></i>-->
+												<!--	Profile-->
+												<!--</a>-->
+												<!--<a class="nav-link" id="v-pills-buy-tab-icons" data-toggle="pill" href="#v-pills-buy-icons" role="tab" aria-controls="v-pills-buy-icons" aria-selected="false">-->
+												<!--	<i class="flaticon-cart"></i>-->
+												<!--	How to buy?-->
+												<!--</a>-->
+												<!--<a class="nav-link" id="v-pills-quality-tab-icons" data-toggle="pill" href="#v-pills-quality-icons" role="tab" aria-controls="v-pills-quality-icons" aria-selected="false">-->
+												<!--	<i class="flaticon-hands"></i>-->
+												<!--	Quality-->
+												<!--</a>-->
+											</div>
+										</div>
+										<div class="col-12 col-md-9">
+											<div class="tab-content" id="v-pills-tabContent">
+												<div class="tab-pane fade active show" id="v-pills-home-icons" role="tabpanel" aria-labelledby="v-pills-home-tab-icons">
+													<div class="accordion accordion-secondary">
+														<div class="card">
+															<div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne"
+															aria-expanded="true" aria-controls="collapseOne" role="button">
+																<div class="span-icon">
+																	<div class="flaticon-box-1"></div>
+																</div>
+																<div class="span-title">
+																	What Is Swing Trading?
+																</div>
+																<div class="span-mode"></div>
+															</div>
+
+															<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+																<div class="card-body">
+																Swing trading is a style of trading that attempts to capture short- to medium-term gains in a stock (or any financial instrument) over a period of a few days to several weeks.<br>
+															<br><b>	KEY TAKEAWAYS</b><br>
+<ol>
+    <li>
+
+Swing trading involves taking trades that last a couple of days up to several months in order to profit from an anticipated price move.
+</li><li>Swing trading exposes a trader to overnight and weekend risk, where the price could gap and open the following session at a substantially different price.
+</li><li>Swing traders can take profits utilizing an established risk/reward ratio based on a stop-loss and profit target, or they can take profits or losses based on a technical indicator or price action movements.
+    </li>
+</ol>																</div>
+															</div>
+														</div>
+														<div class="card">
+															<div class="card-header collapsed" id="headingTwo"
+															data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" role="button">
+															<div class="span-icon">
+																<div class="flaticon-box-1"></div>
+															</div>
+															<div class="span-title">
+Stock Dividend means? 															</div>
+															<div class="span-mode"></div>
+														</div>
+														<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+															<div class="card-body">
+A stock dividend is a payment to shareholders made in additional shares instead of cash. The stock dividend rewards shareholders without reducing the company's cash balance. It has the adverse effect of diluting earnings per share.
+</div>
+														</div>
+													</div>
+													<div class="card">
+														<div class="card-header collapsed" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" role="button">
+															<div class="span-icon">
+																<div class="flaticon-box-1"></div>
+															</div>
+															<div class="span-title">
+Difference Between Sensex and Nifty?															</div>
+															<div class="span-mode"></div>
+														</div>
+														<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+															<div class="card-body">
+<ol>
+    <li>
+        Nifty stands for National Stock Exchange Fifty and is the equity benchmark index of the National Stock Exchange (NSE).
+    </li>
+    <li>Sensex is the market index of the Bombay Stock Exchange (BSE). It is also known as S&P BSE Sensex.</li>
+</ol>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="tab-pane fade" id="v-pills-profile-icons" role="tabpanel" aria-labelledby="v-pills-profile-tab-icons">
+												<h5 class="mt-3">Profile</h5>
+												<hr />
+												<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+
+												<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+
+												<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
+
+												<p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.</p>
+
+												<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way. On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should</p>
+											</div>
+											<div class="tab-pane fade" id="v-pills-buy-icons" role="tabpanel" aria-labelledby="v-pills-buy-tab-icons">
+												<h5 class="mt-3">How To Buy</h5>
+												<hr />
+												<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+
+												<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+
+												<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
+
+												<p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.</p>
+
+												<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way. On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should</p>
+											</div>
+											<div class="tab-pane fade" id="v-pills-quality-icons" role="tabpanel" aria-labelledby="v-pills-quality-tab-icons">
+												<div class="accordion accordion-secondary">
+													<div class="card">
+														<div class="card-header" id="headingFour" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour" role="button">
+															<div class="span-icon">
+																<div class="flaticon-box-1"></div>
+															</div>
+															<div class="span-title">
+																Lorem Ipsum #1
+															</div>
+															<div class="span-mode"></div>
+														</div>
+
+														<div id="collapseFour" class="collapse show" aria-labelledby="headingFour" data-parent="#accordion" role="button">
+															<div class="card-body">
+																Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+															</div>
+														</div>
+													</div>
+													<div class="card">
+														<div class="card-header collapsed" id="headingFive"
+														data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive" role="button">
+														<div class="span-icon">
+															<div class="flaticon-box-1"></div>
+														</div>
+														<div class="span-title">
+															Lorem Ipsum #2
+														</div>
+														<div class="span-mode"></div>
+													</div>
+													<div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+														<div class="card-body">
+															Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+														</div>
+													</div>
+												</div>
+												<div class="card">
+													<div class="card-header collapsed" id="headingSix" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix" role="button">
+														<div class="span-icon">
+															<div class="flaticon-box-1"></div>
+														</div>
+														<div class="span-title">
+															Lorem Ipsum #3
+														</div>
+														<div class="span-mode"></div>
+													</div>
+													<div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
+														<div class="card-body">
+															Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+				 <div class="row">
+        <div class="col-md-6">
+            <div class="card full-height">
+                <div class="card-header">
+                    <div class="card-title">Best Youtube</div>
+                </div>
+                <div class="card-body">
+                    <ol class="activity-feed">
+
+                        <li class="feed-item feed-item-secondary">
+                            <time class="date" datetime="9-25"></time>
+                            <span class="text">Stock Market?</span>
+                        </li>
+
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card full-height">
+                <div class="card-header">
+                    <div class="card-head-row">
+                        <div class="card-title">Stock Market News</div>
+
+                    </div>
+                </div>
+                <div class="card-body">
+                    {% for ss in stock_news_obj %}
+                    <div class="d-flex">
+
+                        <div class="avatar avatar-online">
+                            <span class="avatar-title rounded-circle border border-white bg-info"><img src="{{ss.stock_pic.url}}" style="width:60px"></span>
+                        </div>
+                        <div class="flex-1 ml-3 pt-1">
+                            <h6 class="text-uppercase fw-bold mb-1">{{ss.stock_name}} <span class="text-warning pl-3">{{ss.trend}}</span></h6>
+                            <span class="text-muted">{{ss.event_details}}</span>
+                        </div>
+                        <div class="float-right pt-1">
+                            <small class="text-muted">{{ss.news_date}}</small>
+                        </div>
+                    </div>
+                    <div class="separator-dashed"></div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+				</div>
+			</div>
+		</div>
+
+	<style>
+
+
+		header {
+			background-color: #ffffff;
+			color: #000000;
+			text-align: center;
+		}
+
+
+		.container {
+			display: flex;
+			justify-content: space-between;
+			max-width: 95%;
+			margin: 0 auto;
+			padding: 20px;
+		}
+
+		article p {
+			text-align: justify;
+		}
+
+		main {
+			flex: 2;
+		}
+
+		article {
+			margin-bottom: 20px;
+			padding: 10px 20px;
+			border: 1px solid rgb(145, 145, 145);
+			margin-right: 10px;
+		}
+
+		aside {
+			flex: 1;
+			background-color: #c9c9c9;
+			padding: 10px;
+		}
+
+
+	</style>
+
+
+
+
+
+
+		{% include 'home/footer.html' %}
+
+	</div>
+
+	<!--   Core JS Files   -->
+	<script src="{% static '/assets/js/core/jquery.3.2.1.min.js' %}"></script>
+	<script src="{% static '/assets/js/core/popper.min.js' %}"></script>
+	<script src="{% static '/assets/js/core/bootstrap.min.js' %}"></script>
+
+	<!-- jQuery UI -->
+	<script src="{% static '/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js' %}"></script>
+	<script src="{% static '/assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js' %}"></script>
+
+	<!-- jQuery Scrollbar -->
+	<script src="{% static '/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js' %}"></script>
+
+	<!-- Moment JS -->
+	<script src="{% static '/assets/js/plugin/moment/moment.min.js' %}"></script>
+
+	<!-- Chart JS -->
+	<script src="{% static '/assets/js/plugin/chart.js/chart.min.js' %}"></script>
+
+	<!-- jQuery Sparkline -->
+	<script src="{% static '/assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js' %}"></script>
+
+	<!-- Chart Circle -->
+	<script src="{% static '/assets/js/plugin/chart-circle/circles.min.js' %}"></script>
+
+	<!-- Datatables -->
+	<script src="{% static '/assets/js/plugin/datatables/datatables.min.js' %}"></script>
+
+	<!-- Bootstrap Notify -->
+	<script src="{% static '/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js' %}"></script>
+
+	<!-- Bootstrap Toggle -->
+	<script src="{% static '/assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js' %}"></script>
+
+	<!-- jQuery Vector Maps -->
+	<script src="{% static '/assets/js/plugin/jqvmap/jquery.vmap.min.js' %}"></script>
+	<script src="{% static '/assets/js/plugin/jqvmap/maps/jquery.vmap.world.js' %}"></script>
+
+	<!-- Google Maps Plugin -->
+	<script src="{% static '/assets/js/plugin/gmaps/gmaps.js' %}"></script>
+
+	<!-- Dropzone -->
+	<script src="{% static '/assets/js/plugin/dropzone/dropzone.min.js' %}"></script>
+
+	<!-- Fullcalendar -->
+	<script src="{% static '/assets/js/plugin/fullcalendar/fullcalendar.min.js' %}"></script>
+
+	<!-- DateTimePicker -->
+	<script src="{% static '/assets/js/plugin/datepicker/bootstrap-datetimepicker.min.js' %}"></script>
+
+	<!-- Bootstrap Tagsinput -->
+	<script src="{% static '/assets/js/plugin/bootstrap-tagsinput/bootstrap-tagsinput.min.js' %}"></script>
+
+	<!-- Bootstrap Wizard -->
+	<script src="{% static '/assets/js/plugin/bootstrap-wizard/bootstrapwizard.js' %}"></script>
+
+	<!-- jQuery Validation -->
+	<script src="{% static '/assets/js/plugin/jquery.validate/jquery.validate.min.js' %}"></script>
+
+	<!-- Summernote -->
+	<script src="{% static '/assets/js/plugin/summernote/summernote-bs4.min.js' %}"></script>
+
+	<!-- Select2 -->
+	<script src="{% static '/assets/js/plugin/select2/select2.full.min.js' %}"></script>
+
+	<!-- Sweet Alert -->
+	<script src="{% static '/assets/js/plugin/sweetalert/sweetalert.min.js' %}"></script>
+
+	<!-- Atlantis JS -->
+	<script src="{% static '/assets/js/atlantis2.min.js' %}"></script>
+
+
+	<!-- Owl Carousel -->
+	<script src="{% static '/assets/js/plugin/owl-carousel/owl.carousel.min.js' %}"></script>
+
+
+		<div class="modal fade" id="MySecondmodal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">×</button>
+					<h4 class="modal-title">Notification</h4>
+				</div>
+				<div class="modal-body">
+					Are you sure you want to continue?
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

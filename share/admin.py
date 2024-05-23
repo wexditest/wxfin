@@ -13,3 +13,5 @@ class DividendTradeAdmin(admin.ModelAdmin):
 # Register your models here.
 admin.site.register(SwingTrade, SwingTradeAdmin)
 admin.site.register(DividendTrade, DividendTradeAdmin)
+
+admin.site.register(Subscription)

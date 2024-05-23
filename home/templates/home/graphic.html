@@ -1,0 +1,173 @@
+{% extends "home/base.html" %}
+{% block content %}
+{% load static %}
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
+
+<div class="container">
+<div class="panel-header bg-primary-gradient">
+    <div class="page-inner py-5">
+        <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+                <h4 class="page-title text-white">Trading Community</h4>
+
+
+            <div class="ml-md-auto py-2 py-md-0">
+
+                                              <a class="btn btn-secondary btn-round" href="https://www.wexdifinserv.com/dashboard" >Dashboard</a>
+                                              <a class="btn btn-secondary btn-round" href="https://www.wexdifinserv.com/upcoming_dividends" >upcoming_dividends</a>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+	<div class="page-inner mt--5"><br><br>
+
+<div class="row row-card-no-pd">
+
+    <div class="col-md-12">
+
+        <div class="card-header">
+					<h4 class="card-title">Golden cross over signal</h4>
+		</div>
+		<div class="card">
+
+           <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+           csv:<input type=file name="upload"><br>
+           Data Point:<input type=text name="data_point"><br>
+           Stock Name<input type="text" name="stock_name"><br>
+           Yahoo Finace Stock Name(<a target="_blank" href="https://finance.yahoo.com/">link</a>)<input type="text" name="y_stock_name">(Example:<font color=blue>HSCL.NS)</font>)<br>
+            <p><input type="submit" value="Upload" /></p>
+        </form>
+        <hr>
+        <br>
+
+<style>
+    #ig {
+border: 1px solid #ddd;
+border-radius: 4px;
+padding: 5px;
+width: 1200px;
+}
+
+</style>
+
+
+
+
+<img id="ig" src="data:image/png;base64,{{ graphic|safe }}"><br>
+
+
+        {{ data|safe }}
+
+        <hr>
+        {{csv_pandas}}
+
+        <hr>
+        Stock Name: <br><font color=red>{{y_stock_name}}</font><br>
+Stock Details: <br>
+<table border=1><tr><th></th><th></th></tr>
+{% for i,j in stock_price.items %}
+<tr><th>
+{{i|title }}</th><th>{{j}}</th></tr>
+{% endfor %}
+</table>
+</div>
+
+    </div>
+</div>
+
+
+</div>
+
+
+
+
+	<!--   Core JS Files   -->
+	<script src="{% static '/assets/js/core/jquery.3.2.1.min.js' %}"></script>
+	<script src="{% static '/assets/js/core/popper.min.js' %}"></script>
+	<script src="{% static '/assets/js/core/bootstrap.min.js' %}"></script>
+
+	<!-- jQuery UI -->
+	<script src="{% static '/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js' %}"></script>
+	<script src="{% static '/assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js' %}"></script>
+
+	<!-- jQuery Scrollbar -->
+	<script src="{% static '/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js' %}"></script>
+
+	<!-- Moment JS -->
+	<script src="{% static '/assets/js/plugin/moment/moment.min.js' %}"></script>
+
+	<!-- Chart JS -->
+	<script src="{% static '/assets/js/plugin/chart.js/chart.min.js' %}"></script>
+
+	<!-- jQuery Sparkline -->
+	<script src="{% static '/assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js' %}"></script>
+
+	<!-- Chart Circle -->
+	<script src="{% static '/assets/js/plugin/chart-circle/circles.min.js' %}"></script>
+
+	<!-- Datatables -->
+	<script src="{% static '/assets/js/plugin/datatables/datatables.min.js' %}"></script>
+
+	<!-- Bootstrap Notify -->
+	<script src="{% static '/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js' %}"></script>
+
+	<!-- Bootstrap Toggle -->
+	<script src="{% static '/assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js' %}"></script>
+
+	<!-- jQuery Vector Maps -->
+	<script src="{% static '/assets/js/plugin/jqvmap/jquery.vmap.min.js' %}"></script>
+	<script src="{% static '/assets/js/plugin/jqvmap/maps/jquery.vmap.world.js' %}"></script>
+
+	<!-- Google Maps Plugin -->
+	<script src="{% static '/assets/js/plugin/gmaps/gmaps.js' %}"></script>
+
+	<!-- Dropzone -->
+	<script src="{% static '/assets/js/plugin/dropzone/dropzone.min.js' %}"></script>
+
+	<!-- Fullcalendar -->
+	<script src="{% static '/assets/js/plugin/fullcalendar/fullcalendar.min.js' %}"></script>
+
+	<!-- DateTimePicker -->
+	<script src="{% static '/assets/js/plugin/datepicker/bootstrap-datetimepicker.min.js' %}"></script>
+
+	<!-- Bootstrap Tagsinput -->
+	<script src="{% static '/assets/js/plugin/bootstrap-tagsinput/bootstrap-tagsinput.min.js' %}"></script>
+
+	<!-- Bootstrap Wizard -->
+	<script src="{% static '/assets/js/plugin/bootstrap-wizard/bootstrapwizard.js' %}"></script>
+
+	<!-- jQuery Validation -->
+	<script src="{% static '/assets/js/plugin/jquery.validate/jquery.validate.min.js' %}"></script>
+
+	<!-- Summernote -->
+	<script src="{% static '/assets/js/plugin/summernote/summernote-bs4.min.js' %}"></script>
+
+	<!-- Select2 -->
+	<script src="{% static '/assets/js/plugin/select2/select2.full.min.js' %}"></script>
+
+	<!-- Sweet Alert -->
+	<script src="{% static '/assets/js/plugin/sweetalert/sweetalert.min.js' %}"></script>
+
+	<!-- Atlantis JS -->
+	<script src="{% static '/assets/js/atlantis2.min.js' %}"></script>
+
+
+	<!-- Owl Carousel -->
+	<script src="{% static '/assets/js/plugin/owl-carousel/owl.carousel.min.js' %}"></script>
+
+
+
+
+
+
+{% endblock %}
