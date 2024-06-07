@@ -46,16 +46,34 @@ class MonthWiseChitDetailsAdmin(admin.ModelAdmin):
 
 
 class CustomerChitPlanAdmin(admin.ModelAdmin):
-  list_display = ("customer_chit_details", "customer_name")
-  list_filter = ("customer_chit_details",)
+  list_display = ("customer_chit_details", "customer_name","category")
+  list_filter = ("customer_chit_details","category")
 
+
+
+def duplicate_event_chit_payment_customer(CustomerChitPaymentDetailsAdmin, request, queryset):
+        for object in queryset:
+            object.id = None
+            object.save()
+duplicate_event_chit_payment_customer.short_description = "Duplicate selected record"
 
 class CustomerChitPaymentDetailsAdmin(admin.ModelAdmin):
+  autocomplete_fields = ['customer_details']
+  actions = [duplicate_event_chit_payment_customer]
   list_display = ("chit_details","customer_details","chit_month","chit_year","payment_status")
   list_filter=("chit_details","customer_details","chit_month","chit_year")
 
 class EnrollChitAdmin(admin.ModelAdmin):
   list_display = ("chit_details", "customer_details",'enroll_status','admin_per_status')
+
+
+class ChitPaymentNotificationAdmin(admin.ModelAdmin):
+  list_display = ("user_of_chit", "msg",'is_active','chit_details','chit_month','chit_year')
+  list_filter=("user_of_chit","is_active","chit_month","chit_year","chit_details")
+
+
+admin.site.register(ChitPaymentNotification,ChitPaymentNotificationAdmin)
+
 
 
 

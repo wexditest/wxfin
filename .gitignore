@@ -1,2 +1,6 @@
-*.py
-no_to_commit.py 
+*.pyc
+no_to_commit.py
+*.pyc
+__pycache_
+**/__pycache_
+share/migrations/__pycache__/__ 

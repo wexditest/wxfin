@@ -2,7 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 import datetime
 from datetime import datetime
-# Create your models here.
+
+
 
 class ChitDetails(models.Model):
   chit_name = models.CharField(max_length=255)
@@ -45,9 +46,16 @@ class MonthWiseChitDetails(models.Model):
   get_chit_amount = models.CharField(max_length=255)
   winner_of_chit = models.ForeignKey(User,on_delete=models.CASCADE,blank=True, null=True)
 
+
+CAT =(
+("Customer", "Customer"),
+("Management", "Management"),
+)
+
 class CustomerChitPlan(models.Model):
   customer_chit_details = models.ForeignKey(ChitDetails,on_delete=models.CASCADE)
   customer_name = models.ForeignKey(User,on_delete=models.CASCADE)
+  category = models.CharField(max_length=100, choices=CAT, default="Customer", blank=True)
 
 
 
@@ -93,3 +101,12 @@ class EnrollChit(models.Model):
 
 
 
+# Create your models here.
+class ChitPaymentNotification(models.Model):
+  user_of_chit = models.ForeignKey(User,on_delete=models.CASCADE,blank=True, null=True)
+  msg = models.CharField(max_length=555,blank=True)
+  is_active = models.BooleanField(default=False)
+  chit_details = models.ForeignKey(ChitDetails,on_delete=models.CASCADE,blank=True, null=True)
+
+  chit_month = models.CharField(max_length=9, blank=True)
+  chit_year = models.CharField(max_length=255,blank=True)

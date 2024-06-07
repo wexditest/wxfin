@@ -16,10 +16,34 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from .views import *
+
+from django.urls import path, include
+from django.contrib.auth.models import User
+from rest_framework import routers, serializers, viewsets
+
+# Serializers define the API representation.
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ['url', 'username', 'email', 'is_staff']
+
+# ViewSets define the view behavior.
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+# Routers provide an easy way of automatically determining the URL conf.
+router = routers.DefaultRouter()
+router.register(r'users', UserViewSet)
+
+
+
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('',include('home.urls'), name="home"),
     path("accounts/", include("allauth.urls")), # new
-    #path("home/",include('home.urls')), # new
     path('social-auth/', include('social_django.urls', namespace='social')),
+    path('api/', include('rest_framework.urls')),
+    path('apis/', include(router.urls)),
 ]

@@ -1,22 +1,95 @@
-{% extends "home/base.html" %}
-{% block content %}
+<!DOCTYPE html>
 {% load static %}
+<html lang="en">
+    <head>
+
+         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Wexdi::Finance</title>
+        <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+        <link rel="icon" href="{% static 'company/favicon.png' %}" type="image/x-icon"/>
+        <!-- Fonts and icons -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="{% static 'assets/js/plugin/webfont/webfont.min.js'%}"></script>
+        <script>
+            WebFont.load({
+            	google: {"families":["Lato:300,400,700,900"]},
+            	custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['{% static "assets/css/fonts.min.css"%}']},
+            	active: function() {
+            		sessionStorage.fonts = true;
+            	}
+            });
+        </script>
+        <!-- CSS Files -->
+        <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/atlantis.css' %}">
+        <!-- CSS Just for demo purpose, don't include it in your project -->
+        <link rel="stylesheet" href="{% static 'assets/css/demo.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="main-header">
+                <!-- Logo Header-->
+                <div class="logo-header" data-background-color="grey">
+
+                    <a href="https://www.wexdifinserv.com/" class="logo">
+                    <img src="{% static 'admin/img/wexdi_finance.JPG' %}" alt="navbar brand" style="width:100px" class="navbar-brand">
+                    </a>
+                    <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon">
+                    <i  class="fa fa-angle-double-left"></i>
+                    </span>
+                    </button>
+                    <button class="topbar-toggler more"><i s class="fa fa-solid fa-arrow-left"></i>
+                    </button>
+                    <div class="nav-toggle">
+                        <button class="btn btn-toggle toggle-sidebar">
+                        <i class="fa fa-solid fa-arrow-left"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- End Logo Header -->
+                <!-- Navbar Header -->
+                {% include 'home/nav.html' %}
+                <!-- End Navbar -->
+            </div>
+            <!-- Sidebar -->
+            {% include 'home/sidebar.html' %}
+            <!-- End Sidebar -->
+            <div class="main-panel">
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
+	<script src="{% static '/assets/js/core/jquery.3.2.1.min.js' %}"></script>
 
 
 <div class="container">
 <div class="panel-header bg-primary-gradient">
     <div class="page-inner py-5">
         <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
-                <h4 class="page-title text-white">upcoming_dividends </h4>
+                <h4 class="page-title text-white">Upcoming Dividend List</h4>
 
 
             <div class="ml-md-auto py-2 py-md-0">
 
                                               <a class="btn btn-secondary btn-round" href="https://www.wexdifinserv.com/dashboard" >Dashboard</a>
+                                        {% if  sub_flag == 'STANDARD' or  sub_flag == 'ADVANCE' %}
+                                              <a class="btn btn-secondary btn-round" href="https://www.wexdifinserv.com/golden_cross_over_signal" >Golden Crossover Signal</a>
+                                              <a class="btn btn-secondary btn-round" href="https://www.wexdifinserv.com/get_csv_data_for_stocks" >
+                                                 Stocks CSV</a>
+
+                                             <a class="btn btn-secondary btn-round" href="https://www.wexdifinserv.com/upcoming_dividends" >
+                                                 Upcoming Dividends</a>
+
+                                             <a class="btn btn-secondary btn-round" href="" >
+                                                 GapUP Stocks(coming soon)</a>
+
+                                                   <a class="btn btn-secondary btn-round" href="/moving_avg_crossover" >
+                                                 moving_avg_crossover</a>
+
+                                                 {% endif %}
 
 
             </div>
@@ -24,165 +97,350 @@
     </div>
 </div>
 
-<script>
-$(document).ready(function(){
 
-    $(".mob--only").remove();
-$(".event-table-data-title").remove();
-$('.event-table-desc').remove();
-
-
-
-});
-</script>
 
 	<div class="page-inner mt--5"><br><br>
 
-
-
-<div class="row row-card-no-pd">
-
-    <div class="col-md-12">
-
-        <div class="card-header">
-					<h4 class="card-title">Dividend List</h4>
-		</div>
-		<div class="card">
-
-<link rel="stylesheet" href="https://cdn.datatables.net/2.0.7/css/dataTables.dataTables.css" />
-
-<script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
-<script>
-    $(document).ready( function () {
-    $('#myTable').DataTable();
-} );
-</script>
-<table id="myTable" class="display">
-    <thead>
+	<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-header">
+									<h4 class="card-title">Dividend List - <select id="months" disabled>
+    <option value="1">January</option>
+    <option value="2">February</option>
+    <option value="3">March</option>
+    <option value="4">April</option>
+    <option value="5">May</option>
+    <option value="6">June</option>
+    <option value="7">July</option>
+    <option value="8">August</option>
+    <option value="9">September</option>
+    <option value="10">October</option>
+    <option value="11">November</option>
+    <option value="12">December</option>
+</select></h4>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table id="basic-datatables" class="display table table-striped table-hover" >
+										   <thead>
         <tr><th>
  Company Name</th><th>
 
-Announcement Date</th><th>
-
-Type</th><th>
 
 Ex-Date</th><th>
 
-Record Date</th><th>
 
 DPS</th><th>
-
-Div % </th><th>Current Price</th><th>Action</th></tr>
+Current Price</th><th>Action</th></tr>
     </thead>
     <tbody>
        {% for uc in up_coming %}
 
 <tr>
  <td>{{uc.company_name}}</td><td>
-    {{uc.announcement_date}}</td><td>
-    {{uc.divd_type}}</td><td>
+
     {{uc.ex_date}}</td><td>
-    {{uc.record_date}}</td><td>
-    {{uc.dps}}</td><td>
-    {{uc.div_percentage }}</td>
-    <td></td><td></td>
+
+    {{uc.dps}}</td>
+    <td>
+    {{uc.stock_price }}
+
+
+    </td>
+
+
+    <td>
+{% if uc.action <= 60 %}
+<img src="{% static 'buy.png' %}" style="width:50px;height:50px;">
+{%else %}
+---
+ {%endif %}
+    </td>
 </tr>
 {% endfor %}
     </tbody>
-</table>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
 
 
+					</div>
 
-
-		    </div>
 
 
 </div>
-</div>
-
-
-</div>
 
 
 
+<link rel="stylesheet" href="https://cdn.datatables.net/2.0.7/css/dataTables.dataTables.css" />
 
-	<!--   Core JS Files   -->
-	<script src="{% static '/assets/js/core/jquery.3.2.1.min.js' %}"></script>
-	<script src="{% static '/assets/js/core/popper.min.js' %}"></script>
-	<script src="{% static '/assets/js/core/bootstrap.min.js' %}"></script>
+<script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
+<script>
+    $(document).ready( function () {
 
-	<!-- jQuery UI -->
-	<script src="{% static '/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js' %}"></script>
-	<script src="{% static '/assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js' %}"></script>
+        var d = new Date(),
 
-	<!-- jQuery Scrollbar -->
-	<script src="{% static '/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js' %}"></script>
+    n = d.getMonth(),
 
-	<!-- Moment JS -->
-	<script src="{% static '/assets/js/plugin/moment/moment.min.js' %}"></script>
+    y = d.getFullYear();
 
-	<!-- Chart JS -->
-	<script src="{% static '/assets/js/plugin/chart.js/chart.min.js' %}"></script>
-
-	<!-- jQuery Sparkline -->
-	<script src="{% static '/assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js' %}"></script>
-
-	<!-- Chart Circle -->
-	<script src="{% static '/assets/js/plugin/chart-circle/circles.min.js' %}"></script>
-
-	<!-- Datatables -->
-	<script src="{% static '/assets/js/plugin/datatables/datatables.min.js' %}"></script>
-
-	<!-- Bootstrap Notify -->
-	<script src="{% static '/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js' %}"></script>
-
-	<!-- Bootstrap Toggle -->
-	<script src="{% static '/assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js' %}"></script>
-
-	<!-- jQuery Vector Maps -->
-	<script src="{% static '/assets/js/plugin/jqvmap/jquery.vmap.min.js' %}"></script>
-	<script src="{% static '/assets/js/plugin/jqvmap/maps/jquery.vmap.world.js' %}"></script>
-
-	<!-- Google Maps Plugin -->
-	<script src="{% static '/assets/js/plugin/gmaps/gmaps.js' %}"></script>
-
-	<!-- Dropzone -->
-	<script src="{% static '/assets/js/plugin/dropzone/dropzone.min.js' %}"></script>
-
-	<!-- Fullcalendar -->
-	<script src="{% static '/assets/js/plugin/fullcalendar/fullcalendar.min.js' %}"></script>
-
-	<!-- DateTimePicker -->
-	<script src="{% static '/assets/js/plugin/datepicker/bootstrap-datetimepicker.min.js' %}"></script>
-
-	<!-- Bootstrap Tagsinput -->
-	<script src="{% static '/assets/js/plugin/bootstrap-tagsinput/bootstrap-tagsinput.min.js' %}"></script>
-
-	<!-- Bootstrap Wizard -->
-	<script src="{% static '/assets/js/plugin/bootstrap-wizard/bootstrapwizard.js' %}"></script>
-
-	<!-- jQuery Validation -->
-	<script src="{% static '/assets/js/plugin/jquery.validate/jquery.validate.min.js' %}"></script>
-
-	<!-- Summernote -->
-	<script src="{% static '/assets/js/plugin/summernote/summernote-bs4.min.js' %}"></script>
-
-	<!-- Select2 -->
-	<script src="{% static '/assets/js/plugin/select2/select2.full.min.js' %}"></script>
-
-	<!-- Sweet Alert -->
-	<script src="{% static '/assets/js/plugin/sweetalert/sweetalert.min.js' %}"></script>
-
-	<!-- Atlantis JS -->
-	<script src="{% static '/assets/js/atlantis2.min.js' %}"></script>
+$('#months option:eq('+n+')').prop('selected', true);
 
 
-	<!-- Owl Carousel -->
-	<script src="{% static '/assets/js/plugin/owl-carousel/owl.carousel.min.js' %}"></script>
+        $('#basic-datatables').DataTable({
+			});
+
+
+} );
+</script>
+
+
+<script>
+
+    $(document).ready(function(){
+
+
+        $(".button_paid").click(function(){
+            swal({
+                title: "Contact Details",
+                text: "Call:+91-6302957399",
+                icon: "success",
+                button: "Ping us on whatsapp.....",
+                });
+        });
+    });
+</script>
+
+	<script>
+		$(document).ready(function() {
+			$('#owl-demo').owlCarousel({
+				loop:true,
+				margin:10,
+				nav:true,
+				responsive:{
+					0:{
+						items:1
+					},
+					600:{
+						items:3
+					},
+					1000:{
+						items:4
+					}
+				}
+			})
+				$('#owl-demo1').owlCarousel({
+				loop:true,
+				margin:10,
+				nav:true,
+				responsive:{
+					0:{
+						items:1
+					},
+					600:{
+						items:3
+					},
+					1000:{
+						items:4
+					}
+				}
+			})
+
+			$("#owl-demo2").owlCarousel({
+
+				nav:true, // Show next and prev buttons
+				autoplaySpeed:300,
+				navSpeed:400,
+				items:1
+
+			});
+
+			$('#owl-demo3').owlCarousel({
+				center: true,
+				items:2,
+				loop:true,
+				margin:10,
+				responsive:{
+					600:{
+						items:4
+					}
+				}
+			});
+
+			$('#owl-demo4').owlCarousel({
+				margin:10,
+				loop:false,
+				autoWidth:true,
+				items: 4
+			})
+		});
+	</script>
+<style>
+    .img_trade {
+border: 1px solid #ddd;
+border-radius: 4px;
+padding: 5px;
+
+width:250px;
+height:200px;
+}
+
+</style>
 
 
 
+ {% include 'home/footer.html' %}
+            </div>
+        </div>
+        <!--   Core JS Files   -->
+        <script src="{% static 'assets/js/core/jquery.3.2.1.min.js' %}"></script>
+        <script src="{% static 'assets/js/core/popper.min.js' %}"></script>
+        <script src="{% static 'assets/js/core/bootstrap.min.js' %}"></script>
+        <!-- jQuery UI -->
+        <script src="{% static 'assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js' %}"></script>
+        <script src="{% static 'assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js' %}"></script>
+        <!-- jQuery Scrollbar -->
+        <script src="{% static 'assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js' %}"></script>
+        <!-- Moment JS -->
+        <script src="{% static 'assets/js/plugin/moment/moment.min.js' %}"></script>
+        <!-- Chart JS -->
+        <script src="{% static 'assets/js/plugin/chart.js/chart.min.js' %}"></script>
+        <!-- jQuery Sparkline -->
+        <script src="{% static 'assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js' %}"></script>
+        <!-- Chart Circle -->
+        <script src="{% static 'assets/js/plugin/chart-circle/circles.min.js' %}"></script>
+        <!-- Datatables -->
+        <script src="{% static 'assets/js/plugin/datatables/datatables.min.js' %}"></script>
+        <!-- Bootstrap Notify -->
+        <script src="{% static 'assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js' %}"></script>
+        <!-- Bootstrap Toggle -->
+        <script src="{% static 'assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js' %}"></script>
+        <!-- jQuery Vector Maps -->
+        <script src="{% static 'assets/js/plugin/jqvmap/jquery.vmap.min.js' %}"></script>
+        <script src="{% static 'assets/js/plugin/jqvmap/maps/jquery.vmap.world.js' %}"></script>
+        <!-- Google Maps Plugin -->
+        <script src="{% static 'assets/js/plugin/gmaps/gmaps.js' %}"></script>
+        <!-- Dropzone -->
+        <script src="{% static 'assets/js/plugin/dropzone/dropzone.min.js' %}"></script>
+        <!-- Fullcalendar -->
+        <script src="{% static 'assets/js/plugin/fullcalendar/fullcalendar.min.js' %}"></script>
+        <!-- DateTimePicker -->
+        <script src="{% static 'assets/js/plugin/datepicker/bootstrap-datetimepicker.min.js' %}"></script>
+        <!-- Bootstrap Tagsinput -->
+        <script src="{% static 'assets/js/plugin/bootstrap-tagsinput/bootstrap-tagsinput.min.js' %}"></script>
+        <!-- Bootstrap Wizard -->
+        <script src="{% static 'assets/js/plugin/bootstrap-wizard/bootstrapwizard.js' %}"></script>
+        <!-- jQuery Validation -->
+        <script src="{% static 'assets/js/plugin/jquery.validate/jquery.validate.min.js' %}"></script>
+        <!-- Summernote -->
+        <script src="{% static 'assets/js/plugin/summernote/summernote-bs4.min.js' %}"></script>
+        <!-- Select2 -->
+        <script src="{% static 'assets/js/plugin/select2/select2.full.min.js' %}"></script>
+        <!-- Sweet Alert -->
+        <script src="{% static 'assets/js/plugin/sweetalert/sweetalert.min.js' %}"></script>
+        <!-- Owl Carousel -->
+        <script src="{% static 'assets/js/plugin/owl-carousel/owl.carousel.min.js' %}"></script>
+        <!-- Magnific Popup -->
+        <script src="{% static 'assets/js/plugin/jquery.magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+        <!-- Atlantis JS -->
+        <script src="{% static 'assets/js/atlantis.min.js' %}"></script>
+        <!-- Atlantis DEMO methods, don't include it in your project! -->
+        <script>
+            Circles.create({
+            	id:'circles-1',
+            	radius:45,
+            	value:60,
+            	maxValue:100,
+            	width:7,
+            	text: 5,
+            	colors:['#f1f1f1', '#FF9E27'],
+            	duration:400,
+            	wrpClass:'circles-wrp',
+            	textClass:'circles-text',
+            	styleWrapper:true,
+            	styleText:true
+            })
 
+            Circles.create({
+            	id:'circles-2',
+            	radius:45,
+            	value:70,
+            	maxValue:100,
+            	width:7,
+            	text: 36,
+            	colors:['#f1f1f1', '#2BB930'],
+            	duration:400,
+            	wrpClass:'circles-wrp',
+            	textClass:'circles-text',
+            	styleWrapper:true,
+            	styleText:true
+            })
 
+            Circles.create({
+            	id:'circles-3',
+            	radius:45,
+            	value:40,
+            	maxValue:100,
+            	width:7,
+            	text: 12,
+            	colors:['#f1f1f1', '#F25961'],
+            	duration:400,
+            	wrpClass:'circles-wrp',
+            	textClass:'circles-text',
+            	styleWrapper:true,
+            	styleText:true
+            })
 
-{% endblock %}
+            // var totalIncomeChart = document.getElementById('totalIncomeChart').getContext('2d');
+
+            // var mytotalIncomeChart = new Chart(totalIncomeChart, {
+            // 	type: 'bar',
+            // 	data: {
+            // 		labels: ["S", "M", "T", "W", "T", "F", "S", "S", "M", "T"],
+            // 		datasets : [{
+            // 			label: "Total Income",
+            // 			backgroundColor: '#ff9e27',
+            // 			borderColor: 'rgb(23, 125, 255)',
+            // 			data: [6, 4, 9, 5, 4, 6, 4, 3, 8, 10],
+            // 		}],
+            // 	},
+            // 	options: {
+            // 		responsive: true,
+            // 		maintainAspectRatio: false,
+            // 		legend: {
+            // 			display: false,
+            // 		},
+            // 		scales: {
+            // 			yAxes: [{
+            // 				ticks: {
+            // 					display: false //this will remove only the label
+            // 				},
+            // 				gridLines : {
+            // 					drawBorder: false,
+            // 					display : false
+            // 				}
+            // 			}],
+            // 			xAxes : [ {
+            // 				gridLines : {
+            // 					drawBorder: false,
+            // 					display : false
+            // 				}
+            // 			}]
+            // 		},
+            // 	}
+            // });
+
+            // $('#lineChart').sparkline([105,103,123,100,95,105,115], {
+            // 	type: 'line',
+            // 	height: '70',
+            // 	width: '100%',
+            // 	lineWidth: '2',
+            // 	lineColor: '#ffa534',
+            // 	fillColor: 'rgba(255, 165, 52, .14)'
+            // });
+        </script>
+    </body>
+</html>

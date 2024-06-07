@@ -53,7 +53,8 @@ INSTALLED_APPS = [
     "social_django",
     "blog",
     "ckeditor",
-
+    'django_extensions',
+    'rest_framework',
 ]
 
 
@@ -84,6 +85,15 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
+
 
 ROOT_URLCONF = "finance.urls"
 

@@ -1,61 +1,78 @@
 {% extends "home/base.html" %}
 {% load static %}
 {% block content %}
-	<div class="container">
-				<div class="panel-header bg-primary-gradient">
-					<div class="page-inner py-5">
-						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
-							<div>
-								<h2 class="text-white pb-2 fw-bold">KYC</h2>
-							</div>
 
-						</div>
-					</div>
-				</div>
-				<div class="page-inner mt--5">
-
-					<div class="row row-card-no-pd">
+		<div class="container">
+				<div class="page-inner">
+					<h4 class="page-title">KYC</h4>
+					<div class="row">
 						<div class="col-md-12">
-  <h2>KYC</h2><br>
-  Address Proof
+							<div class="card card-with-nav">
+								<div class="card-header">
+									<div class="row row-nav-line">
+										<ul class="nav nav-tabs nav-line nav-color-secondary w-100 pl-4" role="tablist">
+											<li class="nav-item"> <a class="nav-link"
+											href="/profile" role="tab" aria-selected="true">
+											    Profile</a> </li>
+											<li class="nav-item"> <a class="nav-link active show"
+											href="/kyc" role="tab" aria-selected="false">KYC</a> </li>
+											<li class="nav-item"> <a class="nav-link"
+											href="/change_password" role="tab" aria-selected="false">Change Password</a> </li>
+										</ul>
+									</div>
+								</div>
+								<div class="card-body">
+                                    {% for i in kyc_obj %}
+									<div class="row mt-3">
+										<div class="col-md-6">
+											<div class="form-group form-group-default">
+												<label>UserName</label>
+												<input type="text" disabled class="form-control" value=" {{i.user_name}} ">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group form-group-default">
+												<label>Proof Type</label>
+												<input type="text" disabled class="form-control"  value=" {{i.proof_choice}} ">
+											</div>
+										</div>
 
-  user_name
-  proof_file
-  proof_choice
+									</div>
+									{% endfor %}
 
-  Bank Details
-
-  bank_name
-  bank_account_no
-  bank_branch
-  bank_ifsc
-  bank_proof_choice
-  bank_proof_file
-
-  UPI
-  upi_id
-
-  {% for i in kyc_obj %}
-  {{i}}
-
-  {% endfor %}
-
-
-    </div>
-</div>
-
-
-
-
-
-
-
-
+									<!--<div class="text-right mt-3 mb-3">-->
+									<!--	<button class="btn btn-success">Save</button>-->
+									<!--	<button class="btn btn-danger">Reset</button>-->
+									<!--</div>-->
+								</div>
+							</div>
 						</div>
-					</div>
+						</div>	<div class="row">
+						<div class="col-md-12">
+							<div class="card card-profile">
+								<div class="card-header">
+									<div class="profile-picture">
+										<div class="avatar avatar-xl">
+											Picture
+										</div>
+									</div>
+								</div>
+								<div class="card-body">
+									<div class="user-profile text-center">
+									      {% for i in kyc_obj %}
+									    <img src=" {{i.proof_file.url}}" style="max-width: 100%;height: auto;">
 
+	{% endfor %}
 
+									</div>
+								</div>
+
+							</div>
+						</div>
+			        </div>
 				</div>
 			</div>
+
+
 
 {% endblock %}

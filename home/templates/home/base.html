@@ -118,14 +118,45 @@
         <script src="{% static 'assets/js/atlantis.min.js' %}"></script>
         <!-- Atlantis DEMO methods, don't include it in your project! -->
         <script>
+        var myDoughnutChart = new Chart(doughnutChart, {
+			type: 'doughnut',
+			data: {
+				datasets: [{
+					data: [{{expense}}, {{income}}],
+					backgroundColor: ['#f3545d','#1d7af3']
+				}],
+
+				labels: [
+				'Expense',
+
+				'Income'
+				]
+			},
+			options: {
+				responsive: true,
+				maintainAspectRatio: false,
+				legend : {
+					position: 'bottom'
+				},
+				layout: {
+					padding: {
+						left: 20,
+						right: 20,
+						top: 20,
+						bottom: 20
+					}
+				}
+			}
+		});
+
             Circles.create({
             	id:'circles-1',
             	radius:45,
-            	value:60,
+            	value:{{user_count_obj}},
             	maxValue:100,
             	width:7,
-            	text: 5,
-            	colors:['#f1f1f1', '#FF9E27'],
+            	text: {{user_count_obj}},
+            	colors:['#f1f1f1', '#2BB930'],
             	duration:400,
             	wrpClass:'circles-wrp',
             	textClass:'circles-text',
@@ -136,10 +167,10 @@
             Circles.create({
             	id:'circles-2',
             	radius:45,
-            	value:70,
+            	value:{{chit_det_obj_all_count}},
             	maxValue:100,
             	width:7,
-            	text: 36,
+            	text: {{chit_det_obj_all_count}},
             	colors:['#f1f1f1', '#2BB930'],
             	duration:400,
             	wrpClass:'circles-wrp',
@@ -151,11 +182,11 @@
             Circles.create({
             	id:'circles-3',
             	radius:45,
-            	value:40,
+            	value:{{subscriber_obj_count}},
             	maxValue:100,
             	width:7,
-            	text: 12,
-            	colors:['#f1f1f1', '#F25961'],
+            	text: {{subscriber_obj_count}},
+            	colors:['#f1f1f1', '#2BB930'],
             	duration:400,
             	wrpClass:'circles-wrp',
             	textClass:'circles-text',

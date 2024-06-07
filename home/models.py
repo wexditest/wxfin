@@ -12,6 +12,27 @@ from datetime import datetime
 
 
 
+class LotterySpinList(models.Model):
+  title = models.CharField(max_length=255,blank=True, null=True)
+  option1 = models.CharField(max_length=255,blank=True, null=True)
+  option2 = models.CharField(max_length=255,blank=True, null=True)
+  option3 = models.CharField(max_length=255,blank=True, null=True)
+  option4 = models.CharField(max_length=255,blank=True, null=True)
+  option5 = models.CharField(max_length=255,blank=True, null=True)
+  option6 = models.CharField(max_length=255,blank=True, null=True)
+  option7 = models.CharField(max_length=255,blank=True, null=True)
+  option8 = models.CharField(max_length=255,blank=True, null=True)
+
+  entry_date = models.DateField(default=datetime.now)
+
+
+class IncomeExpenses(models.Model):
+  title = models.CharField(max_length=255,blank=True, null=True)
+  income = models.FloatField()
+  expense =  models.FloatField()
+  entry_date = models.DateField(default=datetime.now)
+
+
 class OneSlide(models.Model):
    summary_pic = models.ImageField(default='avatar.jpg', upload_to='summary_pic/' )
 
@@ -68,10 +89,14 @@ class UpcomingDividends(models.Model):
     record_date	 = models.CharField(max_length=255,blank=True, null=True)
     dps	 = models.CharField(max_length=255,blank=True, null=True)
     div_percentage = models.CharField(max_length=255,blank=True, null=True)
+    stock_price = models.CharField(max_length=255,blank=True, null=True)
+    action = models.IntegerField(max_length=255,blank=True, null=True,default=-1)
 
 
 class Slider(models.Model):
     slide = models.ImageField(default='avatar.jpg', upload_to='slide/' )
+    videofile= models.FileField(upload_to='deploy/videos/', null=True, verbose_name="video")
+
 
 
 class HomeBanner(models.Model):

@@ -3,3 +3,17 @@ nsetools
 django-allauth==0.51.0
 social-auth-app-django
 django-ckeditor
+django-extensions
+pillow
+numpy
+pandas
+matplotlib
+yfinance
+xhtml2pdf
+markupsafe
+tabulate
+nsepy
+pandas_datareader
+djangorestframework
+#django-filter
+#Django-4.1.2

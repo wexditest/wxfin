@@ -2,38 +2,60 @@
 {% extends "home/base.html" %}
 {% load static %}
 {% block content %}
-			<div class="container">
-				<div class="panel-header bg-primary-gradient">
-					<div class="page-inner py-5">
-						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
-							<div>
-								<h2 class="text-white pb-2 fw-bold">Profile Page</h2>
-							</div>
-
-						</div>
-					</div>
-				</div>
-				<div class="page-inner mt--5">
-
-					<div class="row row-card-no-pd">
+		<div class="container">
+				<div class="page-inner">
+					<h4 class="page-title">User Profile</h4>
+					<div class="row">
 						<div class="col-md-12">
+							<div class="card card-with-nav">
+								<div class="card-header">
+									<div class="row row-nav-line">
+										<ul class="nav nav-tabs nav-line nav-color-secondary w-100 pl-4" role="tablist">
+											<li class="nav-item"> <a class="nav-link active show"
+											href="/profile" role="tab" aria-selected="true">
+											    Profile</a> </li>
+											<li class="nav-item"> <a class="nav-link"
+											href="/kyc" role="tab" aria-selected="false">KYC</a> </li>
+											<li class="nav-item"> <a class="nav-link"
+											href="/change_password" role="tab" aria-selected="false">Change Password</a> </li>
+										</ul>
+									</div>
+								</div>
+
+								<div class="card-body">
+									<div class="row mt-3">
+										<div class="col-md-6">
+
+											<div class="form-group form-group-default">
+												<label>User name</label>
+												<input type="text" disabled class="form-control" value="{{user_obj.username}}">
+											</div>
+											<div class="form-group form-group-default">
+												<label>First name</label>
+												<input type="text" disabled class="form-control" value="{{user_obj.first_name}}">
+											</div>
+											<div class="form-group form-group-default">
+												<label>Last name</label>
+												<input type="text" disabled class="form-control" value="{{user_obj.last_name}}">
+											</div>
+											<div class="form-group form-group-default">
+												<label>Email address</label>
+												<input type="text" disabled class="form-control" value="{{user_obj.email}}">
+											</div>
 
 
+										</div>
 
-<a href="/kyc">KYC</a><br>
+									</div>
 
-
-<a href="/change_password">change password</a>
-
-
-
-
+								</div>
+							</div>
 						</div>
-					</div>
 
-
+			        </div>
 				</div>
 			</div>
+
 
 
 

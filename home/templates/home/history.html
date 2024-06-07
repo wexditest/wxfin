@@ -1,99 +1,195 @@
-
 {% extends "home/base.html" %}
 {% load static %}
 {% block content %}
-			<div class="container">
-				<div class="panel-header bg-primary-gradient">
-					<div class="page-inner py-5">
-						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
-							<div>
-								<h2 class="text-white pb-2 fw-bold">Payment History</h2>
-							</div>
-
-						</div>
-					</div>
-				</div>
-				<div class="page-inner mt--5">
-
-					<div class="row row-card-no-pd">
-						<div class="col-md-12">
-
-
-<div style="width: 100%; display: table;">
-    <div style="display: table-row">
-        <style>
-#customers {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-#customers td, #customers th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-#customers tr:nth-child(even){background-color: #f2f2f2;}
-
-#customers tr:hover {background-color: #ddd;}
-
-#customers th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #04AA6D;
-  color: white;
-}
-</style>
-
-
-	<table id="table_id"  class="table">
-       <tr>
-       <th> Chit# </th>
-       <th>Chit(Month/Year)</th>
-       <th>Payment Status</th>
-       <th>Amount</th>
-       <th>Payment Date</th>
-       <th>Actions</th>
-  </tr>
-  {% for cc in cust_obj %}
-  <tr>
-    <td>{{cc.chit_details}}</td>
-
-  <td>{{cc.chit_month}}/{{cc.chit_year}}</td>
-  <td>{{cc.payment_status}}</td>
-
-
-  <td>{{cc.amount_paid}}</td>
-  <td>{{cc.payment_date}}</td>
-  <td><a href="receipt_print/{{cc.id}}/" target="_blank"><button><i class="fa fa-paperclip" aria-hidden="true" >Receipt</i></button></a>
-  <a href='/media/{{cc.payment_file}}' target="_blank"><button><i class="fa fa-picture-o" aria-hidden="true">ScreenShot</i></button></a>
-</a></td>
-    </tr>
-    {% endfor %}
-    </table>
-
-
-
+<div class="container">
+    <div class="panel-header bg-primary-gradient">
+        <div class="page-inner py-5">
+            <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+                <div>
+                    <h2 class="text-white pb-2 fw-bold">Payment History</h2>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+    <div class="page-inner mt--5">
+       	 <div class="row row-card-no-pd">
+            <div class="col-md-12">
+                <div style="width: 100%; display: table;">
+                    <div style="display: table-row">
+                        <table id="table_id"  class="table">
+                            <tr>
+                                <th> Chit# </th>
+                                <th>Chit(Month/Year)</th>
+                                <th>Payment Status</th>
+                                <th>Amount</th>
+                                <th>Payment Date</th>
+                                <th>Actions</th>
+                            </tr>
+                            {% for cc in cust_obj %}
+                            <tr>
+                                <td>{{cc.chit_details}}</td>
+                                <td>{{cc.chit_month}}/{{cc.chit_year}}</td>
+                                <td>{{cc.payment_status}}</td>
+                                <td>{{cc.amount_paid}}</td>
+                                <td>{{cc.payment_date}}</td>
+                                <td><a href="receipt_print/{{cc.id}}/" target="_blank"><button><i class="fa fa-paperclip" aria-hidden="true" >Receipt</i></button></a>
+                                    <a href='/media/{{cc.payment_file}}' target="_blank"><button><i class="fa fa-picture-o" aria-hidden="true">ScreenShot</i></button></a>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+	
+        {% if request.user.is_superuser %}
+        	<div class="row">
 
 
 
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-header">
+									<h4 class="card-title">Customer Chit Payment History</h4>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
 
+										<table id="multi-filter-select" class="display table table-striped table-hover" >
+											<thead>
+												<tr>
+												<th> Chit# </th><th>customer_details</th>
+                                <th>Chit(Month/Year)</th>
+                                <th>Payment Status</th>
+                                <th>Amount</th>
+                                <th>Payment Date</th>
+                                <th>Actions</th>
 
+												</tr>
+											</thead>
+											<tfoot>
+												<tr>
+												<th> Chit# </th>
+												<th>customer_details</th>
+                                <th>Chit(Month/Year)</th>
+                                <th>Payment Status</th>
+                                <th>Amount</th>
+                                <th>Payment Date</th>
+                                <th>Actions</th>
 
+												</tr>
+											</tfoot>
+											<tbody>
+											    {% for cc in cust_obj_all %}
+												<tr>
 
+												<td>{{cc.chit_details}}</td>
+												<td>{{cc.customer_details}}</td>
+                                <td>{{cc.chit_month}}/{{cc.chit_year}}</td>
+                                <td>{{cc.payment_status}}</td>
+                                <td>{{cc.amount_paid}}</td>
+                                <td>{{cc.payment_date}}</td>
+                                <td><a href="receipt_print/{{cc.id}}/" target="_blank"><button><i class="fa fa-paperclip" aria-hidden="true" >Receipt</i></button></a>
+                                    <a href='/media/{{cc.payment_file}}' target="_blank"><button><i class="fa fa-picture-o" aria-hidden="true">ScreenShot</i></button></a>
+                                    </a>
+                                </td>
 
+												</tr>
+												{% endfor %}
+
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
 						</div>
+
+
+
 					</div>
+	{% endif %}
+	
 
 
-				</div>
-			</div>
+           </div>
+</div>
+<script >
+		$(document).ready(function() {
+			$('#basic-datatables').DataTable({
+			});
+			$('#notify-datatables').DataTable({
+			});
 
 
+	$('#multi-filter-selectnotify').DataTable( {
+				"pageLength": 5,
+				initComplete: function () {
+					this.api().columns().every( function () {
+						var column = this;
+						var select = $('<select class="form-control"><option value=""></option></select>')
+						.appendTo( $(column.footer()).empty() )
+						.on( 'change', function () {
+							var val = $.fn.dataTable.util.escapeRegex(
+								$(this).val()
+								);
+
+							column
+							.search( val ? '^'+val+'$' : '', true, false )
+							.draw();
+						} );
+
+						column.data().unique().sort().each( function ( d, j ) {
+							select.append( '<option value="'+d+'">'+d+'</option>' )
+						} );
+					} );
+				}
+			});
 
 
+			$('#multi-filter-select').DataTable( {
+				"pageLength": 5,
+				initComplete: function () {
+					this.api().columns().every( function () {
+						var column = this;
+						var select = $('<select class="form-control"><option value=""></option></select>')
+						.appendTo( $(column.footer()).empty() )
+						.on( 'change', function () {
+							var val = $.fn.dataTable.util.escapeRegex(
+								$(this).val()
+								);
+
+							column
+							.search( val ? '^'+val+'$' : '', true, false )
+							.draw();
+						} );
+
+						column.data().unique().sort().each( function ( d, j ) {
+							select.append( '<option value="'+d+'">'+d+'</option>' )
+						} );
+					} );
+				}
+			});
+
+			// Add Row
+			$('#add-row').DataTable({
+				"pageLength": 5,
+			});
+
+			var action = '<td> <div class="form-button-action"> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"> <i class="fa fa-edit"></i> </button> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove"> <i class="fa fa-times"></i> </button> </div> </td>';
+
+			$('#addRowButton').click(function() {
+				$('#add-row').dataTable().fnAddData([
+					$("#addName").val(),
+					$("#addPosition").val(),
+					$("#addOffice").val(),
+					action
+					]);
+				$('#addRowModal').modal('hide');
+
+			});
+		});
+	</script>
+    
 {% endblock %}
-

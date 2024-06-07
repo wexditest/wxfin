@@ -1,3 +1,5 @@
+
+
 <div class="card">
 								<div class="card-header">
 									<div class="card-head-row card-tools-still-right">
@@ -11,51 +13,100 @@
 									<div class="row">
 										<div class="col-md-10">
 											<div class="table-responsive table-hover table-sales">
-												<table id="table_id"  class="table">
+										<table id="basic-datatables12" class="display table table-striped table-hover" >
 													<thead>
 													    <tr>
 													        <th>Chit#</th>
+													         {% if request.user.is_superuser %}
+													        <th>customer_name</th>
+													        {% endif %}
 													         <th>Chit Total Amount</th>
 													          <th>Chit Taken</th>
 													           <th>Chit Not Taken</th>
 													            <th>Total Months</th>
+													            <th>Action</th>
 
 													    </tr>
 													    </thead>
 													    <tbody>
-													    {% for i in chit_det_obj %}
+													    {% if request.user.is_superuser %}
 
-														<tr>
+													     {% for i in admin_chit_det_obj %}
 
-															<td>
-															<font color=blue>{{i.customer_chit_details.chit_name}}</font>
-															</td>
+    														<tr>
 
-
-
+    															<td>
+    															<font color=blue>{{i.customer_chit_details.chit_name}}</font>
+    															</td>
 <td>
-															{{i.customer_chit_details.chit_total_amt}}
-															</td>
-
-<td>
-															{{i.customer_chit_details.chit_taken_amt}}
-															</td>
-
-  <td>
-															{{i.customer_chit_details.chit_nottaken_amt}}
-															</td>
+    {{i.customer_name}}
+    </td>
 
 
+    <td>
+    															{{i.customer_chit_details.chit_total_amt}}
+    															</td>
 
-<td>
-															{{i.customer_chit_details.chit_total_month_count}}
-															</td>
+    <td>
+    															{{i.customer_chit_details.chit_taken_amt}}
+    															</td>
+
+      <td>
+    															{{i.customer_chit_details.chit_nottaken_amt}}
+    															</td>
 
 
 
-														</tr>
+    <td>
+    															{{i.customer_chit_details.chit_total_month_count}}
+    															</td>
 
-														{% endfor %}
+
+
+    														</tr>
+
+    														{% endfor %}
+													    {% else %}
+    													    {% for i in chit_det_obj %}
+
+    														<tr>
+
+    															<td>
+    															<font color=blue>{{i.customer_chit_details.chit_name}}</font>
+    															</td>
+
+
+
+    <td>
+    															{{i.customer_chit_details.chit_total_amt}}
+    															</td>
+
+    <td>
+    															{{i.customer_chit_details.chit_taken_amt}}
+    															</td>
+
+      <td>
+    															{{i.customer_chit_details.chit_nottaken_amt}}
+    															</td>
+
+
+
+    <td>
+    															{{i.customer_chit_details.chit_total_month_count}}
+    															</td>
+
+<td><form action="{% url 'chit_statement' %}" method="POST">
+    {% csrf_token %}
+    <input type=hidden name="chit_name" value="{{i.customer_chit_details.id}}">
+
+    <input type=submit value="Chit Statement">
+
+</form></td>
+
+    														</tr>
+
+    														{% endfor %}
+    													{% endif %}
 
 													</tbody>
 												</table>
@@ -73,3 +124,12 @@
 									</div>
 								</div>
 							</div>
+
+							<script >
+		$(document).ready(function() {
+			$('#basic-datatables12').DataTable({
+			});
+
+		});
+
+		</script>

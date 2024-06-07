@@ -3,6 +3,8 @@
 {% load static %}
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/2.0.7/css/dataTables.dataTables.css" />
+<script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
 <script>
     $(document).ready(function(){
         $("#button").click(function(){
@@ -13,149 +15,151 @@
                 button: "Ping us on whatsapp.....",
                 });
         });
+    
+        	$('#basic-datatables').DataTable({
+    });
     });
 </script>
+<style>
+    @media screen and (max-width: 480px) {
+    .show-on-desktop {
+    display: none;
+    }
+    }
+    @media screen and (min-width: 481px) {
+    .hide-on-desktop {
+    display: none;
+    }
+    }
+</style>
 <div class="container">
 <div class="panel-header bg-primary-gradient">
     <div class="page-inner py-5">
         <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
-                <h4 class="page-title text-white">Chits - Home Page </h4>
-
-
+            <h4 class="page-title text-white">Chits - Home Page </h4>
             <div class="ml-md-auto py-2 py-md-0">
-
-                                              <a class="btn btn-secondary btn-round" href="https://www.wexdifinserv.com/dashboard" >Dashboard</a>
-
-                                <a class="btn btn-secondary btn-round" href="https://www.wexdifinserv.com/trading_community"  >Trading Community</a>
-
+                <a class="btn btn-secondary btn-round" href="https://www.wexdifinserv.com/dashboard" >Dashboard</a>
+                <a class="btn btn-secondary btn-round" href="https://www.wexdifinserv.com/trading_community"  >Trading Community</a>
                 <a class="btn btn-secondary btn-round" href="whatsapp://send?text=chit-enquire!&phone=+916302957399" id='button'>Chit Enquiry</a>
             </div>
         </div>
     </div>
 </div>
 <div class="page-inner mt--5">
-        <div class="row row-card-no-pd">
-            {% comment %}
-            <div class="col-md-12">
-							<div class="card">
+    <div class="row row-card-no-pd">
+        <div class="col-md-12">
 
-								<div class="card-body">
-									<div id="owl-demo2" class="owl-carousel owl-theme owl-img-responsive">
-										{% for so in slid_obj %}
-									    	<div class="item"><img class="img-fluid" src="{{so.slide.url}}"></div>
-
-									    {% endfor %}
-									</div>
-								</div>
-							</div>
-						</div>
-						{% endcomment %}
-             <div class="col-md-12">
-
-                <div class="card-header">
-					<h4 class="card-title">Latest News!</h4>
-				</div>
-				<div class="card">
-
-					<div class="card-body">
-						<div id="owl-demo" class="owl-carousel owl-theme owl-img-responsive">
-						    {% for ho in hb_obj reversed  %}
-						    	<div class="item"><img class="img-fluid" src="{{ho.banner.url}}"></div>
-
-						    {% endfor %}
-						</div>
-					</div>
-				</div>
-			</div>
-            <div class="col-md-15">
-                   <div class="card">
-                       <div class="card-header">
-                            <div class="card-head-row card-tools-still-right">
-                                <h4 class="card-title">Chit Plans Details</h4>
-                                <div class="card-tools">
-                                    <button class="btn btn-icon btn-link btn-primary btn-xs"><span class="fa fa-angle-down"></span></button>
-                                    <button class="btn btn-icon btn-link btn-primary btn-xs btn-refresh-card"><span class="fa fa-sync-alt"></span></button>
-                                    <button class="btn btn-icon btn-link btn-primary btn-xs"><span class="fa fa-times"></span></button>
-                                </div>
+            <div class="card">
+                <div class="card-body">
+                    <div id="owl-demo2" class="owl-carousel owl-theme owl-img-responsive">
+                        {% for so in slid_obj %}
+                        <div class="item">
+                            <div class="show-on-desktop hide-on-mobile">
+                             
+                                <img class="img-fluid" src="{{so.slide.url}}">
+                            </div>
+                            <div class="show-on-mobile hide-on-desktop">
+                                
+                                <video width='300' controls>
+                                    <source src="{{so.videofile.url}}" type='video/mp4'>
+                                    Your browser does not support the video tag.
+                                </video>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-10">
-                                    <div class="table-responsive table-hover table-sales">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th>Chit#</th>
-                                                    <th>Total Amount</th>
-                                                    <th>Winner Amount</th>
-                                                    <th>Normal Amount</th>
-                                                    <th>Months</th>
-                                                    <th>Status</th>
-                                                    {% if request.user.is_superuser %}
-                                                    <th>Members</th>
-                                                    {% endif %}
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {% for i in chit_det_obj_all %}
-                                                <tr>
-                                                    <td>
-                                                        <font color=blue>{{i.chit_name}}</font>
-                                                    </td>
-                                                    <td>
-                                                        Rs. {{i.chit_total_amt}}/-
-                                                    </td>
-                                                    <td>
-                                                        Rs. {{i.chit_taken_amt}}/-
-                                                    </td>
-                                                    <td>
-                                                        Rs. {{i.chit_nottaken_amt}}/-
-                                                    </td>
-                                                    <td>
-                                                        {{i.chit_total_month_count}}
-                                                    </td>
-                                                    <td>
-                                                    {% for k,v in chit_count_dict.items %}
-                                                        {% if k == i.id %}
-
-
-                                                            {% if v == i.chit_total_month_count %}
-                                                                <font color=red>Slots Full </font>
-                                                            {% else %}
-                                                                 <font color=green>Slots Available</font>
-                                                            {% endif %}
-
-                                                        {% endif %}
-                                                    {% endfor %}
-                                                    </td>
-                                                    {% if request.user.is_superuser %}
-
-                                                     <td>
-                                                    {% for k,v in chit_count_dict.items %}
-                                                     {% if k == i.id %}
-                                                        {{v}}
-                                                        {% endif %}
-                                                    {% endfor %}
-                                                    </td>
-                                                    {%endif %}
-
-                                                </tr>
-                                                {% endfor %}
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                   </div>
-              </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
         </div>
-
-
-
-
+        </div>
+    <div class="row row-card-no-pd">
+        <div class="col-md-12">
+            <div class="card-header">
+                <h4 class="card-title">Chits Latest Updates</h4>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div id="owl-demo" class="owl-carousel owl-theme owl-img-responsive">
+                        {% for ho in hb_obj reversed  %}
+                        <div class="item"><img class="img-fluid" src="{{ho.banner.url}}"></div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+         
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Chit Plans Details</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="basic-datatables" class="display table table-striped table-hover" >
+                            <thead>
+                                <tr>
+                                    <th>Chit#</th>
+                                    <th>Total Amount</th>
+                                    <th>Winner Amount</th>
+                                    <th>Normal Amount</th>
+                                    <th>Months</th>
+                                    <th>Status</th>
+                                    {% if request.user.is_superuser %}
+                                    <th>Members</th>
+                                    {% endif %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in chit_det_obj_all %}
+                                <tr>
+                                    <td>
+                                        <font color=blue>{{i.chit_name}}</font>
+                                    </td>
+                                    <td>
+                                        Rs. {{i.chit_total_amt}}/-
+                                    </td>
+                                    <td>
+                                        Rs. {{i.chit_taken_amt}}/-
+                                    </td>
+                                    <td>
+                                        Rs. {{i.chit_nottaken_amt}}/-
+                                    </td>
+                                    <td>
+                                        {{i.chit_total_month_count}}
+                                    </td>
+                                    <td>
+                                        {% for k,v in chit_count_dict.items %}
+                                        {% if k == i.id %}
+                                        {% if v == i.chit_total_month_count %}
+                                        <font color=red>Slots Full </font>
+                                        {% else %}
+                                        <font color=green>Slots Available</font>
+                                        {% endif %}
+                                        {% endif %}
+                                        {% endfor %}
+                                    </td>
+                                    {% if request.user.is_superuser %}
+                                    <td>
+                                        {% for k,v in chit_count_dict.items %}
+                                        {% if k == i.id %}
+                                        {{v}}
+                                        {% endif %}
+                                        {% endfor %}
+                                    </td>
+                                    {%endif %}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <div class="row">
         <div class="col-md-12">
             <div class="card full-height">
@@ -170,66 +174,58 @@
                             <span class="text">{{cao.act_name}}</span>
                         </li>
                         {% endfor %}
-
                     </ol>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
-
-
-
-
-
-	<script>
-		$(document).ready(function() {
-			$('#owl-demo').owlCarousel({
-				loop:true,
-				margin:10,
-				nav:true,
-				responsive:{
-					0:{
-						items:1
-					},
-					600:{
-						items:3
-					},
-					1000:{
-						items:4
-					}
-				}
-			})
-
-			$("#owl-demo2").owlCarousel({
-
-				nav:true, // Show next and prev buttons
-				autoplaySpeed:300,
-				navSpeed:400,
-				items:1
-
-			});
-
-			$('#owl-demo3').owlCarousel({
-				center: true,
-				items:2,
-				loop:true,
-				margin:10,
-				responsive:{
-					600:{
-						items:4
-					}
-				}
-			});
-
-			$('#owl-demo4').owlCarousel({
-				margin:10,
-				loop:false,
-				autoWidth:true,
-				items: 4
-			})
-		});
-	</script>
-
+<script>
+    $(document).ready(function() {
+    	$('#owl-demo').owlCarousel({
+    		loop:true,
+    		margin:10,
+    		nav:true,
+    		responsive:{
+    			0:{
+    				items:1
+    			},
+    			600:{
+    				items:3
+    			},
+    			1000:{
+    				items:4
+    			}
+    		}
+    	})
+    
+    	$("#owl-demo2").owlCarousel({
+    
+    		nav:true, // Show next and prev buttons
+    		autoplaySpeed:300,
+    		navSpeed:400,
+    		items:1
+    
+    	});
+    
+    	$('#owl-demo3').owlCarousel({
+    		center: true,
+    		items:2,
+    		loop:true,
+    		margin:10,
+    		responsive:{
+    			600:{
+    				items:4
+    			}
+    		}
+    	});
+    
+    	$('#owl-demo4').owlCarousel({
+    		margin:10,
+    		loop:false,
+    		autoWidth:true,
+    		items: 4
+    	})
+    });
+</script>
 {% endblock %}
