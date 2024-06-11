@@ -28,11 +28,11 @@
         <link rel="stylesheet" href="{% static 'assets/css/demo.css' %}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
-    <body>
+    <body data-background-color="dark">
         <div class="wrapper">
             <div class="main-header">
                 <!-- Logo Header-->
-                <div class="logo-header" data-background-color="grey">
+                <div class="logo-header" data-background-color="dark2">
 
                     <a href="https://www.wexdifinserv.com/" class="logo">
                     <img src="{% static 'admin/img/wexdi_finance.JPG' %}" alt="navbar brand" style="width:100px" class="navbar-brand">
@@ -52,11 +52,11 @@
                 </div>
                 <!-- End Logo Header -->
                 <!-- Navbar Header -->
-                {% include 'home/nav.html' %}
+                {% include 'home/nav_trade.html' %}
                 <!-- End Navbar -->
             </div>
             <!-- Sidebar -->
-            {% include 'home/sidebar.html' %}
+            {% include 'home/sidebar_trade.html' %}
             <!-- End Sidebar -->
             <div class="main-panel">
 
@@ -66,7 +66,7 @@
 
 
 <div class="container">
-<div class="panel-header bg-primary-gradient">
+<div class="panel-header">
     <div class="page-inner py-5">
         <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
                 <h4 class="page-title text-white">Trading Community</h4>
@@ -74,22 +74,6 @@
 
             <div class="ml-md-auto py-2 py-md-0">
 
-                                              <a class="btn btn-secondary btn-round" href="https://www.wexdifinserv.com/dashboard" >Dashboard</a>
-                                        {% if  sub_flag == 'STANDARD' or  sub_flag == 'ADVANCE' %}
-                                              <a class="btn btn-secondary btn-round" href="https://www.wexdifinserv.com/golden_cross_over_signal" >Golden Crossover Signal</a>
-                                              <a class="btn btn-secondary btn-round" href="https://www.wexdifinserv.com/get_csv_data_for_stocks" >
-                                                 Stocks CSV</a>
-
-                                             <a class="btn btn-secondary btn-round" href="https://www.wexdifinserv.com/upcoming_dividends" >
-                                                 Upcoming Dividends</a>
-
-                                             <a class="btn btn-secondary btn-round" href="" >
-                                                 GapUP Stocks(coming soon)</a>
-
-                                                   <a class="btn btn-secondary btn-round" href="/moving_avg_crossover" >
-                                                 moving_avg_crossover</a>
-
-                                                 {% endif %}
 
 
             </div>
@@ -103,39 +87,6 @@
 
 
 
-{% comment %}
-
-<div class="col-md-12">
-							<div class="card">
-								<div class="card-header">
-									<h4 class="card-title">Recommended Stock Summary</h4>
-								</div>
-								<div class="card-body">
-									<div id="owl-demo2" class="owl-carousel owl-theme owl-img-responsive">
-									    {% for oso in one_slide_obj %}
-										<div class="item"><img class="img-fluid" src="{{oso.summary_pic.url}}"></div>
-										{% endfor %}
-
-									</div>
-								</div>
-							</div>
-						</div>
-
-<div class="row row-card-no-pd">
-
-    <div class="col-md-12">
-
-        <div class="card-header">
-					<h4 class="card-title">Communtiy News</h4>
-		</div>
-		<div class="card">
-
-            {% include 'home/posting.html' %}
-
-        </div>
-    </div>
-</div>
-{% endcomment %}
 
 
 <div class="row row-card-no-pd">

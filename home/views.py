@@ -251,7 +251,11 @@ def kyc(request):
 
 @login_required(login_url="my-login")
 def repay(request):
-    return render(request,'home/repay.html', {'user': request.user})
+     # Notification
+
+    user_cpn_obj = ChitPaymentNotification.objects.filter(is_active=True,user_of_chit__id=request.user.id)
+    user_cpn_obj_count = len(user_cpn_obj)
+    return render(request,'home/repay.html', {'user': request.user,'user_cpn_obj_count':user_cpn_obj_count})
 
 
 @login_required(login_url="my-login")
@@ -276,7 +280,12 @@ def home(request):
     for cdo in chit_det_obj_all:
         get_count = CustomerChitPlan.objects.filter(customer_chit_details=cdo)
         chit_count_dict[cdo.id] = str(len(get_count))
-    context = {'chit_act_obj':chit_act_obj,'stock_news_obj':stock_news_obj,'slid_obj':slid_obj,'chit_det_obj_all':chit_det_obj_all,'chit_count_dict':chit_count_dict,'hb_obj':hb_obj}
+    # Notification
+
+    user_cpn_obj = ChitPaymentNotification.objects.filter(is_active=True,user_of_chit__id=request.user.id)
+    user_cpn_obj_count = len(user_cpn_obj)
+
+    context = {'user_cpn_obj_count':user_cpn_obj_count,'chit_act_obj':chit_act_obj,'stock_news_obj':stock_news_obj,'slid_obj':slid_obj,'chit_det_obj_all':chit_det_obj_all,'chit_count_dict':chit_count_dict,'hb_obj':hb_obj}
     return render(request, 'home/home.html',context)
 
 
@@ -542,9 +551,26 @@ def dashboard(request):
     user_cpn_obj = ChitPaymentNotification.objects.filter(is_active=True,user_of_chit__id=request.user.id)
     user_cpn_obj_count = len(user_cpn_obj)
 
+    # admin Notification
     cpn_obj = ChitPaymentNotification.objects.filter(is_active=True)
-    context = {"statement_user_payment":statement_user_payment,"user_cpn_obj_count":user_cpn_obj_count,"user_cpn_obj":user_cpn_obj,"cpn_obj":cpn_obj,"admin_chit_det_obj":admin_chit_det_obj,"ccpd_obj":ccpd_obj,"lspin_obj":lspin_obj,"subscriber_obj_count":subscriber_obj_count,"income":income_total,"expense":expense_total,"user_count_obj":user_count_obj,"chit_det_obj_all_count":chit_det_obj_all.count(),'chit_det_obj':chit_det_obj,'chit_count_dict':chit_count_dict,
-               'plan_details_dict':plan_details_dict,'chit_det_obj_all':chit_det_obj_all,'plan_details_dict_all':plan_details_dict_all}
+
+    context = {"statement_user_payment":statement_user_payment,
+                "user_cpn_obj_count":user_cpn_obj_count,
+                "user_cpn_obj":user_cpn_obj,
+                "cpn_obj":cpn_obj,
+                "admin_chit_det_obj":admin_chit_det_obj,
+                "ccpd_obj":ccpd_obj,
+                "lspin_obj":lspin_obj,
+                "subscriber_obj_count":subscriber_obj_count,
+                "income":income_total,
+                "expense":expense_total,
+                "user_count_obj":user_count_obj,
+                "chit_det_obj_all_count":chit_det_obj_all.count(),
+                'chit_det_obj':chit_det_obj,
+                'chit_count_dict':chit_count_dict,
+                'plan_details_dict':plan_details_dict,
+                'chit_det_obj_all':chit_det_obj_all,
+                'plan_details_dict_all':plan_details_dict_all}
 
     return render(request, 'home/index.html',context)
 
