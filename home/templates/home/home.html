@@ -31,6 +31,12 @@
     display: none;
     }
     }
+    img.img-fluid-home {
+    width: 100%;
+    height: 100%;
+    /* object-fit: cover; */
+    max-width: initial;
+}
 </style>
 <div class="container">
 <div class="panel-header bg-primary-gradient">
@@ -49,13 +55,13 @@
        <div class="row row-card-no-pd">
         <div class="col-md-12">
             <div class="card-header">
-                <h4 class="card-title">Chits Latest Updates</h4>
+                <h4 class="card-title">Latest News</h4>
             </div>
             <div class="card">
                 <div class="card-body">
                     <div id="owl-demo" class="owl-carousel owl-theme owl-img-responsive">
                         {% for ho in hb_obj reversed  %}
-                        <div class="item"><img class="img-fluid" src="{{ho.banner.url}}"></div>
+                        <div class="item"><img class="img-fluid-home" src="{{ho.banner.url}}"></div>
                         {% endfor %}
                     </div>
                 </div>
@@ -81,6 +87,7 @@
                                     <th>Normal Amount</th>
                                     <th>Months</th>
                                     <th>Status</th>
+                                    <th>Action</th>
                                     {% if request.user.is_superuser %}
                                     <th>Members</th>
                                     {% endif %}
@@ -115,6 +122,9 @@
                                         {% endif %}
                                         {% endfor %}
                                     </td>
+                                    <td><a href="/get_chit_plan/{{i.id}}/" target="_blank"> <i class="fa fa-eye" aria-hidden="true" title="View Chit Plan">
+                                        View Plan</i></a>
+                                    </td>
                                     {% if request.user.is_superuser %}
                                     <td>
                                         {% for k,v in chit_count_dict.items %}
@@ -140,7 +150,7 @@
         <div class="col-md-12">
             <div class="card full-height">
                 <div class="card-header">
-                    <div class="card-title">Chit Funds Activity</div>
+                    <div class="card-title">Chit Activities</div>
                 </div>
                 <div class="card-body">
                     <ol class="activity-feed">

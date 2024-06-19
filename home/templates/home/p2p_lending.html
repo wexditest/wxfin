@@ -1,0 +1,73 @@
+{% extends "home/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="panel-header bg-primary-gradient">
+        <div class="page-inner py-5">
+            <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+                <div>
+                    <h2 class="text-white pb-2 fw-bold">Peer To Peer Lending (Page is under constructions)</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-inner mt--5">
+        <div class="row mt--2">
+						<div class="col-md-6">
+							<div class="card full-height">
+								<div class="card-body">
+									<div class="card-title">Credit Request Form</div>
+
+							<form>
+							    <input type=text>
+							</form>
+
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="card full-height">
+								<div class="card-body">
+									<div class="card-title">Rules & Regulations</div>
+									<div class="row py-3">
+										<div class="col-md-4 d-flex flex-column justify-content-around">
+											<div>
+												                                                <img src="{% static 'peer-to-peer-lending.png' %}" alt="navbar brand" style="width:500px" class="navbar-brand">
+
+											<ul>
+											    <li>
+											        Only Chit holder can avail this services
+											    </li>
+											</ul>
+
+											</div>
+										</div>
+										<div class="col-md-8">
+											<div id="chart-container">
+												<canvas id="totalIncomeChart"></canvas>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+    </div>
+</div>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
+<script type="text/javascript">
+    $('#basic-datatables_statemnt').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'csv', 'excel', 'pdf','print'
+        ]
+    });
+</script>
+{% endblock %}

@@ -80,6 +80,20 @@ def chit_statement(request):
 
 
 
+def fin_literacy_tool(request):
+
+    context = {}
+    return render(request, 'home/fin_literacy_tool.html',context)
+
+
+def p2p_lending(request):
+
+    context = {}
+    return render(request, 'home/p2p_lending.html',context)
+
+
+
+
 
 def moving_avg_crossover(stock_symbol = 'ULTRACEMCO.NS', start_date = '2018-01-01', end_date = '2020-01-01',
                                short_window = 20, long_window = 50, moving_avg = 'SMA', display_table = True):

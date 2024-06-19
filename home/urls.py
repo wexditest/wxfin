@@ -10,6 +10,12 @@ from django.conf import settings
 urlpatterns = [
     path('',views.home,name=""),
     path('chit_statement',views.chit_statement,name="chit_statement"),
+    path('p2p_lending',views.p2p_lending,name="p2p_lending"),
+    path('fin_literacy_tool',views.fin_literacy_tool,name="fin_literacy_tool"),
+
+
+
+
     path('update_notify',views.update_notify,name="update_notify"),
     path('trading_community',views.trading_community,name="trading_community"),
     path('golden_cross_over_signal',views.GoldenCrossverSignal,name="GoldenCrossverSignal"),
