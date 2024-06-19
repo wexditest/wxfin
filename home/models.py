@@ -56,6 +56,7 @@ class StockLastestNews(models.Model):
 PROOF_CHOICES =(
 ("aadhar", "aadhar"),
 ("voter", "voter"),
+
 )
 
 BANK_PROOF_CHOICES =(
@@ -69,6 +70,15 @@ class KYC(models.Model):
   user_name = models.ForeignKey(User,on_delete=models.CASCADE,blank=True, null=True)
   proof_file = models.FileField(upload_to="proof/" , default='proof/myfile.pdf',blank=True, null=True)
   proof_choice = models.CharField(max_length=9, choices=PROOF_CHOICES, default="aadhar")
+
+
+
+class P2PRequestForm(models.Model):
+  user_name = models.ForeignKey(User,on_delete=models.CASCADE,blank=True, null=True)
+  proof_file = models.FileField(upload_to="proof/" , default='proof/myfile.pdf',blank=True, null=True)
+  proof_choice = models.CharField(max_length=9, choices=PROOF_CHOICES, default="aadhar")
+
+
 
 
 class CustomerBankDetails(models.Model):
