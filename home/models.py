@@ -3,12 +3,13 @@ from django.contrib.auth.models import User
 import datetime
 from datetime import datetime
 # Create your models here.
-
+from chit.models import *
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
 import datetime
 from datetime import datetime
+
 
 
 
@@ -73,10 +74,46 @@ class KYC(models.Model):
 
 
 
+
+CREDIT_CHOICES =(
+("CLOSE", "CLOSE"),
+("PRE-CLOSE", "PRE-CLOSE"),
+("OPEN", "OPEN"),
+("REJECT", "REJECT"),
+("IN-PROCESS", "IN-PROCESS"),
+
+
+
+)
+
 class P2PRequestForm(models.Model):
   user_name = models.ForeignKey(User,on_delete=models.CASCADE,blank=True, null=True)
   proof_file = models.FileField(upload_to="proof/" , default='proof/myfile.pdf',blank=True, null=True)
   proof_choice = models.CharField(max_length=9, choices=PROOF_CHOICES, default="aadhar")
+  chit_amount = models.ForeignKey(ChitDetails,on_delete=models.CASCADE,blank=True, null=True)
+  eligibility_amount = models.CharField(max_length=255,blank=True, null=True)
+  emi_amount= models.CharField(max_length=255,blank=True, null=True)
+  no_of_months= models.CharField(max_length=255,blank=True, null=True)
+  processing_charges= models.CharField(max_length=255,blank=True, null=True)
+  disburment_amount= models.CharField(max_length=255,blank=True, null=True)
+  entry_date = models.DateField(default=datetime.now,blank=True, null=True)
+  is_approved = models.BooleanField(default=False)
+  credit_status = models.CharField(max_length=39, choices=CREDIT_CHOICES, default="IN-PROCESS")
+
+
+EMI_CHOICES =(
+("1", "1"),
+("2", "2"),
+("3", "3"),
+)
+
+
+
+class P2PCreditEMI(models.Model):
+  p2prequest_obj = models.ForeignKey(P2PRequestForm,on_delete=models.CASCADE,blank=True, null=True)
+  payment_file = models.FileField(upload_to="proof/" , default='proof/myfile.pdf',blank=True, null=True)
+  emi_choice = models.CharField(max_length=9, choices=EMI_CHOICES, default="aadhar")
+  chit_amount = models.ForeignKey(ChitDetails,on_delete=models.CASCADE,blank=True, null=True)
 
 
 

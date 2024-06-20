@@ -5,11 +5,21 @@ from django.forms.widgets import PasswordInput, TextInput
 from .models import *
 from chit.models import *
 
-# Create User
-# class CreateUserForm(UserCreationForm):
-#     class Meta:
-#         model = User
-#         fields = ['username', 'email', 'password1', 'password2']
+from django.forms import ModelForm
+from . import models
+
+
+
+class P2PRequestFormForm(ModelForm):
+    class Meta:
+        model = P2PRequestForm
+        fields = ['user_name', 'proof_file', 'proof_choice', 'chit_amount']
+
+
+
+
+
+
 
 # Authenticate User
 class LoginForm(AuthenticationForm):

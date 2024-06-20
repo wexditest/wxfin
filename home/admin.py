@@ -21,7 +21,33 @@ class IncomeExpensesAdmin(admin.ModelAdmin):
 
 
 
+from django.contrib import admin
+
+class P2PCreditEMIInline(admin.TabularInline):
+    model = P2PCreditEMI
+
+
+
+
+class P2PRequestFormAdmin(admin.ModelAdmin):
+    list_display = ("user_name",
+                  "proof_file",
+                  "proof_choice",
+                  "chit_amount",
+                  "eligibility_amount",
+                  "emi_amount",
+                  "no_of_months",
+                  "processing_charges",
+                  "disburment_amount",
+                  "entry_date",
+                  "is_approved",
+                  "credit_status",)
+    inlines = [P2PCreditEMIInline]
+
+
+
 # Register your models here.
+admin.site.register(P2PRequestForm, P2PRequestFormAdmin)
 admin.site.register(UsefullLinks, UsefullLinksAdmin)
 admin.site.register(KYC, KYCAdmin)
 admin.site.register(UpcomingDividends)

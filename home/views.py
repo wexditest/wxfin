@@ -87,8 +87,17 @@ def fin_literacy_tool(request):
 
 
 def p2p_lending(request):
-
     context = {}
+    form = P2PRequestFormForm()# P2PRequestForm
+    msg = False
+    if request.method == 'POST':
+        form = P2PRequestFormForm(request.POST)
+        if form.is_valid():
+            form.save()
+            msg="Successfully register your request"
+        form = P2PRequestFormForm()
+    context['msg'] = msg
+    context['form'] = form
     return render(request, 'home/p2p_lending.html',context)
 
 
