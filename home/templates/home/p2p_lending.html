@@ -20,7 +20,7 @@
 								<div class="card-body">
 
 
-							<img src="{% static 'peer-to-peer-lending.png' %}" alt="navbar brand" style="width:100%;" class="navbar-brand">
+							<img src="{% static 'invest-into-p2p-lending1.png' %}" alt="navbar brand" style="width:100%;" class="navbar-brand">
 
 <br>
 
@@ -51,7 +51,7 @@
 								<div class="card-body">
 									<div class="card-title">Rules & Regulations</div>
 									<div class="row py-6">
-										<div class="col-md-6">
+										<div class="col-12">
 
 											<ul>
 											    <li>
@@ -100,6 +100,40 @@
         <td>Rs.1,00,000/-</td><td>Rs.30,000/-</td><td>Rs.10,400/-</td><td>3</td><td>Rs.500/-</td><td>Rs.29,500/-</td>
 
     </tr>
+
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+	<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-header">
+									<h4 class="card-title">Request Status</h4>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table id="basic-datatables_p2p" class="display table table-striped table-hover" >
+											<thead>
+												<tr>
+
+<th>USER NAME</th>
+
+
+													</tr>
+											</thead>
+
+											<tbody>
+										{% for po in p2p_obj %}
+											<tr>
+        <td>{{po.user_name}}</td>
+    </tr>
+    {% endfor %}
 
 											</tbody>
 										</table>

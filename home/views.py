@@ -79,6 +79,20 @@ def chit_statement(request):
     return render(request, 'home/chit_statement.html', {'statement_user_payment': statement_user_payment,})
 
 
+def about_us(request):
+
+    context = {}
+    return render(request, 'home/about_us.html',context)
+
+
+def contact_us(request):
+
+    context = {}
+    return render(request, 'home/contact_us.html',context)
+
+
+
+
 
 def fin_literacy_tool(request):
 
@@ -88,6 +102,13 @@ def fin_literacy_tool(request):
 
 def p2p_lending(request):
     context = {}
+    context['p2p_obj'] = []
+    try:
+        p2p_obj = P2PRequestForm.objects.filter(user_name__id=request.user.id)
+        context['p2p_obj'] = p2p_obj
+    except:
+        pass
+
     form = P2PRequestFormForm()# P2PRequestForm
     msg = False
     if request.method == 'POST':

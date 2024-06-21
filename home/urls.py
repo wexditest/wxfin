@@ -13,8 +13,8 @@ urlpatterns = [
     path('p2p_lending',views.p2p_lending,name="p2p_lending"),
     path('fin_literacy_tool',views.fin_literacy_tool,name="fin_literacy_tool"),
 
-
-
+    path('about_us',views.about_us,name="about_us"),
+    path('contact_us',views.contact_us,name="contact_us"),
 
     path('update_notify',views.update_notify,name="update_notify"),
     path('trading_community',views.trading_community,name="trading_community"),
