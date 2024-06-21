@@ -11,6 +11,10 @@ import datetime
 from datetime import datetime
 
 
+class ExpensesList(models.Model):
+    name = models.CharField(max_length=50)
+    amount = models.IntegerField()
+
 
 
 class LotterySpinList(models.Model):

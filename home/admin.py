@@ -45,8 +45,16 @@ class P2PRequestFormAdmin(admin.ModelAdmin):
     inlines = [P2PCreditEMIInline]
 
 
+class ExpensesListAdmin(admin.ModelAdmin):
+  list_display = ("name","amount")
+
+
+
 
 # Register your models here.
+
+admin.site.register(ExpensesList, ExpensesListAdmin)
+
 admin.site.register(P2PRequestForm, P2PRequestFormAdmin)
 admin.site.register(UsefullLinks, UsefullLinksAdmin)
 admin.site.register(KYC, KYCAdmin)

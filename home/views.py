@@ -64,9 +64,21 @@ from tabulate import tabulate
 import pandas_datareader.data as web
 import warnings
 warnings.filterwarnings('ignore')
+from django.forms import modelformset_factory
+from django.shortcuts import render
+
+
+
+
 
 
 def chit_statement(request):
+    context= {}
+    # Notification
+
+    user_cpn_obj = ChitPaymentNotification.objects.filter(is_active=True,user_of_chit__id=request.user.id)
+    user_cpn_obj_count = len(user_cpn_obj)
+    context['user_cpn_obj_count']=user_cpn_obj_count
     if request.method == 'POST':
         chit_id = request.POST.get('chit_name')
         statement_user_payment = CustomerChitPaymentDetails.objects.filter(customer_details__id=request.user.id,chit_details__id=chit_id)
@@ -76,18 +88,26 @@ def chit_statement(request):
         #     form.save()
         #     msg="Successfully register your request"
         # form = EnrollChitForm()
-    return render(request, 'home/chit_statement.html', {'statement_user_payment': statement_user_payment,})
+    context['statement_user_payment'] = statement_user_payment
+
+    return render(request, 'home/chit_statement.html', context)
 
 
 def about_us(request):
 
     context = {}
+    user_cpn_obj = ChitPaymentNotification.objects.filter(is_active=True,user_of_chit__id=request.user.id)
+    user_cpn_obj_count = len(user_cpn_obj)
+    context['user_cpn_obj_count']=user_cpn_obj_count
     return render(request, 'home/about_us.html',context)
 
 
 def contact_us(request):
 
     context = {}
+    user_cpn_obj = ChitPaymentNotification.objects.filter(is_active=True,user_of_chit__id=request.user.id)
+    user_cpn_obj_count = len(user_cpn_obj)
+    context['user_cpn_obj_count']=user_cpn_obj_count
     return render(request, 'home/contact_us.html',context)
 
 
@@ -95,13 +115,32 @@ def contact_us(request):
 
 
 def fin_literacy_tool(request):
-
     context = {}
+
+    formset_class = modelformset_factory(model=ExpensesList,
+                                         fields=('name', 'amount'),
+                                         extra=0,
+                                         can_delete=True)
+    formset = formset_class()
+    if request.method == 'POST':
+        formset = formset_class(data=request.POST)
+        if formset.is_valid():
+            formset.save()
+
+    context['formset'] = formset
+    user_cpn_obj = ChitPaymentNotification.objects.filter(is_active=True,user_of_chit__id=request.user.id)
+    user_cpn_obj_count = len(user_cpn_obj)
+    context['user_cpn_obj_count']=user_cpn_obj_count
+
+
     return render(request, 'home/fin_literacy_tool.html',context)
 
 
 def p2p_lending(request):
     context = {}
+    user_cpn_obj = ChitPaymentNotification.objects.filter(is_active=True,user_of_chit__id=request.user.id)
+    user_cpn_obj_count = len(user_cpn_obj)
+    context['user_cpn_obj_count']=user_cpn_obj_count
     context['p2p_obj'] = []
     try:
         p2p_obj = P2PRequestForm.objects.filter(user_name__id=request.user.id)
@@ -200,6 +239,11 @@ def moving_avg_crossover(stock_symbol = 'ULTRACEMCO.NS', start_date = '2018-01-0
 
 
 def enroll_chit_page(request):
+    context = {}
+    user_cpn_obj = ChitPaymentNotification.objects.filter(is_active=True,user_of_chit__id=request.user.id)
+    user_cpn_obj_count = len(user_cpn_obj)
+    context['user_cpn_obj_count']=user_cpn_obj_count
+
     form = EnrollChitForm()
     form.fields['customer_details'].queryset = User.objects.filter(id=request.user.id)
     msg = False
@@ -209,7 +253,9 @@ def enroll_chit_page(request):
             form.save()
             msg="Successfully register your request"
         form = EnrollChitForm()
-    return render(request, 'home/enroll.html', {'form': form,'msg':msg})
+    context['form'] =  form
+    context['msg']=msg
+    return render(request, 'home/enroll.html', context)
 
 
 def enroll_chit_plan(request):
@@ -273,6 +319,11 @@ def my_logout(request):
 
 
 def change_password(request):
+    context = {}
+    user_cpn_obj = ChitPaymentNotification.objects.filter(is_active=True,user_of_chit__id=request.user.id)
+    user_cpn_obj_count = len(user_cpn_obj)
+    context['user_cpn_obj_count']=user_cpn_obj_count
+
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
@@ -281,34 +332,50 @@ def change_password(request):
             return redirect('profile')
     else:
         form = PasswordChangeForm(request.user)
-    return render(request, 'change-password/change_password.html', {'form': form})
+    context['form'] =  form
+    return render(request, 'change-password/change_password.html', context)
 
 
 def kyc(request):
+    context = {}
+    user_cpn_obj = ChitPaymentNotification.objects.filter(is_active=True,user_of_chit__id=request.user.id)
+    user_cpn_obj_count = len(user_cpn_obj)
+    context['user_cpn_obj_count']=user_cpn_obj_count
+
     try:
 
         kyc_obj = KYC.objects.filter(user_name__id=request.user.id)
     except:
         kyc_obj = []
-    return render(request, 'change-password/kyc.html', {'kyc_obj': kyc_obj})
+    context['kyc_obj'] =  kyc_obj
+    return render(request, 'change-password/kyc.html', context)
 
 
 @login_required(login_url="my-login")
 def repay(request):
      # Notification
-
+    context = {}
     user_cpn_obj = ChitPaymentNotification.objects.filter(is_active=True,user_of_chit__id=request.user.id)
     user_cpn_obj_count = len(user_cpn_obj)
-    return render(request,'home/repay.html', {'user': request.user,'user_cpn_obj_count':user_cpn_obj_count})
+    context['user_cpn_obj_count']=user_cpn_obj_count
+    context['user'] =  request.user
+
+    return render(request,'home/repay.html', context)
 
 
 @login_required(login_url="my-login")
 def history(request):
     cust_obj = CustomerChitPaymentDetails.objects.filter(customer_details__id=request.user.id)
     cust_obj_all = CustomerChitPaymentDetails.objects.filter(payment_status="Paid").order_by('-id')
+    context = {}
+    user_cpn_obj = ChitPaymentNotification.objects.filter(is_active=True,user_of_chit__id=request.user.id)
+    user_cpn_obj_count = len(user_cpn_obj)
+    context['user_cpn_obj_count']=user_cpn_obj_count
+    context['user'] = request.user
+    context['cust_obj'] = cust_obj
+    context["cust_obj_all"] = cust_obj_all
 
-
-    return render(request,'home/history.html', {'user': request.user,'cust_obj':cust_obj,"cust_obj_all":cust_obj_all})
+    return render(request,'home/history.html', context)
 
 
 def home(request):
@@ -328,8 +395,15 @@ def home(request):
 
     user_cpn_obj = ChitPaymentNotification.objects.filter(is_active=True,user_of_chit__id=request.user.id)
     user_cpn_obj_count = len(user_cpn_obj)
+    context['user_cpn_obj_count'] = user_cpn_obj_count
+    context['chit_act_obj'] = chit_act_obj
+    context['stock_news_obj'] = stock_news_obj
+    context['slid_obj'] = slid_obj
+    context['chit_det_obj_all'] = chit_det_obj_all
+    context['chit_count_dict'] = chit_count_dict
+    context['hb_obj'] = hb_obj
+    context['user_cpn_obj_count'] = user_cpn_obj_count
 
-    context = {'user_cpn_obj_count':user_cpn_obj_count,'chit_act_obj':chit_act_obj,'stock_news_obj':stock_news_obj,'slid_obj':slid_obj,'chit_det_obj_all':chit_det_obj_all,'chit_count_dict':chit_count_dict,'hb_obj':hb_obj}
     return render(request, 'home/home.html',context)
 
 
@@ -664,8 +738,14 @@ def my_login(request):
 @login_required(login_url="my-login")
 def profile(request):
 
+    context= {}
+    # Notification
 
+    user_cpn_obj = ChitPaymentNotification.objects.filter(is_active=True,user_of_chit__id=request.user.id)
+    user_cpn_obj_count = len(user_cpn_obj)
+    context['user_cpn_obj_count']=user_cpn_obj_count
     user_obj = User.objects.get(id=request.user.id)
+    context
     return render(request,'home/profile.html', {'user_obj':user_obj,"test":1})
 
 
