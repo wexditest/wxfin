@@ -72,6 +72,12 @@ from django.shortcuts import render
 
 
 
+
+
+
+
+
+
 def chit_statement(request):
     context= {}
     # Notification
@@ -105,9 +111,25 @@ def about_us(request):
 def contact_us(request):
 
     context = {}
+
+
+
+    if request.method == "POST"
+        name=request.POST.get('name', None)
+        email=request.POST.get('email', None)
+        phone=request.POST.get('phone', None)
+        subject=request.POST.get('subject', None)
+        message=request.POST.get('message', None)
+
+        p = ContactUs(name=name,email=email,phone=phone,subject=subject,message=message)
+        p.save()
+
     user_cpn_obj = ChitPaymentNotification.objects.filter(is_active=True,user_of_chit__id=request.user.id)
     user_cpn_obj_count = len(user_cpn_obj)
     context['user_cpn_obj_count']=user_cpn_obj_count
+
+
+
     return render(request, 'home/contact_us.html',context)
 
 
@@ -126,7 +148,7 @@ def fin_literacy_tool(request):
         formset = formset_class(data=request.POST)
         if formset.is_valid():
             formset.save()
-
+        formset = formset_class()
     context['formset'] = formset
     user_cpn_obj = ChitPaymentNotification.objects.filter(is_active=True,user_of_chit__id=request.user.id)
     user_cpn_obj_count = len(user_cpn_obj)

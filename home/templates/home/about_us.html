@@ -20,33 +20,128 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="basic-datatables_statemnt" class="display table table-striped table-hover" >
-                                <thead>
-                                    <tr>
-                                        <th>  Chit #</th>
-                                        <th>   Username</th>
-                                        <th>  Chit Month</th>
-                                        <th>   Chit Year</th>
-                                        <th>  Payment Status</th>
-                                        <th>  Amount Paid</th>
-                                        <th>   Payment Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for sup in statement_user_payment %}
-                                    <tr>
-                                        <th>  {{sup.chit_details}}</th>
-                                        <th>    {{sup.customer_details}}</th>
-                                        <th>   {{sup.chit_month}}</th>
-                                        <th>    {{sup.chit_year}}</th>
-                                        <th>   {{sup.payment_status}}</th>
-                                        <th>   {{sup.amount_paid}}</th>
-                                        <th>    {{sup.payment_date}}</th>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
+
+
+
+<div class="bg-light">
+  <div class="container py-5">
+    <div class="row h-100 align-items-center py-5">
+      <div class="col-lg-6">
+        <h1 class="display-4">About Us</h1>
+        <p class="lead text-muted mb-0">Wexdi was started in 2005 as a bulk manufacturer of trousers and pants. At first, we supplied retail shopkeepers with our extensive range of Trousers pants.
+We launched our on-line shopping website in 2018 for bulk purchases of our Tourers products.
+so that we could take shopkeeper orders on-line and supply them easily without any delay. In 2019, Wexdi added an option for retailers
+Merchants should sell their products on our site so that they can reach their customers on-line.
+Wexdi aims to offer the customer a significant discount, to ensure that the customer benefits from it every time.</p>
+
+      </div>
+      <div class="col-lg-6 d-none d-lg-block"><img src="https://bootstrapious.com/i/snippets/sn-about/illus.png" alt="" class="img-fluid"></div>
+    </div>
+  </div>
+</div>
+
+<div class="bg-white py-5">
+  <div class="container py-5">
+    <div class="row align-items-center mb-5">
+      <div class="col-lg-6 order-2 order-lg-1"><i class="fa fa-bar-chart fa-2x mb-3 text-primary"></i>
+        <h2 class="font-weight-light">What is WEXDI?</h2>
+        <p class="font-italic text-muted mb-4"><font  size=2>
+    WEXDI is a term that looks odd, but there is a meaning for every term in that word. 
+<br>
+W-<b>W</b>e provide our products in <br>
+
+EX-<b>EX</b>treme<br>
+
+DI-<b>DI</b>scounts for 365 Days.<br>
+
+  </font>
+        </p>
+      </div>
+      <div class="col-lg-5 px-5 mx-auto order-1 order-lg-2"><img src="https://bootstrapious.com/i/snippets/sn-about/img-1.jpg" alt="" class="img-fluid mb-4 mb-lg-0"></div>
+    </div>
+    <div class="row align-items-center">
+      <div class="col-lg-5 px-5 mx-auto"><img src="https://bootstrapious.com/i/snippets/sn-about/img-2.jpg" alt="" class="img-fluid mb-4 mb-lg-0"></div>
+      <div class="col-lg-6"><i class="fa fa-leaf fa-2x mb-3 text-primary"></i>
+        <h2 class="font-weight-light">365 DAYS DISCOUNT ONLINE SHOPPING</h2>
+        <p class="font-italic text-muted mb-4">If you would like to experience the best discounts for 365 days, then you are at the right place. Wexdi is an extreme discount provider site for men and women. So, hurry up! and check for the best deal every day.
+Have a great experience while doing online shopping with Wexdi.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bg-light py-5">
+  <div class="container py-5">
+    <div class="row mb-4">
+      <div class="col-lg-5">
+        <h2 class="display-4 font-weight-light">Our team</h2>
+        <p class="font-italic text-muted"></p>
+      </div>
+    </div>
+
+    <div class="row text-center">
+      <!-- Team item-->
+      <div class="col-xl-3 col-sm-6 mb-5">
+        <div class="bg-white rounded shadow-sm py-5 px-4"><img src="https://bootstrapious.com/i/snippets/sn-about/avatar-3.png" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+          <h5 class="mb-0">Deepak Kumar P</h5><span class="small text-uppercase text-muted">Founder</span>
+          <!--<ul class="social mb-0 list-inline mt-3">-->
+          <!--  <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a></li>-->
+          <!--  <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-twitter"></i></a></li>-->
+          <!--  <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-instagram"></i></a></li>-->
+          <!--  <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-linkedin"></i></a></li>-->
+          <!--</ul>-->
+        </div>
+      </div>
+      <!-- End-->
+
+      <!-- Team item-->
+      <div class="col-xl-3 col-sm-6 mb-5">
+        <div class="bg-white rounded shadow-sm py-5 px-4"><img src="https://bootstrapious.com/i/snippets/sn-about/avatar-4.png" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+          <h5 class="mb-0">Ramyasree K</h5><span class="small text-uppercase text-muted">Chief Adivsor</span>
+          <!--<ul class="social mb-0 list-inline mt-3">-->
+          <!--  <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a></li>-->
+          <!--  <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-twitter"></i></a></li>-->
+          <!--  <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-instagram"></i></a></li>-->
+          <!--  <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-linkedin"></i></a></li>-->
+          <!--</ul>-->
+        </div>
+      </div>
+      <!-- End-->
+
+      <!-- Team item-->
+      <div class="col-xl-3 col-sm-6 mb-5">
+        <div class="bg-white rounded shadow-sm py-5 px-4"><img src="https://bootstrapious.com/i/snippets/sn-about/avatar-2.png" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+          <h5 class="mb-0">Santhosh Kumar Y</h5><span class="small text-uppercase text-muted">Tech Head</span>
+          <!--<ul class="social mb-0 list-inline mt-3">-->
+          <!--  <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a></li>-->
+          <!--  <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-twitter"></i></a></li>-->
+          <!--  <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-instagram"></i></a></li>-->
+          <!--  <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-linkedin"></i></a></li>-->
+          <!--</ul>-->
+        </div>
+      </div>
+      <!-- End-->
+
+      <!-- Team item-->
+      <div class="col-xl-3 col-sm-6 mb-5">
+        <div class="bg-white rounded shadow-sm py-5 px-4"><img src="https://bootstrapious.com/i/snippets/sn-about/avatar-1.png" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+          <h5 class="mb-0">Muralidhar Rao P</h5><span class="small text-uppercase text-muted">Co-Partner</span>
+          <!--<ul class="social mb-0 list-inline mt-3">-->
+          <!--  <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a></li>-->
+          <!--  <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-twitter"></i></a></li>-->
+          <!--  <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-instagram"></i></a></li>-->
+          <!--  <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-linkedin"></i></a></li>-->
+          <!--</ul>-->
+        </div>
+      </div>
+      <!-- End-->
+
+    </div>
+  </div>
+</div>
+
+
+
                     </div>
                 </div>
             </div>

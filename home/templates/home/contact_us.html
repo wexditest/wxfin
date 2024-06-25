@@ -20,32 +20,88 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="basic-datatables_statemnt" class="display table table-striped table-hover" >
-                                <thead>
-                                    <tr>
-                                        <th>  Chit #</th>
-                                        <th>   Username</th>
-                                        <th>  Chit Month</th>
-                                        <th>   Chit Year</th>
-                                        <th>  Payment Status</th>
-                                        <th>  Amount Paid</th>
-                                        <th>   Payment Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for sup in statement_user_payment %}
-                                    <tr>
-                                        <th>  {{sup.chit_details}}</th>
-                                        <th>    {{sup.customer_details}}</th>
-                                        <th>   {{sup.chit_month}}</th>
-                                        <th>    {{sup.chit_year}}</th>
-                                        <th>   {{sup.payment_status}}</th>
-                                        <th>   {{sup.amount_paid}}</th>
-                                        <th>    {{sup.payment_date}}</th>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
+
+
+
+
+                     <div class="breadcumb_area">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <h4>Contact Us</h4>
+
+                <table border=1>
+                    <tr><th colspan=2>Office Address</th></tr>
+                    <tr><th> Merchant Legal entity name</th><td>Wexdi</td></tr>
+                                        <tr><th>Registered Address</th><td>16-7-808/3, VINAYAKA VEEDHI, MALAKPET HYDERABAD TELANGANA 500024</td></tr>
+
+                    <tr><th> Operational Address</th><td>16-7-808/3, VINAYAKA VEEDHI, MALAKPET HYDERABAD TELANGANA 500024</td></tr>
+                    <tr><th> Telephone No</th><td>+91-63029 57399</td></tr>
+                    <tr><th> E-Mail ID</th><td>info.support@wexdi.com</td></tr>
+
+                </table>
+
+
+
+                  <!-- Split section: Map + Contact form-->
+    <div class="container-fluid px-0 pt-4 pt-lg-5" id="map" data-offset-top="30">
+      <div class="row no-gutters">
+        <div class="col-lg-6 iframe-full-height-wrap">
+          <iframe class="iframe-full-height" width="600" height="250"
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15230.784328473359!2d78.4945491!3d17.3783513!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x7d9f8149de21275d!2sWexdi!5e0!3m2!1sen!2sin!4v1577451979467!5m2!1sen!2sin"></iframe>
+        </div>
+        <div class="col-lg-6 px-4 px-xl-5 py-5 border-top">
+          <h2 class="h4 mb-4">Drop Us A Line</h2>
+
+          <form id="form" method="POST" action="contact_us_form" class="needs-validation mb-3" novalidate>
+              {% csrf_token %}
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="cf-name">Your name:&nbsp;<span class="text-danger">*</span></label>
+                  <input class="form-control" name="name" type="text" id="cf-name" placeholder="John Doe" required>
+                  <div class="invalid-feedback">Please fill in you name!</div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="cf-email">Email address:&nbsp;<span class="text-danger">*</span></label>
+                  <input class="form-control" type="email" name="email" id="cf-email" placeholder="johndoe@email.com" required>
+                  <div class="invalid-feedback">Please provide valid email address!</div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="cf-phone">Your phone:&nbsp;<span class="text-danger">*</span></label>
+                  <input class="form-control" name="phone" type="text" id="cf-phone" placeholder="+1 (212) 00 000 000" required>
+                  <div class="invalid-feedback">Please provide valid phone number!</div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="cf-subject">Subject:</label>
+                  <input class="form-control" name="subject" type="text" id="cf-subject" placeholder="Provide short title of your request">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="cf-message">Message:&nbsp;<span class="text-danger">*</span></label>
+              <textarea class="form-control" name="message" id="cf-message" rows="6" placeholder="Please describe in detail your request" required></textarea>
+              <div class="invalid-feedback">Please write a message!</div>
+            </div>
+            <button class="btn btn-primary contact" type="submit">Send message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <br><br>
+    <br>
+
+            </div>
+        </div>
+    </div>
+</div>
                         </div>
                     </div>
                 </div>

@@ -11,6 +11,21 @@ import datetime
 from datetime import datetime
 
 
+
+class ContactUs(models.Model):
+    """
+    Represents a Home page Banner
+    """
+
+    name = models.CharField(max_length=100, null=True, blank=True,)
+    email = models.CharField(max_length=100, null=True, blank=True,)
+    phone = models.CharField(max_length=100, null=True, blank=True,)
+    subject = models.CharField(max_length=100, null=True, blank=True,)
+    message = models.CharField(max_length=100, null=True, blank=True,)
+
+
+
+
 class ExpensesList(models.Model):
     name = models.CharField(max_length=50)
     amount = models.IntegerField()

@@ -48,11 +48,14 @@ class P2PRequestFormAdmin(admin.ModelAdmin):
 class ExpensesListAdmin(admin.ModelAdmin):
   list_display = ("name","amount")
 
+class ContactUsAdmin(admin.ModelAdmin):
+    list_display = ('name',)
 
 
 
 # Register your models here.
 
+admin.site.register(ContactUs, ContactUsAdmin)
 admin.site.register(ExpensesList, ExpensesListAdmin)
 
 admin.site.register(P2PRequestForm, P2PRequestFormAdmin)
