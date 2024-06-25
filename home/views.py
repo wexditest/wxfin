@@ -114,7 +114,7 @@ def contact_us(request):
 
 
 
-    if request.method == "POST"
+    if request.method == "POST":
         name=request.POST.get('name', None)
         email=request.POST.get('email', None)
         phone=request.POST.get('phone', None)
