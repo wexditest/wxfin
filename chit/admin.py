@@ -24,11 +24,14 @@ class CustomBarModelForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(CustomBarModelForm, self).__init__(*args, **kwargs)
-        ccp_obj = CustomerChitPlan.objects.filter(customer_chit_details__id=self.instance.chit_details.id)
-        list_user_id = []
-        for i in ccp_obj:
-            list_user_id.append(i.customer_name.id)
-        self.fields['winner_of_chit'].queryset = User.objects.filter(id__in=list_user_id)# or something else
+        try:
+            ccp_obj = CustomerChitPlan.objects.filter(customer_chit_details__id=self.instance.chit_details.id)
+            list_user_id = []
+            for i in ccp_obj:
+                list_user_id.append(i.customer_name.id)
+            self.fields['winner_of_chit'].queryset = User.objects.filter(id__in=list_user_id)# or something else
+        except:
+            pass
 
 # Use it in your modelAdmin
 
@@ -75,10 +78,16 @@ class ChitPaymentNotificationAdmin(admin.ModelAdmin):
 admin.site.register(ChitPaymentNotification,ChitPaymentNotificationAdmin)
 
 
+class AgentListAdmin(admin.ModelAdmin):
+   pass #list_display = ("chit_details", "customer_details",'enroll_status','admin_per_status')
+
+
 
 
 # Register your models here.
 admin.site.register(EnrollChit, EnrollChitAdmin)
+
+admin.site.register(AgentList, AgentListAdmin)
 
 admin.site.register(ChitDetails, ChitDetailsAdmin)
 admin.site.register(MonthWiseChitDetails, MonthWiseChitDetailsAdmin)

@@ -370,22 +370,21 @@
 
 										<table id="multi-filter-selectnotify" class="display table table-striped table-hover" >
 											<thead>
-												<tr>
-													<th>user_of_chit</th>
+												<tr><th>Chit#</th>
+													<th>Username</th>
 
-														<th>Not Paid month/year</th>
+														<th>Month/Year</th>
 
-													<th>chit_details</th>
+
 
 												</tr>
 											</thead>
-											<tfoot>
-												<tr>
-													<th>user_of_chit</th>
+	<tfoot>
+												<tr><th>Chit#</th>
+													<th>Username</th>
 
-														<th>Not Paid month/year</th>
+														<th>Month/Year</th>
 
-													<th>chit_details</th>
 
 
 												</tr>
@@ -393,12 +392,12 @@
 											<tbody>
 											    {% for ccpd_obj in cpn_obj %}
 												<tr>
-
+	<th>{{ccpd_obj.chit_details}}</th>
 													<th>{{ccpd_obj.user_of_chit}}</th>
 
 													<th>{{ccpd_obj.chit_month}}/{{ccpd_obj.chit_year}}</th>
 
-													<th>{{ccpd_obj.chit_details}}</th>
+
 
 
 												</tr>

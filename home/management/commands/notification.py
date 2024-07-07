@@ -53,7 +53,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         print ("####################################Script is Started############################")
         ChitPaymentNotification.objects.all().delete()
-        chit_detail_obj = ChitDetails.objects.all()
+        chit_detail_obj = ChitDetails.objects.filter(chit_isstarted=True)
 
         for i in chit_detail_obj:
             cust_chit_plan_obj = CustomerChitPlan.objects.filter(customer_chit_details__id=i.id)
@@ -64,7 +64,7 @@ class Command(BaseCommand):
                     check_payment = CustomerChitPaymentDetails.objects.get(chit_details__id=i.id,customer_details__id=ccpo.customer_name.id,chit_month=month,chit_year=year)
 
 
-                    if check_payment.payment_status != "Paid":
+                    if check_payment.payment_status != "Paid" and ccpo.category == 'Customer' :
 
                         msg="Dear {}, Your {} Chit is not paid for the month/year - {}/{},try to pay. Thank you ".format(ccpo.customer_name,i,month,year)
                         cpn = ChitPaymentNotification(user_of_chit=ccpo.customer_name,
@@ -75,14 +75,6 @@ class Command(BaseCommand):
                                                       chit_year=year)
                         cpn.save()
                         print ("new notification register")
-                    # else:
-                    #     cpn = ChitPaymentNotification.objects.get(user_of_chit__id=ccpo.customer_name.id,
-                    #                                               chit_details__id=i.id,
-                    #                                               chit_month=month,
-                    #                                               chit_year=year)
-                    #     cpn.is_active=False
-                    #     cpn.save()
-                    #     print ("close old notification")
 
 
 
