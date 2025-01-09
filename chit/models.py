@@ -3,7 +3,13 @@ from django.contrib.auth.models import User
 import datetime
 from datetime import datetime
 
+CHIT_TYPE =(
 
+("Regular", "Regular"),
+("Continuous", "Continuous"),
+("Commission", "Commission"),
+
+)
 
 class ChitDetails(models.Model):
   chit_name = models.CharField(max_length=255)
@@ -18,6 +24,7 @@ class ChitDetails(models.Model):
   chit_duedate_month = models.CharField(max_length=255,blank=True)
   chit_disbursedate_month = models.CharField(max_length=255,blank=True)
   chit_enrolldate_month = models.CharField(max_length=255,blank=True)
+  chit_type = models.CharField(max_length=100, choices=CHIT_TYPE, default="Regular", blank=True)
 
 
   def __str__(self):
@@ -53,6 +60,44 @@ class AgentList(models.Model):
     return self.agent_name
 
 
+class ContinuousChitDetails(models.Model):
+  chit_details = models.ForeignKey(ChitDetails,on_delete=models.CASCADE)
+  chit_count = models.CharField(max_length=9, default="", blank=True)
+  get_chit_amount = models.CharField(max_length=255)
+
+
+class ContinuousChitWinner(models.Model):
+  chit_details = models.ForeignKey(ChitDetails,on_delete=models.CASCADE)
+  wining_chit_count = models.CharField(max_length=9, default="", blank=True)
+  get_chit_amount = models.CharField(max_length=255)
+  winner_of_chit = models.ForeignKey(User,on_delete=models.CASCADE,blank=True, null=True)
+  agent_name = models.ForeignKey(AgentList,on_delete=models.CASCADE,blank=True, null=True)
+  disburment_pic = models.ImageField(default='avatar.jpg', upload_to='disburment_pic/' )
+  payment_mode = models.CharField(max_length=9, choices=PAYMODE_CHOICES, default="", blank=True)
+
+
+
+
+
+class CommissionChitDetails(models.Model):
+  chit_details = models.ForeignKey(ChitDetails,on_delete=models.CASCADE)
+  chit_count = models.CharField(max_length=9, default="", blank=True)
+  amount_of_payment = models.CharField(max_length=255)
+  dividend = models.CharField(max_length=255)
+  prize_money = models.CharField(max_length=255)
+  comparison = models.CharField(max_length=255)
+
+
+class CommissionChitWinner(models.Model):
+  chit_details = models.ForeignKey(ChitDetails,on_delete=models.CASCADE)
+  wining_chit_count = models.CharField(max_length=9, default="", blank=True)
+  prize_money = models.CharField(max_length=255)
+  winner_of_chit = models.ForeignKey(User,on_delete=models.CASCADE,blank=True, null=True)
+  agent_name = models.ForeignKey(AgentList,on_delete=models.CASCADE,blank=True, null=True)
+  disburment_pic = models.ImageField(default='avatar.jpg', upload_to='disburment_pic/' )
+  payment_mode = models.CharField(max_length=9, choices=PAYMODE_CHOICES, default="", blank=True)
+
+
 
 class MonthWiseChitDetails(models.Model):
   chit_details = models.ForeignKey(ChitDetails,on_delete=models.CASCADE)
@@ -81,7 +126,8 @@ class CustomerChitPlan(models.Model):
   customer_chit_details = models.ForeignKey(ChitDetails,on_delete=models.CASCADE)
   customer_name = models.ForeignKey(User,on_delete=models.CASCADE)
   category = models.CharField(max_length=100, choices=CAT, default="Customer", blank=True)
-
+  start_chit_month = models.CharField(max_length=9, choices=MONTH_CHOICES, default="January", blank=True)
+  start_chit_year = models.CharField(max_length=255,blank=True)
 
 
 PAY_CHOICES =(
@@ -100,6 +146,8 @@ class CustomerChitPaymentDetails(models.Model):
   payment_file = models.FileField(upload_to="paymentfiles/" , default='paymentfiles/myfile.pdf')
   amount_paid = models.CharField(max_length=255, default=0.0)
   payment_date = models.DateField(default=datetime.now)
+  amount_need_to_pay = models.CharField(max_length=255, default=0.0)
+
 
 PURPOSE_CHOICES =(
 ("Auction", "Auction"),

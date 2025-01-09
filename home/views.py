@@ -311,9 +311,9 @@ def stock_summary(request,slug):
 
 def get_chit_plan(request,chit_id):
     chit_det_obj = ChitDetails.objects.get(id=chit_id)
-    result = MonthWiseChitDetails.objects.filter(chit_details__id=chit_id)
-
-    return render_to_pdf(
+    if chit_det_obj.chit_type == "Regular":
+        result = MonthWiseChitDetails.objects.filter(chit_details__id=chit_id)
+        return render_to_pdf(
             'home/plan_print.html',
             {
                 'pagesize':'A4',
@@ -321,6 +321,19 @@ def get_chit_plan(request,chit_id):
                 'chit_det_obj':chit_det_obj,
             }
         )
+
+    else:
+        result = ContinuousChitDetails.objects.filter(chit_details__id=chit_id)
+
+
+        return render_to_pdf(
+                'home/c_plan_print.html',
+                {
+                    'pagesize':'A4',
+                    'mylist': result,
+                    'chit_det_obj':chit_det_obj,
+                }
+            )
 
 
 def render_to_pdf(template_src, context_dict):
@@ -683,7 +696,8 @@ def dashboard(request):
 
     lspin_obj = LotterySpinList.objects.latest('id')
 
-    ccpd_obj = CustomerChitPaymentDetails.objects.all()
+    ccpd_obj = CustomerChitPaymentDetails.objects.filter(payment_status="NotPaid")
+
     statement_user_payment = CustomerChitPaymentDetails.objects.filter(customer_details__id=request.user.id)
 
     # Notification
@@ -693,7 +707,8 @@ def dashboard(request):
 
     # admin Notification
     cpn_obj = ChitPaymentNotification.objects.filter(is_active=True)
-
+    # p2p payment notification
+    p2p_payment_notify =  P2PPaymentNotification.objects.all()
     context = {"statement_user_payment":statement_user_payment,
                 "user_cpn_obj_count":user_cpn_obj_count,
                 "user_cpn_obj":user_cpn_obj,
@@ -710,7 +725,8 @@ def dashboard(request):
                 'chit_count_dict':chit_count_dict,
                 'plan_details_dict':plan_details_dict,
                 'chit_det_obj_all':chit_det_obj_all,
-                'plan_details_dict_all':plan_details_dict_all}
+                'plan_details_dict_all':plan_details_dict_all,
+                'p2p_payment_notify':p2p_payment_notify,}
 
     return render(request, 'home/index.html',context)
 

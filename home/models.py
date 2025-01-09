@@ -32,6 +32,14 @@ class ExpensesList(models.Model):
 
 
 
+PROOF_CHOICES =(
+("aadhar", "aadhar"),
+("voter", "voter"),
+
+)
+
+
+
 class LotterySpinList(models.Model):
   title = models.CharField(max_length=255,blank=True, null=True)
   option1 = models.CharField(max_length=255,blank=True, null=True)
@@ -73,11 +81,7 @@ class StockLastestNews(models.Model):
 
 
 
-PROOF_CHOICES =(
-("aadhar", "aadhar"),
-("voter", "voter"),
 
-)
 
 BANK_PROOF_CHOICES =(
 ("cheque", "cheque"),
@@ -93,11 +97,8 @@ class KYC(models.Model):
 
 
 
-
-CREDIT_CHOICES =(
-("CLOSE", "CLOSE"),
-("PRE-CLOSE", "PRE-CLOSE"),
-("OPEN", "OPEN"),
+LOAN_CHOICES =(
+("APPROVED", "APPROVED"),
 ("REJECT", "REJECT"),
 ("IN-PROCESS", "IN-PROCESS"),
 
@@ -105,10 +106,62 @@ CREDIT_CHOICES =(
 
 )
 
+CREDIT_CHOICES =(
+("CLOSE", "CLOSE"),
+("PRE-CLOSE", "PRE-CLOSE"),
+("ACTIVE", "ACTIVE"),
+("REJECT", "REJECT"),
+("IN-PROCESS", "IN-PROCESS"),
+("DISBURSEMENT", "DISBURSEMENT"),
+
+
+
+
+)
+
+
+ADDRESS_CHOICES =(
+("aadhar", "aadhar"),
+("voter", "voter"),
+
+)
+
+
+ID_CHOICES =(
+("aadhar", "aadhar"),
+("pancard", "pancard"),
+
+)
+
+INCOME_CHOICES =(
+("salaried", "salaried"),
+("business", "business"),
+
+)
+
+
+
 class P2PRequestForm(models.Model):
   user_name = models.ForeignKey(User,on_delete=models.CASCADE,blank=True, null=True)
-  proof_file = models.FileField(upload_to="proof/" , default='proof/myfile.pdf',blank=True, null=True)
-  proof_choice = models.CharField(max_length=9, choices=PROOF_CHOICES, default="aadhar")
+
+  address_proof_file = models.FileField(upload_to="proof/" , default='proof/myfile.pdf',blank=True, null=True)
+  address_proof_choice = models.CharField(max_length=9, choices=ADDRESS_CHOICES, default="aadhar")
+  address_proof_password = models.CharField(max_length=255,blank=True, null=True)
+
+  id_proof_file = models.FileField(upload_to="proof/" , default='proof/myfile.pdf',blank=True, null=True)
+  id_proof_choice = models.CharField(max_length=9, choices=ID_CHOICES, default="aadhar")
+  id_proof_password = models.CharField(max_length=255,blank=True, null=True)
+
+
+  income_proof_file = models.FileField(upload_to="proof/" , default='proof/myfile.pdf',blank=True, null=True)
+  income_proof_choice = models.CharField(max_length=9, choices=INCOME_CHOICES, default="aadhar")
+  income_proof_password = models.CharField(max_length=255,blank=True, null=True)
+
+
+  gps_location_proof_file = models.FileField(upload_to="proof/" , default='proof/myfile.pdf',blank=True, null=True)
+
+
+
   chit_amount = models.ForeignKey(ChitDetails,on_delete=models.CASCADE,blank=True, null=True)
   eligibility_amount = models.CharField(max_length=255,blank=True, null=True)
   emi_amount= models.CharField(max_length=255,blank=True, null=True)
@@ -117,22 +170,65 @@ class P2PRequestForm(models.Model):
   disburment_amount= models.CharField(max_length=255,blank=True, null=True)
   entry_date = models.DateField(default=datetime.now,blank=True, null=True)
   is_approved = models.BooleanField(default=False)
+
+  loan_status = models.CharField(max_length=39, choices=LOAN_CHOICES, default="IN-PROCESS")
+
   credit_status = models.CharField(max_length=39, choices=CREDIT_CHOICES, default="IN-PROCESS")
+
+  disbursment_proof_file = models.FileField(upload_to="proof/" , default='proof/myfile.pdf',blank=True, null=True)
+  customer_disbursment_recived_file = models.FileField(upload_to="proof/" , default='proof/myfile.pdf',blank=True, null=True)
 
 
 EMI_CHOICES =(
 ("1", "1"),
 ("2", "2"),
 ("3", "3"),
+("4", "4"),
+("5", "5"),
+("6", "6"),
+)
+
+PAYMENT_CHOICES =(
+("NotPaid", "NotPaid"),
+("Paid", "Paid"),
 )
 
 
+MONTH_CHOICES =(
+("1", "January"),
+("2", "Feburary"),
+("3", "March"),
+("4", "April"),
+("5", "May"),
+("6", "June"),
+("7", "July"),
+("8", "August"),
+("9", "September"),
+("10", "October"),
+("11", "November"),
+("12", "December"),
+)
 
 class P2PCreditEMI(models.Model):
   p2prequest_obj = models.ForeignKey(P2PRequestForm,on_delete=models.CASCADE,blank=True, null=True)
   payment_file = models.FileField(upload_to="proof/" , default='proof/myfile.pdf',blank=True, null=True)
   emi_choice = models.CharField(max_length=9, choices=EMI_CHOICES, default="aadhar")
   chit_amount = models.ForeignKey(ChitDetails,on_delete=models.CASCADE,blank=True, null=True)
+  payment_choice = models.CharField(max_length=9, choices=PAYMENT_CHOICES, default="NotPaid")
+  payment_month = models.CharField(max_length=20, choices=MONTH_CHOICES, default="10")
+  payment_year = models.CharField(max_length=5, blank=True)
+  p2p_amount = models.CharField(max_length=255,blank=True, null=True)
+
+
+
+
+class P2PPaymentNotification(models.Model):
+  p2ploan = models.CharField(max_length=255,blank=True, null=True)
+  customer_name = models.CharField(max_length=255,blank=True, null=True)
+  p2p_amount = models.CharField(max_length=255,blank=True, null=True)
+  payment_choice = models.CharField(max_length=255,blank=True, null=True)
+  payment_month = models.CharField(max_length=255,blank=True, null=True)
+  payment_year = models.CharField(max_length=255,blank=True, null=True)
 
 
 

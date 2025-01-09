@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <title>Chit Plan</title>
+        <style type="text/css">
+            @page {
+                size: {{ pagesize }};
+                margin: 1cm;
+                @frame footer {
+                    -pdf-frame-content: footerContent;
+                    bottom: 0cm;
+                    margin-left: 9cm;
+                    margin-right: 9cm;
+                    height: 1cm;
+                }
+            }
+        </style>
+
+    </head>
+    <body><style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 4px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  text-align: left;
+}
+</style>
+</head>
+<body>
+
+
+
+
+
+ <center><h1>Wexdi Finance Services Pvt Ltd.</h1><h3>Chit Plan Details</h3><h5>Report Date: {% now "l, F j, Y g:i A" %}</h5></center>
+<table id="customers"><tr><td><b>Chit#</b></td><td>{{chit_det_obj.chit_name}}</td>
+<td><b>Chit Amount</b></td><td>Rs.{{chit_det_obj.chit_total_amt}}.00/-</td></tr>
+
+</table>
+<hr>
+
+
+<table id="customers">
+
+
+
+
+
+
+<tr>
+    <td><center><FONT COLOR=BLUE><b>S.No</b></FONT></center></td>
+        <td><center><FONT COLOR=Green><b>Chit Amount</b></FONT></center></td>
+
+
+
+<td ><center><b>EMI</b></center></td>
+<td ><center><font color=red><b>Lift EMI</b></font></center></td>
+</tr>
+
+
+{% for i in mylist %}
+<tr>
+
+    <td><center>{{forloop.counter}}</center></td>
+    <td><center>Rs.{{i.get_chit_amount}}.00/-</center></td>
+    <td><center>Rs.{{chit_det_obj.chit_nottaken_amt}}.00/-</center></td>
+    <td><center>Rs.{{chit_det_obj.chit_taken_amt}}.00/-</center></td>
+
+</tr>
+{% endfor %}
+    </table>
+
+
+
+</center>
+<br><br>
+ <b> Rules for chit</b>
+           <ul>
+               <li>Everyone should pay their chit amount before the {% if chit_det_obj.chit_duedate_month %}
+               {{chit_det_obj.chit_duedate_month}}
+               {%else%}
+               yet not decide any date{%endif %}. of every month
+
+
+               </li>
+               <li>
+                   For those who got/won the chit for that month, the amount will be credited by the after
+                   {% if chit_det_obj.chit_disbursedate_month %} {{chit_det_obj.chit_disbursedate_month}}{%else%}
+               yet not decide any date{%endif %}
+
+
+                    of the month
+
+               </li>
+               <li>
+                   Those who want to participate in the chit-wanted list should be enrolled between
+                    {% if chit_det_obj.chit_enrolldate_month %} {{chit_det_obj.chit_enrolldate_month}}{%else%}
+               yet not decide any date{%endif %}
+                   of every month
+
+               </li>
+           </ul>
+
+
+        <div id="footerContent">
+
+        </div>
+    </body>
+</html>

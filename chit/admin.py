@@ -24,11 +24,25 @@ class CustomBarModelForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(CustomBarModelForm, self).__init__(*args, **kwargs)
+
         try:
             ccp_obj = CustomerChitPlan.objects.filter(customer_chit_details__id=self.instance.chit_details.id)
             list_user_id = []
+            already_winnder = []
             for i in ccp_obj:
-                list_user_id.append(i.customer_name.id)
+                try:
+                    check = MonthWiseChitDetails.objects.get(winner_of_chit__id=i.customer_name.id,chit_details=self.instance.chit_details.id)
+                    if check:
+                        already_winnder.append(i.customer_name.id)
+
+                except:
+
+
+                    list_user_id.append(i.customer_name.id)
+
+            # print (already_winnder)
+            print (list_user_id)
+
             self.fields['winner_of_chit'].queryset = User.objects.filter(id__in=list_user_id)# or something else
         except:
             pass
@@ -49,7 +63,7 @@ class MonthWiseChitDetailsAdmin(admin.ModelAdmin):
 
 
 class CustomerChitPlanAdmin(admin.ModelAdmin):
-  list_display = ("customer_chit_details", "customer_name","category")
+  list_display = ("customer_chit_details", "customer_name","category",'start_chit_month','start_chit_year')
   list_filter = ("customer_chit_details","category")
 
 
@@ -63,8 +77,8 @@ duplicate_event_chit_payment_customer.short_description = "Duplicate selected re
 class CustomerChitPaymentDetailsAdmin(admin.ModelAdmin):
   autocomplete_fields = ['customer_details']
   actions = [duplicate_event_chit_payment_customer]
-  list_display = ("chit_details","customer_details","chit_month","chit_year","payment_status")
-  list_filter=("chit_details","customer_details","chit_month","chit_year")
+  list_display = ("chit_details","customer_details","chit_month","chit_year","amount_need_to_pay","payment_status")
+  list_filter=("payment_status","chit_details","customer_details","chit_month","chit_year",)
 
 class EnrollChitAdmin(admin.ModelAdmin):
   list_display = ("chit_details", "customer_details",'enroll_status','admin_per_status')
@@ -82,6 +96,37 @@ class AgentListAdmin(admin.ModelAdmin):
    pass #list_display = ("chit_details", "customer_details",'enroll_status','admin_per_status')
 
 
+class ContinuousChitDetailsAdmin(admin.ModelAdmin):
+   pass
+
+
+
+class ContinuousChitWinnerAdmin(admin.ModelAdmin):
+   pass
+
+
+admin.site.register(ContinuousChitDetails, ContinuousChitDetailsAdmin)
+
+
+admin.site.register(ContinuousChitWinner, ContinuousChitWinnerAdmin)
+
+
+
+
+
+class CommissionChitDetailsAdmin(admin.ModelAdmin):
+   pass
+
+
+
+class CommissionChitWinnerAdmin(admin.ModelAdmin):
+   pass
+
+
+admin.site.register(CommissionChitDetails, CommissionChitDetailsAdmin)
+
+
+admin.site.register(CommissionChitWinner, CommissionChitWinnerAdmin)
 
 
 # Register your models here.

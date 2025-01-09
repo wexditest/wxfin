@@ -13,7 +13,7 @@ from . import models
 class P2PRequestFormForm(ModelForm):
     class Meta:
         model = P2PRequestForm
-        fields = ['user_name', 'proof_file', 'proof_choice', 'chit_amount']
+        fields = ['user_name', 'address_proof_file', 'address_proof_choice', 'chit_amount']
 
 
 

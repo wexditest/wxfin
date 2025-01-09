@@ -25,14 +25,15 @@ from django.contrib import admin
 
 class P2PCreditEMIInline(admin.TabularInline):
     model = P2PCreditEMI
+    extra = 0
 
 
 
 
 class P2PRequestFormAdmin(admin.ModelAdmin):
     list_display = ("user_name",
-                  "proof_file",
-                  "proof_choice",
+                  "address_proof_file",
+                  "address_proof_choice",
                   "chit_amount",
                   "eligibility_amount",
                   "emi_amount",
@@ -69,6 +70,7 @@ admin.site.register(StockLastestNews)
 admin.site.register(OneSlide)
 admin.site.register(IncomeExpenses,IncomeExpensesAdmin)
 admin.site.register(LotterySpinList)
+admin.site.register(P2PPaymentNotification)
 
 
 

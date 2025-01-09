@@ -60,7 +60,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         print ("####################################Script is Started############################")
 
-        chit_detail_obj = ChitDetails.objects.all()
+        chit_detail_obj = ChitDetails.objects.filter(chit_isstarted=True)
 
         for i in chit_detail_obj:
             cust_chit_plan_obj = CustomerChitPlan.objects.filter(customer_chit_details__id=i.id)

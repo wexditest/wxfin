@@ -32,7 +32,7 @@
 						<div class="col-md-6">
 							<div class="card full-height">
 								<div class="card-body">
-									<div class="card-title">Request Form</div>
+									<div class="card-title">Credit Loan Apply Form</div>
 
 							<form action="" method="post">
 							    {% csrf_token %}
@@ -76,12 +76,63 @@
 						</div>
 					</div>
 
+	<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-header">
+									<h4 class="card-title">Your Credit Loans</h4>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table id="basic-datatables_p2p" class="display table table-striped table-hover" >
+											<thead>
+												<tr>
+
+<th>Loan Number</th><th>
+
+  Loan Amount</th><th>
+  EMI</th><th>
+  Months</th><th>
+
+  Loan Status</th><th>
+ Loan Stage </th>
+
+
+													</tr>
+											</thead>
+
+											<tbody>
+										{% for po in p2p_obj %}
+											<tr>
+											 <td>    P2PLC{{po.id}}</td><td>
+
+
+
+
+
+  {{po.eligibility_amount}}</td><td>
+  {{po.emi_amount}}</td><td>
+  {{po.no_of_months}}</td><td>
+
+  {{po.loan_status}}</td><td>
+  {{po.credit_status}} </td>
+    </tr>
+    {% endfor %}
+
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
 
 					<div class="row">
 						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
-									<h4 class="card-title">Credit Calculation </h4>
+									<h4 class="card-title">Credit Loan Calculation </h4>
 								</div>
 								<div class="card-body">
 									<div class="table-responsive">
@@ -95,9 +146,10 @@
 
 											<tbody>
 											<tr>
-        <td>Rs.25,000/-</td><td>Rs.7,500/-</td><td>Rs.2,600/-</td><td>3</td><td>Rs.500/-</td><td>Rs.7,000/-</td></tr><tr>
-        <td>Rs.50,000/-</td><td>Rs.15,000/-</td><td>Rs.5,200/-</td><td>3</td><td>Rs.500/-</td><td>Rs.14,500/-</td></tr><tr>
-        <td>Rs.1,00,000/-</td><td>Rs.30,000/-</td><td>Rs.10,400/-</td><td>3</td><td>Rs.500/-</td><td>Rs.29,500/-</td>
+        <td>Rs.25,000/-</td><td>Rs.7,500/-</td><td>Rs.2,650/-</td><td>3</td><td>Rs.500/-</td><td>Rs.7,000/-</td></tr><tr>
+        <td>Rs.50,000/-</td><td>Rs.15,000/-</td><td>Rs.5,300/-</td><td>3</td><td>Rs.500/-</td><td>Rs.14,500/-</td></tr><tr>
+        <td>Rs.1,00,000/-</td><td>Rs.30,000/-</td><td>Rs.10,600/-</td><td>3</td><td>Rs.500/-</td><td>Rs.29,500/-</td></tr><tr>
+        <td>Rs.2,00,000/-</td><td>Rs.60,000/-</td><td>Rs.21,200/-</td><td>3</td><td>Rs.500/-</td><td>Rs.59,500/-</td>
 
     </tr>
 
@@ -110,39 +162,6 @@
 
 					</div>
 
-	<div class="row">
-						<div class="col-md-12">
-							<div class="card">
-								<div class="card-header">
-									<h4 class="card-title">Request Status</h4>
-								</div>
-								<div class="card-body">
-									<div class="table-responsive">
-										<table id="basic-datatables_p2p" class="display table table-striped table-hover" >
-											<thead>
-												<tr>
-
-<th>USER NAME</th>
-
-
-													</tr>
-											</thead>
-
-											<tbody>
-										{% for po in p2p_obj %}
-											<tr>
-        <td>{{po.user_name}}</td>
-    </tr>
-    {% endfor %}
-
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-
-					</div>
 
 
     </div>

@@ -308,7 +308,11 @@
 
 					<div class="row">
 
-
+<style>
+    .my-paragraph {
+    font-size: 14px;
+}
+</style>
 
 						<div class="col-md-12">
 							<div class="card">
@@ -324,8 +328,9 @@
 													<th>chit_details</th>
 													<th>customer_details</th>
 													<th>chit_month/chit_year</th>
-													<th>payment_status</th>
 													<th>payment_date</th>
+													<th>payment_slilp</th>
+
 
 												</tr>
 											</thead>
@@ -334,8 +339,9 @@
 													<th>chit_details</th>
 													<th>customer_details</th>
 													<th>chit_month/chit_year</th>
-													<th>payment_status</th>
+
 													<th>payment_date</th>
+													<th>payment_slip</th>
 
 												</tr>
 											</tfoot>
@@ -346,8 +352,55 @@
 													<th>{{ccpd_obj.chit_details}}</th>
 													<th>{{ccpd_obj.customer_details}}</th>
 													<th>{{ccpd_obj.chit_month}}/{{ccpd_obj.chit_year}}</th>
-													<th>{{ccpd_obj.payment_status}}</th>
+
 													<th>{{ccpd_obj.payment_date}}</th>
+													<th>
+													       <div id="help{{forloop.counter}}">
+
+    <p class="my-paragraph">
+        <table>
+            <tr><th colspan=2><font color=blue><center>Chit EMI Receipt</center></font></th></tr>
+            <tr><th>Customer</th><td>{{ccpd_obj.customer_details}}</td></tr>
+        <tr><th>Chit</th><td>{{ccpd_obj.chit_details}}</td></tr>
+        <tr><th> Month/Year</th><td>{{ccpd_obj.chit_month}}/{{ccpd_obj.chit_year}}</td></tr>
+        <tr><th>Payment Status</th><td>{{ccpd_obj.payment_status}}</td></tr>
+        <tr><th>Amount To Pay</th><td>Rs.{{ccpd_obj.amount_need_to_pay}}/-</td></tr>
+
+        <tr><th>UPI To Pay</th><td> wexdi@ybl</td></tr>
+        </table>
+</div>
+<input id="help_button{{forloop.counter}}" type="button" value="Show Receipt"/>
+
+<style>#help{{forloop.counter}}{
+    background-color:pink;
+    width:300px;
+    height:500px;
+    display:none;
+    position:fixed;
+    top:50%;
+    left:50%;
+    margin:-150px 0 0 -150px;
+}</style>
+<script>
+    $(document).ready(function() {
+         $("#help{{forloop.counter}}").hide();
+    $("#help_button{{forloop.counter}}").click(function() {
+        $("#help{{forloop.counter}}").slideToggle(1000, function() {
+            if($("#help_button{{forloop.counter}}").val() == "close")
+            {
+                $("#help_button{{forloop.counter}}").val("show table");
+            }
+            else
+            {
+                $("#help_button{{forloop.counter}}").val("close");
+            }
+        });
+    });
+});
+</script>
+
+
+													       </th>
 
 
 												</tr>
@@ -363,39 +416,110 @@
 	<div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
-									<h4 class="card-title">Pending Payment Notification </h4>
+									<h4 class="card-title">P2P Payment Notification </h4>
 								</div>
 								<div class="card-body">
 									<div class="table-responsive">
 
 										<table id="multi-filter-selectnotify" class="display table table-striped table-hover" >
 											<thead>
-												<tr><th>Chit#</th>
-													<th>Username</th>
-
-														<th>Month/Year</th>
-
+												<tr><th>p2ploan#</th><th>customer_name</th>
+													<th>p2p_amount</th>
+<th>payment_choice</th>
+<th>payment_month</th>
+<th>payment_year</th>
+<th>Receipt</th>
 
 
 												</tr>
 											</thead>
 	<tfoot>
-												<tr><th>Chit#</th>
-													<th>Username</th>
+											<tr><th>p2ploan#</th><th>customer_name</th>
+													<th>p2p_amount</th>
+<th>payment_choice</th>
+<th>payment_month</th>
+<th>payment_year</th>
 
-														<th>Month/Year</th>
 
-
-
+<th>action</th>
 												</tr>
 											</tfoot>
 											<tbody>
-											    {% for ccpd_obj in cpn_obj %}
-												<tr>
-	<th>{{ccpd_obj.chit_details}}</th>
-													<th>{{ccpd_obj.user_of_chit}}</th>
+											    {% for ccpd_obj in p2p_payment_notify %}
+												<tr><th>{{ccpd_obj.p2ploan}}</th><th>{{ccpd_obj.customer_name}}</th>
+													<th>{{ccpd_obj.p2p_amount}}</th>
+<th>{{ccpd_obj.payment_choice}}</th>
+<th>{{ccpd_obj.payment_month}}</th>
+<th>{{ccpd_obj.payment_year}}</th>
 
-													<th>{{ccpd_obj.chit_month}}/{{ccpd_obj.chit_year}}</th>
+
+
+
+
+
+
+<th>
+													       <div id="phelp{{forloop.counter}}">
+
+    <p class="my-paragraph">
+        <table>
+            <tr><th colspan=2><font color=blue><center>P2P EMI Receipt</center></font></th></tr>
+            <tr><th>Customer</th><td>{{ccpd_obj.customer_name}}</td></tr>
+        <tr><th>Loan Number</th><td>{{ccpd_obj.p2ploan}}</td></tr>
+        <tr><th> Month/Year</th><td>{{ccpd_obj.payment_month}}/{{ccpd_obj.payment_year}}</td></tr>
+        <tr><th>Payment Status</th><td>{{ccpd_obj.payment_choice}}</td></tr>
+        <tr><th>Amount To Pay</th><td>Rs.{{ccpd_obj.p2p_amount}}/-</td></tr>
+
+        <tr><th>UPI To Pay</th><td> wexdi@ybl</td></tr>
+        </table>
+</div>
+<input id="phelp_button{{forloop.counter}}" type="button" value="Show Receipt"/>
+
+<style>#phelp{{forloop.counter}}{
+    background-color:pink;
+    width:300px;
+    height:500px;
+    display:none;
+    position:fixed;
+    top:50%;
+    left:50%;
+    margin:-150px 0 0 -150px;
+}</style>
+<script>
+    $(document).ready(function() {
+         $("#phelp{{forloop.counter}}").hide();
+    $("#phelp_button{{forloop.counter}}").click(function() {
+        $("#phelp{{forloop.counter}}").slideToggle(1000, function() {
+            if($("#phelp_button{{forloop.counter}}").val() == "close")
+            {
+                $("#phelp_button{{forloop.counter}}").val("show table");
+            }
+            else
+            {
+                $("#phelp_button{{forloop.counter}}").val("close");
+            }
+        });
+    });
+});
+</script>
+
+
+													       </th>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
